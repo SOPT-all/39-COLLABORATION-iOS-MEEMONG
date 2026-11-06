@@ -1,6 +1,9 @@
 # 39-COLLABORATION-iOS-MEEMONG
-39기 PLAY SOPT 합동 세미나 모바일앱 3조 ✂️ 미몽 ✂️ iOS 레포지토리
+> 39기 PLAY SOPT 합동 세미나 모바일앱 3조 ✂️ 미몽 ✂️ iOS 레포지토리
 <br>
+
+<img width="1920" height="1080" alt="발표장표" src="https://github.com/user-attachments/assets/ee3f608e-f958-4185-b9b1-cfda1ecc66a0" />
+
 
 ## 🍎 iOS 팀원 소개
 
@@ -10,14 +13,8 @@
 <br>
 
 ## 🛠 기술 스택 및 라이브러리
+<img width="1920" height="1080" alt="Frame 30" src="https://github.com/user-attachments/assets/fdc26b36-fa6f-4f8f-9a75-a84cfb87b5e6" />
 
-| 분류 | 이름 | 설명 | 버전 |
-| :---: | :---: | :--- | :---: |
-| IDE | Xcode | Apple이 제공하는 공식 통합 개발 환경 IDE | 27.0 |
-| UI 프레임워크 | SwiftUI | 코드의 간결성과 직관성을 통해 빠르고 쉽게 사용자 인터페이스를 설계하고 유지보수 가능 | - |
-| 아키텍처 | MVVM | UI, 데이터 계층 분리로 유지보수 용이 | - |
-| 네트워크 | URLSession | 애플 플랫폼에서 서버와 데이터를 주고받기 위해 사용하는 핵심 API 클래스 | - |
-| 이미지 처리 | Kingfisher | 이미지 캐싱 및 네트워크 병목 방지 | 8.15.0 |
 <br>
 
 ## 🤝 Git Convention
