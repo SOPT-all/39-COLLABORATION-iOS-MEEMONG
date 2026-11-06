@@ -4,6 +4,12 @@
 
 <img width="1920" height="1080" alt="발표장표" src="https://github.com/user-attachments/assets/ee3f608e-f958-4185-b9b1-cfda1ecc66a0" />
 
+<br> 
+
+## 🎨 리디자인 포인트
+<img width="1920" height="1080" alt="Frame 2147228341" src="https://github.com/user-attachments/assets/4d1f4fc6-5390-4749-af47-de28864d3b81" />
+<img width="1920" height="1080" alt="Frame 39" src="https://github.com/user-attachments/assets/0674f6fd-ca2e-4c76-b99a-1f8a77b1e477" />
+<img width="1920" height="1080" alt="Frame 40" src="https://github.com/user-attachments/assets/7a083472-f477-4755-88a2-02c11cdb5723" />
 
 ## 🍎 iOS 팀원 소개
 
