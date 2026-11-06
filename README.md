@@ -7,9 +7,11 @@
 
 ## 🍎 iOS 팀원 소개
 
-| [김세령](https://github.com/ser0kim) | [김보민](https://github.com/bominnkimmm) | 
-| :---: | :---: |
 | <img src="https://github.com/user-attachments/assets/9da2f1e2-c562-45d6-b195-b7c3aaff0bc3" width="200"> | <img src="https://github.com/user-attachments/assets/83fc66c2-41eb-4e0a-92d3-76a8d20730a6" width="200"> | 
+| :---: | :---: |
+| **iOS Lead** | **iOS** |
+| [김세령](https://github.com/ser0kim) | [김보민](https://github.com/bominnnkimmm) |
+| 홈, 빠른매칭 UI 및 기능 구현<br>미몽 추천 공고 목록 조회<br>일반 공고 목록 조회<br>찜 등록 및 취소 API 연결 | 리뷰특가 상세페이지 UI 및 기능 구현<br>내용 상세 조회,<br>디자이너 정보 조회 API 연결 |
 <br>
 
 ## 🛠 기술 스택 및 라이브러리
@@ -19,9 +21,7 @@
 
 ## 🤝 Git Convention
 
-<details>
-<summary><b>🏷 태그 컨벤션</b></summary>
-<br>
+### 🏷 태그 컨벤션
 
 | 태그 | 설명 |
 | :---: | :--- |
@@ -36,11 +36,9 @@
 | `network` | 네트워크 작업 시 사용 |
 | `merge` | 머지하기 |
 
-</details>
-
-<details>
-<summary><b>📝 커밋 컨벤션</b></summary>
 <br>
+
+### 📝 커밋 컨벤션
 
 `[태그] #이슈번호 - 작업내용`
 
@@ -50,12 +48,9 @@
 [add] #1 - 아이콘 에셋 추가
 [chore] #6 - 코드 리뷰 반영
 ```
-
-</details>
-
-<details>
-<summary><b>🌿 브랜치 컨벤션</b></summary>
 <br>
+
+### 🌿 브랜치 컨벤션
 
 `태그/#이슈번호`
 
@@ -67,17 +62,13 @@ refactor/#53
 
 - 머지 완료 후 브랜치 지우기
 
-</details>
 
 
 <br>
 
 ## 📄 이슈/PR 컨벤션
 
-<details>
-<summary><b>📮 이슈 템플릿</b></summary>
-<br>
-
+### 📮 이슈 템플릿
 제목: `[feat] ~~구현`
 
 ```markdown
@@ -92,11 +83,9 @@ refactor/#53
 없으면 지우기
 ```
 
-</details>
-
-<details>
-<summary><b>🔀 PR 템플릿</b></summary>
 <br>
+
+### 🔀 PR 템플릿
 
 제목: `[feat/#2] ~~구현`
 
@@ -131,7 +120,6 @@ refactor/#53
 <!-- 리뷰어들에게 하고 싶은 말 -->
 ````
 
-</details>
 <br>
 
 
