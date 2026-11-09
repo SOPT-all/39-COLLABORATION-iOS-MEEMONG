@@ -36,6 +36,8 @@ only_rules:
   - type_name
   - unused_closure_parameter
   - vertical_whitespace
+  - vertical_whitespace_opening_braces
+  - vertical_whitespace_closing_braces
 
 # 전체 타입 검사가 필요한 규칙입니다.
 # 일반 lint가 아니라 swiftlint analyze --compiler-log-path <빌드 로그>로 실행합니다.
@@ -117,8 +119,8 @@ custom_rules:
 # - lowerCamelCase / UpperCamelCase의 의미, URL·ID·API·DTO 약어, Bool 접두사, 동사형 함수명
 # - let 우선 사용, 필요한 private / private(set) / final, 불필요한 public / open
 # - 프로토콜 구현을 extension으로 분리하고 extension 하나당 프로토콜 하나만 채택
-# - 타입·extension 내부 위아래 빈 줄, 함수 사이 빈 줄, 함수 내부 시작·끝의 빈 줄 제거
-#   vertical_whitespace_opening_braces / closing_braces는 타입의 빈 줄과 충돌하여 사용하지 않음
+# - 함수 사이 빈 줄은 코드 리뷰로 확인
+# - 타입·extension·함수 등의 중괄호 바로 안쪽에는 빈 줄을 두지 않음 (위 규칙으로 검사)
 # - MARK 위아래 빈 줄, 긴 if let / guard let 조건과 else 정렬
 # - 클로저 인자가 2개 이상이면 항상 줄바꿈
 # - 내장 / 서드파티 import 그룹 분리 및 그룹별 정렬 (sorted_imports는 정렬만 보조)

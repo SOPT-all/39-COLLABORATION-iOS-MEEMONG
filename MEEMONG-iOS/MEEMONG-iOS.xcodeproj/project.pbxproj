@@ -11,7 +11,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		A194E65E2F804A4FA13E8BA2 /* Exceptions for MEEMONG-iOS folder in MEEMONG-iOS target */ = {
+		A194E65E2F804A4FA13E8BA2 /* Exceptions for "MEEMONG-iOS" folder in "MEEMONG-iOS" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -24,7 +24,7 @@
 		3B04C4F5309EF20700A4C0D5 /* MEEMONG-iOS */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				A194E65E2F804A4FA13E8BA2 /* Exceptions for MEEMONG-iOS folder in MEEMONG-iOS target */,
+				A194E65E2F804A4FA13E8BA2 /* Exceptions for "MEEMONG-iOS" folder in "MEEMONG-iOS" target */,
 			);
 			path = "MEEMONG-iOS";
 			sourceTree = "<group>";
@@ -124,17 +124,18 @@
 		A194E65E2F804A4FA13E8BA1 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
 			name = SwiftLint;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"/opt/homebrew/bin:/usr/local/bin:$PATH\"\ncd \"$SRCROOT\" || exit 1\nif command -v swiftlint >/dev/null 2>&1; then\n    swiftlint lint --config \"$SRCROOT/.swiftlint.yml\" --no-cache\nelse\n    echo \"warning: SwiftLint is not installed. Run: brew install swiftlint\"\nfi\n";
+			shellScript = (
+				"export PATH=\"/opt/homebrew/bin:/usr/local/bin:$PATH\"",
+				"cd \"$SRCROOT\" || exit 1",
+				"if command -v swiftlint >/dev/null 2>&1; then",
+				"    swiftlint lint --config \"$SRCROOT/.swiftlint.yml\" --no-cache",
+				"else",
+				"    echo \"warning: SwiftLint is not installed. Run: brew install swiftlint\"",
+				"fi",
+				"",
+			);
 		};
 /* End PBXShellScriptBuildPhase section */
 
