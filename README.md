@@ -75,6 +75,16 @@ refactor/#53
 
 ## ⌨️ 코드 컨벤션 
 
+### 팀 공통 빌드 설정
+
+- `MEEMONG-iOS/MEEMONG-iOS.xcodeproj/project.pbxproj`와 `MEEMONG-iOS/.swiftlint.yml`은 함께 커밋합니다.
+- SwiftLint는 각 Mac에 설치해야 합니다 (`brew install swiftlint`). 설정 확인에 사용한 버전은 `0.63.2`이며 팀원 간 버전을 맞춰주세요.
+- pull 후 기존 프로젝트를 열고 빌드하면 됩니다. SwiftLint Run Script를 따로 추가하지 마세요.
+- 폰트 등록은 `MEEMONG-iOS/MEEMONG-iOS/Info.plist`를 사용합니다. 앱 타깃의 Debug·Release 모두 `INFOPLIST_FILE = MEEMONG-iOS/Info.plist`로 연결되어 있습니다.
+- 이 파일은 폴더 동기화의 타깃 포함 대상에서 제외되어 있습니다. Target Membership을 다시 켜거나 Copy Bundle Resources에 추가하면 `Info.plist` 중복 오류가 발생할 수 있습니다.
+- 새 폰트는 폰트 폴더에 추가하고 기존 `Info.plist`의 `UIAppFonts`에 파일명을 등록합니다. 별도 `Info.plist`를 만들지 마세요.
+- 같은 빌드 설정을 동시에 변경하면 Git 병합 충돌이 발생할 수 있으므로, 프로젝트 설정 변경은 팀에 공유하고 최신 변경을 받은 뒤 진행합니다.
+
 
 [Swift 스타일쉐어 가이드](https://github.com/StyleShare/swift-style-guide)를 기반으로 세부 기준을 설정하였습니다. 
 
