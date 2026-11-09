@@ -16,7 +16,7 @@ struct FloatingButtonView: View {
            
            VStack(alignment: .trailing, spacing: 12){
                if isSelected {
-                   FloatingButtonMenu()
+                   FloatingHomeMenu()
                }
                
                FloatingButton(isSelected: $isSelected)

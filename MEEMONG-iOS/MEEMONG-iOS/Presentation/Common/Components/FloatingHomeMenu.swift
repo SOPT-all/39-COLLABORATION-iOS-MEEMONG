@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FloatingButtonMenu: View {
+struct FloatingHomeMenu: View {
     
     var body: some View {
         
@@ -68,5 +68,5 @@ struct FloatingButtonMenu: View {
 }
 
 #Preview {
-    FloatingButtonMenu()
+    FloatingHomeMenu()
 }
