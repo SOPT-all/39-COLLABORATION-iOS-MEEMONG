@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct TabbarView: View {
-    
     @State var selectedTab: MainTab = .home
     
     var body: some View {

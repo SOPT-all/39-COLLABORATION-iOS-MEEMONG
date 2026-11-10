@@ -1,5 +1,5 @@
 //
-//  FloatingButton.swift
+//  FloatingButtonView.swift
 //  MEEMONG-iOS
 //
 //  Created by 김보민 on 11/9/26.
@@ -8,24 +8,22 @@
 import SwiftUI
 
 struct FloatingButton: View {
-    @Binding var isSelected: Bool
-
-    var body: some View {
-        Button {
-            isSelected.toggle()
-        } label: {
-            ZStack{
-                Circle()
-                    .fill(Color(.gray900))
-                    .frame(width: 60, height: 60)
-                
-                Image(.iconsClose)
-            }
-            .shadow(radius: 5.7)
-        }
-    }
-}
-
-#Preview {
-    FloatingButton(isSelected: .constant(false))
+   @State var isSelected = false
+    
+   var body: some View {
+       ZStack(alignment: .bottomTrailing){
+           
+           Color.clear
+           
+           VStack(alignment: .trailing, spacing: 12){
+               if isSelected {
+                   FloatingHomeMenu()
+               }
+               
+               FloatingToggleButton(isSelected: $isSelected)
+           }
+       }
+       .padding(.trailing, 20)
+       .padding(.bottom, 116)
+   }
 }

@@ -8,46 +8,31 @@
 import SwiftUI
 
 struct FloatingQuickMatchMenu: View {
+    private let icons : [ImageResource] = [.iconsAnnouncement, .iconsRecommend]
+    private let titles : [String] = ["일반공고", "미몽추천"]
+    
     var body: some View {
         VStack(spacing: 0){
-            Button{
-            } label: {
-                HStack(spacing: 4){
-                    Image(.iconsAnnouncement)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 14, height: 14)
-                    
-                    Text("일반공고")
-                        .font(.body2_medium)
-                        .foregroundStyle(.white)
+            ForEach(0..<titles.count, id: \.self) { index in
+                Button{
+                } label: {
+                    HStack(spacing: 4){
+                        Image(icons[index])
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 14, height: 14)
+                        
+                        Text(titles[index])
+                            .font(.body2_medium)
+                            .foregroundStyle(.white)
+                    }
                 }
+                .padding(.leading, 12)
+                .frame(width: 102, height: 40, alignment: .leading)
             }
-            .padding(.leading, 12)
-            .frame(width: 102, height: 40, alignment: .leading)
-            
-            Button{
-            } label: {
-                HStack(spacing: 4){
-                    Image(.iconsRecommend)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 14, height: 14)
-                    
-                    Text("미몽추천")
-                        .font(.body2_medium)
-                        .foregroundStyle(.white)
-                }
-            }
-            .padding(.leading, 12)
-            .frame(width: 102, height: 40, alignment: .leading)
         }
-        .background(.gray900)
+        .background(Color(.gray900))
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .shadow(radius: 5.7)
     }
-}
-
-#Preview {
-    FloatingQuickMatchMenu()
 }
