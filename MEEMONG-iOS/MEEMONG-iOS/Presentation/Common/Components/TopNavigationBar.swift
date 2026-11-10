@@ -29,7 +29,6 @@ struct TopNavigationBar: View {
                 }
                 .buttonStyle(.plain)
                 .padding(.leading, 12)
-                .accessibilityLabel("뒤로가기")
             }
             .padding(.bottom, 2)
             .overlay(alignment: .bottom) {
