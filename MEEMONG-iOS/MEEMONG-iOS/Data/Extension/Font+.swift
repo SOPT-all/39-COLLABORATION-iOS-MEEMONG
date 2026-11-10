@@ -28,19 +28,13 @@ extension Font {
 extension Font {
     static let title = pretendard(.semiBold, size: 20)
     static let headline = pretendard(.semiBold, size: 18)
- 
     static let body1_semiBold = pretendard(.semiBold, size: 16)
     static let body1_regular = pretendard(.regular, size: 16)
-    
-    static let body2_semiBold  = pretendard(.semiBold, size: 14)
-    static let body2_medium  = pretendard(.medium, size: 14)
-    static let body2_regular  = pretendard(.regular, size: 14)
-
- 
+    static let body2_semiBold = pretendard(.semiBold, size: 14)
+    static let body2_medium = pretendard(.medium, size: 14)
+    static let body2_regular = pretendard(.regular, size: 14)
     static let cap1_medium = pretendard(.medium, size: 12)
     static let cap1_regular = pretendard(.regular, size: 12)
-    
     static let cap2_semibold = pretendard(.semiBold, size: 10)
     static let cap2_medium = pretendard(.medium, size: 10)
-
 }
