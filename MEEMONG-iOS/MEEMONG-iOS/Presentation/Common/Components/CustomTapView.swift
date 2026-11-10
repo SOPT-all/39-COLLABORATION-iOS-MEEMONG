@@ -24,8 +24,6 @@ struct CustomTabView: View {
                 VStack(spacing: 4){
                     Image(.iconsHome)
                         .resizable()
-                        .renderingMode(.template)
-                        .foregroundStyle(.gray950)
                         .scaledToFit()
                         .frame(width: 24, height: 24)
                     
@@ -42,8 +40,6 @@ struct CustomTabView: View {
                 VStack(spacing: 4){
                     Image(.iconsPromotion)
                         .resizable()
-                        .renderingMode(.template)
-                        .foregroundStyle(.gray950)
                         .scaledToFit()
                         .frame(width: 24, height: 24)
                     
@@ -59,8 +55,6 @@ struct CustomTabView: View {
              } label: {
                  VStack(spacing: 4){
                      Image(.iconsConsultingM)
-                         .resizable()
-                         .renderingMode(.template)
                          .foregroundStyle(.gray950)
                          .scaledToFit()
                          .frame(width: 24, height: 24)
@@ -78,8 +72,6 @@ struct CustomTabView: View {
                  VStack(spacing: 4){
                      Image(.iconsChat)
                          .resizable()
-                         .renderingMode(.template)
-                         .foregroundStyle(.gray950)
                          .scaledToFit()
                          .frame(width: 24, height: 24)
                      
@@ -96,8 +88,6 @@ struct CustomTabView: View {
                  VStack(spacing: 4){
                      Image(.iconsProfile)
                          .resizable()
-                         .renderingMode(.template)
-                         .foregroundStyle(.gray950)
                          .scaledToFit()
                          .frame(width: 24, height: 24)
                      
