@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TopNavigationBar: View {
     let onBack: () -> Void
-    
+
     var body: some View {
         Text("빠른 매칭")
             .foregroundStyle(.gray900)

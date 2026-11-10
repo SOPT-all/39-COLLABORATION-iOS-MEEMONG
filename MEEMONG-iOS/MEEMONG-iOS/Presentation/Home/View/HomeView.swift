@@ -11,7 +11,7 @@ struct HomeView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
             TopNavigationBar(onBack: {})
-            
+
             Spacer()
         }
     }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FloatingToggleButton: View {
     @Binding var isSelected: Bool
-    
+
     var body: some View {
         Button {
             isSelected.toggle()
@@ -19,7 +19,7 @@ struct FloatingToggleButton: View {
                     Circle()
                         .fill(Color(.gray900))
                         .frame(width: 60, height: 60)
-                    
+
                     Image(.iconsCloseB)
                 }
             } else {

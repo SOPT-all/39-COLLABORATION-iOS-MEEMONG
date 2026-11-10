@@ -11,7 +11,7 @@ struct QuickMatchView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
             MainHeader()
-            
+
             Spacer()
         }
     }

@@ -8,22 +8,21 @@
 import SwiftUI
 
 struct FloatingButton: View {
-   @State var isSelected = false
-    
-   var body: some View {
-       ZStack(alignment: .bottomTrailing){
-           
-           Color.clear
-           
-           VStack(alignment: .trailing, spacing: 12){
-               if isSelected {
-                   FloatingHomeMenu()
-               }
-               
-               FloatingToggleButton(isSelected: $isSelected)
-           }
-       }
-       .padding(.trailing, 20)
-       .padding(.bottom, 116)
-   }
+    @State private var isSelected = false
+
+    var body: some View {
+        ZStack(alignment: .bottomTrailing){
+            Color.clear
+
+            VStack(alignment: .trailing, spacing: 12){
+                if isSelected {
+                    FloatingHomeMenu()
+                }
+
+                FloatingToggleButton(isSelected: $isSelected)
+            }
+        }
+        .padding(.trailing, 20)
+        .padding(.bottom, 116)
+    }
 }

@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct FloatingQuickMatchMenu: View {
-    private let icons : [ImageResource] = [.iconsAnnouncement, .iconsRecommend]
-    private let titles : [String] = ["일반공고", "미몽추천"]
-    
+    private let icons: [ImageResource] = [.iconsAnnouncement, .iconsRecommend]
+    private let titles: [String] = ["일반공고", "미몽추천"]
+
     var body: some View {
         VStack(spacing: 0){
             ForEach(0..<titles.count, id: \.self) { index in
@@ -21,7 +21,7 @@ struct FloatingQuickMatchMenu: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 14, height: 14)
-                        
+
                         Text(titles[index])
                             .font(.body2_medium)
                             .foregroundStyle(.white)

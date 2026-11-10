@@ -14,16 +14,16 @@ struct MainHeader: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 108, height: 28)
-            
+
             Spacer()
-            
+
             HStack(alignment: .center, spacing: 0) {
                 Image(.iconsSearch)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 24, height: 24)
                     .frame(width: 44, height: 44)
-                
+
                 Image(.iconsNotification)
                     .resizable()
                     .scaledToFit()
