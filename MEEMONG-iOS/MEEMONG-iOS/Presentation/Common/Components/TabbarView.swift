@@ -21,16 +21,14 @@ struct TabbarView: View {
             switch selectedTab {
             case .home:
                 Text("홈 뷰 화면입니다.")
+            default:
+                EmptyView()
             }
             
             Spacer()
             
-            CustomTabView(selectedTab: $selectedTab)
+            CustomTabBarView(selectedTab: $selectedTab)
         }
         .edgesIgnoringSafeArea(.bottom)
     }
-}
-
-#Preview {
-    TabbarView(selectedTab: .home)
 }
