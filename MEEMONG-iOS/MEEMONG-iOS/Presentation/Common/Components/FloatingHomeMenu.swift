@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct FloatingHomeMenu: View {
-    private let icons : [ImageResource] = [.iconsMatching, .iconsSponsorship, .iconsConsultingS]
-    private let titles : [String] = ["빠른매칭", "협찬신청", "헤어컨설팅"]
-    
+    private let icons: [ImageResource] = [
+        .iconsMatching,
+        .iconsSponsorship,
+        .iconsConsultingS
+    ]
+    private let titles: [String] = ["빠른매칭", "협찬신청", "헤어컨설팅"]
+
     var body: some View {
         VStack(spacing: 0){
             ForEach(0..<titles.count, id: \.self) { index in
@@ -21,7 +25,7 @@ struct FloatingHomeMenu: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 14, height: 14)
-                        
+
                         Text(titles[index])
                             .font(.body2_medium)
                             .foregroundStyle(.white)
