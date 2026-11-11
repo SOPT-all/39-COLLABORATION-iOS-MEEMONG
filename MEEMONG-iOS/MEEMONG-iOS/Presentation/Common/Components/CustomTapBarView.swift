@@ -20,7 +20,7 @@ enum MainTab: CaseIterable {
         case .review: .iconsPromotion
         case .consulting: .iconsChat
         case .chating: .iconsConsultingM
-        case .profile: .iconsProfile
+        case .profile: .iconsProfile3
         }
     }
 
@@ -77,3 +77,5 @@ struct CustomTabBarView: View {
         }
     }
 }
+
+
