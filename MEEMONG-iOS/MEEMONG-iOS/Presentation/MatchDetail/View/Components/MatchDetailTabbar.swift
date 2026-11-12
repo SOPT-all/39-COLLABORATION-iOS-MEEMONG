@@ -21,7 +21,3 @@ struct MatchDetailTabbar: View {
         }
     }
 }
-
-#Preview {
-    MatchDetailTabbar()
-}

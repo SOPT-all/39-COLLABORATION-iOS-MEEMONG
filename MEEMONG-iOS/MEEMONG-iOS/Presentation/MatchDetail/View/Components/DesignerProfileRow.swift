@@ -51,7 +51,3 @@ struct DesignerProfileRow: View {
         }
     }
 }
-
-#Preview {
-    DesignerProfileRow()
-}

@@ -24,7 +24,3 @@ struct ReservationButton: View {
         .background(Color.meemongWhite.ignoresSafeArea(edges: .bottom))
     }
 }
-
-#Preview {
-    ReservationButton()
-}

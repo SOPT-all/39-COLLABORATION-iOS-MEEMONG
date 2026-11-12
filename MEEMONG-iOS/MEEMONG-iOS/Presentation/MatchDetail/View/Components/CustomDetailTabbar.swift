@@ -65,7 +65,3 @@ struct CustomDetailTabbar: View {
         }
     }
 }
-
-#Preview {
-    CustomDetailTabbar(selectedTab: .constant(.detail))
-}

@@ -20,7 +20,3 @@ struct ServiceDetailInfo: View {
             .padding(.vertical, 24)
     }
 }
-
-#Preview {
-    ServiceDetailInfo()
-}

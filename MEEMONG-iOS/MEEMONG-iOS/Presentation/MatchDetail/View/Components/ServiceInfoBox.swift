@@ -80,7 +80,3 @@ struct ServiceInfoBox: View {
         .padding(16)
     }
 }
-
-#Preview {
-    ServiceInfoBox()
-}

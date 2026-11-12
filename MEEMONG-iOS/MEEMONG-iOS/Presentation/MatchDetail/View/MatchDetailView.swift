@@ -23,7 +23,3 @@ struct MatchDetailView: View {
         }
     }
 }
-
-#Preview {
-    MatchDetailView()
-}
