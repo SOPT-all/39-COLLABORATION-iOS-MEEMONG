@@ -7,14 +7,13 @@
 
 import SwiftUI
 
-struct CarouselItem : Hashable {
-    let id : Int
-    let image : String
+struct CarouselItem: Hashable {
+    let id: Int
+    let image: String
 }
 
 struct ImageCarousel: View {
     @State private var currentIndex = 0
-    
     var items: [CarouselItem] = [
         CarouselItem(id: 0, image: "hero_01"),
         CarouselItem(id: 1, image: "hero_02"),
@@ -23,7 +22,6 @@ struct ImageCarousel: View {
         CarouselItem(id: 4, image: "hero_05"),
         CarouselItem(id: 5, image: "hero_06")
     ]
-    
     var body: some View {
         TabView(selection: $currentIndex) {
             ForEach(Array(items.enumerated()), id: \.element.id) { index, item in
@@ -58,7 +56,7 @@ struct ImageCarousel: View {
                 .foregroundStyle(.white)
                 .padding(.horizontal, 14)
                 .padding(.vertical, 4)
-                .background(.opacity50 , in: Capsule())
+                .background(.opacity50, in: Capsule())
                 .padding(16)
         }
     }

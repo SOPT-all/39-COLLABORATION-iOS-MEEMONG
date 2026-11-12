@@ -12,11 +12,8 @@ struct MatchDetailView: View {
         ScrollView{
             VStack(spacing: 0){
                 ImageCarousel()
-                
                 DesignerProfileRow()
-                
                 ServiceInfoBox()
-                
                 MatchDetailTabbar()
             }
         }

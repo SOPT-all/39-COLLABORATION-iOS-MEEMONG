@@ -10,7 +10,6 @@ import SwiftUI
 struct ReservationButton: View {
     var body: some View {
         Button{
-            
         } label: {
             Text("예약 진행")
                 .font(.body1_semiBold)

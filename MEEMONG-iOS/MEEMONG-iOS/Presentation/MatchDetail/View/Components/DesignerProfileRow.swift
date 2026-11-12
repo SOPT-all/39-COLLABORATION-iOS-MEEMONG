@@ -15,25 +15,20 @@ struct DesignerProfileRow: View {
                 VStack(alignment: .leading, spacing: 4){
                     Text("승환")
                         .font(.headline)
-                    
                     HStack(spacing: 4){
                         Text("경기 고양시")
                             .font(.body1_regular)
                             .foregroundStyle(.gray600)
-                        
                         Circle()
                             .fill(Color.gray600)
                             .frame(width: 3, height: 3)
-                        
                         Text("11.6km")
                             .font(.body1_regular)
                             .foregroundStyle(.gray600)
                     }
                 }
             }
-            
             Spacer()
-            
             HStack(spacing: 0){
                 Text("43")
                     .font(.cap1_medium)

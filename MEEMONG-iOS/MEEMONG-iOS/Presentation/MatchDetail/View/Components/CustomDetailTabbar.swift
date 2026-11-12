@@ -36,7 +36,6 @@ struct CustomDetailTabbar: View {
                         .padding(.horizontal, 42)
                         .contentShape(Rectangle())
                 }
-                
                 Button {
                     selectedTab = .designerinfo
                 } label: {
