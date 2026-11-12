@@ -63,13 +63,11 @@ struct QuickMatchCard: View {
                     case .materials(let price):
                         Text("재료비 발생")
                             .foregroundStyle(.gray700)
-                        Text("·")
                         Text(price)
                             .font(.body2_regular)
                     case .modelFee(let price):
                         Text("모델료지급")
                             .foregroundStyle(.meemongGreen)
-                        Text("·")
                         Text(price)
                             .font(.body2_regular)
                     }

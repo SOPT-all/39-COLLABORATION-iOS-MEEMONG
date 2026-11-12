@@ -48,6 +48,8 @@ struct HairItemCard: View {
                 .foregroundStyle(.gray700)
                 .lineSpacing(3)
                 .lineLimit(2)
+                .fixedSize(horizontal: false, vertical: true)
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .frame(height: 40, alignment: .topLeading)
 
             Text(hairItem.originalPrice)
