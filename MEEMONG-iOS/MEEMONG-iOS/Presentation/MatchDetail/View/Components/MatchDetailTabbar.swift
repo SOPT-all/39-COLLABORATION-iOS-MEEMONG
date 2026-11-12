@@ -16,7 +16,7 @@ struct MatchDetailTabbar: View {
             
             switch selectedTab {
             case .detail:
-                Text("상세정보")
+                ServiceDetailInfo()
             case .designerinfo:
                 Text("디자이너 정보 ")
             }
