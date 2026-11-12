@@ -20,7 +20,7 @@ enum MainTab: CaseIterable {
         case .review: .iconsPromotion
         case .consulting: .iconsChat
         case .chating: .iconsConsultingM
-        case .profile: .iconsProfile3
+        case .profile: .iconsProfile
         }
     }
 

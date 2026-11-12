@@ -53,11 +53,17 @@ struct ImageCarousel: View {
         .overlay(alignment: .bottomTrailing) {
             Text("\(currentIndex + 1)/\(items.count)")
                 .font(.body2_medium)
-                .foregroundStyle(.white)
+                .foregroundStyle(.meemongWhite)
+                .frame(height: 20)
                 .padding(.horizontal, 14)
                 .padding(.vertical, 4)
                 .background(.opacity50, in: Capsule())
-                .padding(16)
+                .padding(.bottom, 9)
+                .padding(.trailing, 15)
         }
     }
+}
+
+#Preview{
+    ImageCarousel()
 }

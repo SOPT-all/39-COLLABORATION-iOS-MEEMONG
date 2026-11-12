@@ -33,7 +33,7 @@ struct ServiceInfoBox: View {
                     .foregroundStyle(.gray500)
                     .overlay(alignment: .center) {
                         Rectangle()
-                            .frame(height: 4)
+                            .frame(height: 2)
                             .foregroundStyle(.gray500)
                     }
                     Spacer()
@@ -63,6 +63,7 @@ struct ServiceInfoBox: View {
                 }
                 .font(.body2_semiBold)
                 .foregroundStyle(.gray500)
+                
                 VStack(alignment: .leading, spacing: 8){
                     Text("컷트")
                     Text("컷트, 펌")
@@ -79,4 +80,8 @@ struct ServiceInfoBox: View {
         }
         .padding(16)
     }
+}
+
+#Preview {
+    ServiceInfoBox()
 }

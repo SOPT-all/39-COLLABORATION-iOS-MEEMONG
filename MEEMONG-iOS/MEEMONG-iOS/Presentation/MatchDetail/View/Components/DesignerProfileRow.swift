@@ -17,13 +17,13 @@ struct DesignerProfileRow: View {
                         .font(.headline)
                     HStack(spacing: 4){
                         Text("경기 고양시")
-                            .font(.body1_regular)
+                            .font(.body2_regular)
                             .foregroundStyle(.gray600)
                         Circle()
                             .fill(Color.gray600)
                             .frame(width: 3, height: 3)
                         Text("11.6km")
-                            .font(.body1_regular)
+                            .font(.body2_regular)
                             .foregroundStyle(.gray600)
                     }
                 }
