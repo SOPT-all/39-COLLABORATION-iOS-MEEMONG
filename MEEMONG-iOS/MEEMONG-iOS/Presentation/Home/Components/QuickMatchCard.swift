@@ -122,14 +122,3 @@ struct QuickMatchCard: View {
         .frame(height: 24)
     }
 }
-
-#Preview {
-    ScrollView(.horizontal) {
-        HStack(spacing: 8) {
-            ForEach(QuickMatchModel.samples) { quickMatch in
-                QuickMatchCard(quickMatch: quickMatch)
-            }
-        }
-        .padding(20)
-    }
-}

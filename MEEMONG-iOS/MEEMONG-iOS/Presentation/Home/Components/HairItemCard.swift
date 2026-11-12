@@ -70,12 +70,3 @@ struct HairItemCard: View {
         }
     }
 }
-
-#Preview {
-    HStack(spacing: 11) {
-        ForEach(HairItemModel.samples) { hairItem in
-            HairItemCard(hairItem: hairItem)
-        }
-    }
-    .frame(width: 335)
-}

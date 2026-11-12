@@ -57,11 +57,3 @@ struct HairConsultingCard: View {
         .frame(height: 21)
     }
 }
-
-#Preview {
-    HStack(spacing: 6) {
-        ForEach(HairConsultingModel.samples.prefix(2)) { consulting in
-            HairConsultingCard(consulting: consulting)
-        }
-    }
-}
