@@ -22,7 +22,8 @@ struct HomeView: View {
                     Image(.banner02)
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 335, height: 80)
+                        .frame(maxWidth: .infinity)
+                        .padding(.horizontal, 20)
                         .padding(.bottom, 20)
 
                     HomeQuickMenu(onSelect: onQuickMenuSelect)
