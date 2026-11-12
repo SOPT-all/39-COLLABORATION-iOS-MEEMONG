@@ -87,7 +87,6 @@ struct ServiceInfoBox: View {
             }
             .padding(12)
             .frame(maxWidth: .infinity)
-            .frame(height: 128)
             .background(.gray50, in: RoundedRectangle(cornerRadius: 12))
         }
         .padding(16)

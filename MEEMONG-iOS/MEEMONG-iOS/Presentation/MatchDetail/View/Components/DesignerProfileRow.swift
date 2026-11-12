@@ -47,13 +47,13 @@ struct DesignerProfileRow: View {
             .background(.gray100, in: RoundedRectangle(cornerRadius: 6))
         }
         .frame(maxWidth: .infinity)
-        .frame(height: 84)
+        .padding(16)
         .overlay(alignment: .bottom) {
             Rectangle()
                 .frame(height: 1)
                 .foregroundStyle(.gray100)
+                .padding(.horizontal, 16)
         }
-        .padding(16)
     }
 }
 
