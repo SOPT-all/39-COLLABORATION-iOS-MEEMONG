@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DesignerProfileRow: View {
     var body: some View {
-        HStack{
+        HStack(alignment: .top){
             HStack(spacing: 8){
                 Image(.designerMatching01)
                 VStack(alignment: .leading, spacing: 4){
@@ -45,6 +45,13 @@ struct DesignerProfileRow: View {
             .frame(width: 61)
             .frame(height: 26)
             .background(.gray100, in: RoundedRectangle(cornerRadius: 6))
+        }
+        .frame(maxWidth: .infinity)
+        .frame(height: 84)
+        .overlay(alignment: .bottom) {
+            Rectangle()
+                .frame(height: 1)
+                .foregroundStyle(.gray100)
         }
         .padding(16)
     }
