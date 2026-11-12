@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FloatingButton: View {
+    var bottomPadding: CGFloat = 116
     @State private var isSelected = false
 
     var body: some View {
@@ -23,6 +24,6 @@ struct FloatingButton: View {
             }
         }
         .padding(.trailing, 20)
-        .padding(.bottom, 116)
+        .padding(.bottom, bottomPadding)
     }
 }
