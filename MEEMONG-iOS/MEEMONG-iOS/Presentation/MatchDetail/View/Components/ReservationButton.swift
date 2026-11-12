@@ -19,8 +19,7 @@ struct ReservationButton: View {
                 .frame(height: 48)
                 .background(.gray950, in: RoundedRectangle(cornerRadius: 8))
         }
-        .frame(maxWidth: .infinity)
-        .frame(height: 96)
+        .background(Color.meemongWhite)
         .padding(.horizontal, 16)
         .padding(.vertical, 24)
     }
