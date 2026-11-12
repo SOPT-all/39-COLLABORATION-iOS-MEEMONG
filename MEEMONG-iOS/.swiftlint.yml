@@ -32,7 +32,6 @@ only_rules:
   - redundant_type_annotation
   - sorted_imports
   - trailing_newline
-  - trailing_whitespace
   - type_name
   - unused_closure_parameter
   - vertical_whitespace
@@ -58,10 +57,6 @@ indentation_width:
 colon:
   flexible_right_spacing: false
   apply_to_dictionaries: true
-
-trailing_whitespace:
-  ignores_empty_lines: false
-  ignores_comments: false
 
 vertical_whitespace:
   max_empty_lines: 1
