@@ -23,6 +23,7 @@ struct QuickMatchView: View {
         }
         .navigationTitle("빠른 매칭")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
     }
 }
 
