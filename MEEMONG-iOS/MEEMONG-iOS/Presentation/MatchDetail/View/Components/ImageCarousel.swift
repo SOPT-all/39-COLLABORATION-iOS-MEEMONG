@@ -63,7 +63,3 @@ struct ImageCarousel: View {
         }
     }
 }
-
-#Preview{
-    ImageCarousel()
-}

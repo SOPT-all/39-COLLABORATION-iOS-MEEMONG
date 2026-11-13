@@ -20,8 +20,9 @@ struct CustomDetailTabbar: View {
                 Button {
                     selectedTab = .detail
                 } label: {
-                    Text("내용상세")
+                    Text("내용 상세")
                         .font(.body1_semiBold)
+                        .fixedSize()
                         .foregroundStyle(
                             selectedTab == .detail ? Color.gray900 : Color.gray700
                         )
@@ -33,14 +34,16 @@ struct CustomDetailTabbar: View {
                                 .frame(height: 2)
                                 .opacity(selectedTab == .detail ? 1 : 0)
                         }
-                        .padding(.horizontal, 42)
+                        .padding(.horizontal, 50)
                         .contentShape(Rectangle())
                 }
+                
                 Button {
                     selectedTab = .designerinfo
                 } label: {
                     Text("디자이너 정보")
                         .font(.body1_semiBold)
+                        .fixedSize()
                         .foregroundStyle(
                             selectedTab == .designerinfo ? Color.gray900 : Color.gray700
                         )
@@ -52,10 +55,11 @@ struct CustomDetailTabbar: View {
                                 .frame(height: 2)
                                 .opacity(selectedTab == .designerinfo ? 1 : 0)
                         }
-                        .frame(maxWidth: .infinity)
+                        .padding(.horizontal, 50)
                         .contentShape(Rectangle())
                 }
             }
+            .frame(maxWidth: .infinity)
             .background(alignment: .bottom) {
                 Rectangle()
                     .fill(Color.gray200)
