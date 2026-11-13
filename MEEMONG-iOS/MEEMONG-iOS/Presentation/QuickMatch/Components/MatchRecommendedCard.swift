@@ -56,8 +56,9 @@ struct MatchRecommendedCard: View {
                     Text(quickMatch.treatment.title)
                         .foregroundStyle(quickMatch.treatment.color)
                     if !quickMatch.price.isEmpty {
-                        Text("·")
-                            .foregroundStyle(.gray500)
+                        Circle()
+                            .fill(.gray500)
+                            .frame(width: 4, height: 4)
                         Text(quickMatch.price)
                             .font(.body2_regular)
                     }
