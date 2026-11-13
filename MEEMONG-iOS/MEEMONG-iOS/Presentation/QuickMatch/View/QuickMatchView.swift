@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct QuickMatchView: View {
+    @Environment(\.dismiss) private var dismiss
     @State private var selectedType: MemberType = .designer
 
     var body: some View {
         VStack(spacing: 0) {
+            TopNavigationBar {
+                dismiss()
+            }
+
             QuickMatchHeader(selectedType: $selectedType)
 
             switch selectedType {
@@ -21,9 +26,7 @@ struct QuickMatchView: View {
                 QuickMatchModelView()
             }
         }
-        .navigationTitle("빠른 매칭")
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(true)
+        .toolbar(.hidden, for: .navigationBar)
     }
 }
 

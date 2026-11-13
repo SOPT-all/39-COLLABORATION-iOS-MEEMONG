@@ -78,7 +78,6 @@ struct HomeView: View {
             .toolbar(.hidden, for: .navigationBar)
             .navigationDestination(isPresented: $showQuickMatch) {
                 QuickMatchView()
-                    .toolbar(.visible, for: .navigationBar)
             }
         }
     }
