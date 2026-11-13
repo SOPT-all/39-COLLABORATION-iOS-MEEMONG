@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct FloatingButton: View {
+    enum Menu {
+        case home
+        case quickMatch
+    }
+
+    var menu: Menu = .home
     var bottomPadding: CGFloat = 116
     @State private var isSelected = false
 
@@ -17,7 +23,12 @@ struct FloatingButton: View {
 
             VStack(alignment: .trailing, spacing: 12){
                 if isSelected {
-                    FloatingHomeMenu()
+                    switch menu {
+                    case .home:
+                        FloatingHomeMenu()
+                    case .quickMatch:
+                        FloatingQuickMatchMenu()
+                    }
                 }
 
                 FloatingToggleButton(isSelected: $isSelected)
