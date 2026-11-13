@@ -17,11 +17,10 @@ struct CustomDetailTabbar: View {
     var body: some View {
         HStack(spacing: 0){
             HStack(spacing: 0){
-                Spacer(minLength: 0)
                 Button {
                     selectedTab = .detail
                 } label: {
-                    Text("내용상세")
+                    Text("내용 상세")
                         .font(.body1_semiBold)
                         .foregroundStyle(
                             selectedTab == .detail ? Color.gray900 : Color.gray700
@@ -34,11 +33,10 @@ struct CustomDetailTabbar: View {
                                 .frame(height: 2)
                                 .opacity(selectedTab == .detail ? 1 : 0)
                         }
-                        .padding(.horizontal, 16)
+                        .padding(.horizontal, 50)
                         .contentShape(Rectangle())
                 }
-                Spacer(minLength: 0)
-                Spacer(minLength: 0)
+                
                 Button {
                     selectedTab = .designerinfo
                 } label: {
@@ -55,11 +53,11 @@ struct CustomDetailTabbar: View {
                                 .frame(height: 2)
                                 .opacity(selectedTab == .designerinfo ? 1 : 0)
                         }
-                        .padding(.horizontal, 16)
+                        .padding(.horizontal, 50)
                         .contentShape(Rectangle())
                 }
-                Spacer(minLength: 0)
             }
+            .frame(maxWidth: .infinity)
             .background(alignment: .bottom) {
                 Rectangle()
                     .fill(Color.gray200)
@@ -69,3 +67,4 @@ struct CustomDetailTabbar: View {
         }
     }
 }
+
