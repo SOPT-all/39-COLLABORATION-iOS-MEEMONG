@@ -66,19 +66,7 @@ struct QuickMatchPostList: View {
         .contentMargins(.bottom, 0, for: .scrollContent)
         .background(.gray100)
         .overlay(alignment: .bottomTrailing) {
-            VStack(spacing: 0) {
-                Image(.iconsPen)
-                    .frame(width: 20, height: 20)
-                
-                Text("글쓰기")
-                    .font(.cap2_semibold)
-                    .foregroundStyle(.meemongWhite)
-            }
-            .frame(width: 60, height: 60)
-            .background(.gray900, in: Circle())
-            .shadow(radius: 5.7)
-            .padding(.trailing, 20)
-            .padding(.bottom, 22)
+            FloatingButton(menu: .quickMatch, bottomPadding: 116)
         }
     }
 }
