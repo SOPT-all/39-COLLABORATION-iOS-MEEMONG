@@ -17,6 +17,7 @@ struct CustomDetailTabbar: View {
     var body: some View {
         HStack(spacing: 0){
             HStack(spacing: 0){
+                Spacer(minLength: 0)
                 Button {
                     selectedTab = .detail
                 } label: {
@@ -33,9 +34,11 @@ struct CustomDetailTabbar: View {
                                 .frame(height: 2)
                                 .opacity(selectedTab == .detail ? 1 : 0)
                         }
-                        .padding(.horizontal, 42)
+                        .padding(.horizontal, 16)
                         .contentShape(Rectangle())
                 }
+                Spacer(minLength: 0)
+                Spacer(minLength: 0)
                 Button {
                     selectedTab = .designerinfo
                 } label: {
@@ -52,9 +55,10 @@ struct CustomDetailTabbar: View {
                                 .frame(height: 2)
                                 .opacity(selectedTab == .designerinfo ? 1 : 0)
                         }
-                        .frame(maxWidth: .infinity)
+                        .padding(.horizontal, 16)
                         .contentShape(Rectangle())
                 }
+                Spacer(minLength: 0)
             }
             .background(alignment: .bottom) {
                 Rectangle()
@@ -64,4 +68,8 @@ struct CustomDetailTabbar: View {
             .padding(.horizontal, 16)
         }
     }
+}
+
+#Preview {
+    CustomDetailTabbar(selectedTab: .constant(.detail))
 }

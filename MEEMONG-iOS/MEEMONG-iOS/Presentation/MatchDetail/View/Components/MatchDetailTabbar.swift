@@ -16,7 +16,7 @@ struct MatchDetailTabbar: View {
             case .detail:
                 ServiceDetailInfo()
             case .designerinfo:
-                Text("디자이너 정보")
+               DesignerInfo()
             }
         }
     }
