@@ -20,22 +20,22 @@ struct PortfolioGrid: View {
                 .font(.body1_semiBold)
                 .padding(.bottom, 8)
             
-            Grid(horizontalSpacing: 4, verticalSpacing: 4){
-                ForEach(0..<3, id: \.self){ row in
-                    GridRow{
-                        ForEach(0..<3, id: \.self){ column in
-                            let index = row * 3 + column
-                            
-                            Color.clear
-                                .aspectRatio(1, contentMode: .fit)
-                                .overlay {
-                                    Image(images[index])
-                                        .resizable()
-                                        .scaledToFill()
-                                }
-                                .clipShape(RoundedRectangle(cornerRadius: 2))
+            LazyVGrid(
+                columns: Array(
+                    repeating: GridItem(.flexible(), spacing: 4),
+                    count: 3
+                ),
+                spacing: 4
+            ) {
+                ForEach(images.indices, id: \.self) { index in
+                    Color.clear
+                        .aspectRatio(1, contentMode: .fit)
+                        .overlay {
+                            Image(images[index])
+                                .resizable()
+                                .scaledToFill()
                         }
-                    }
+                        .clipShape(RoundedRectangle(cornerRadius: 2))
                 }
             }
             .padding(.bottom, 4)
@@ -58,4 +58,9 @@ struct PortfolioGrid: View {
         }
         .padding(.horizontal, 20)
     }
+}
+
+
+#Preview {
+    PortfolioGrid()
 }
