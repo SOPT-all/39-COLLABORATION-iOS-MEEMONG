@@ -9,10 +9,13 @@ import SwiftUI
 
 struct DesignerInfo: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView{
+            VStack(spacing: 16){
+                PortfolioGrid()
+                    .padding(.top, 16)
+                StoreInfo()
+                SNSInfo()
+            }
+        }
     }
-}
-
-#Preview {
-    DesignerInfo()
 }

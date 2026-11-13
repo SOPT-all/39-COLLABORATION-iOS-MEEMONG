@@ -9,9 +9,9 @@ import SwiftUI
 
 struct PortfolioGrid: View {
     private let images: [ImageResource] = [
-        .portfolio01,.portfolio02,.portfolio03,
-        .portfolio04,.portfolio05,.portfolio06,
-        .portfolio07,.portfolio08,.portfolio09
+        .portfolio01, .portfolio02, .portfolio03,
+        .portfolio04, .portfolio05, .portfolio06,
+        .portfolio07, .portfolio08, .portfolio09
     ]
     
     var body: some View {
@@ -58,8 +58,4 @@ struct PortfolioGrid: View {
         }
         .padding(.horizontal, 20)
     }
-}
-
-#Preview {
-    PortfolioGrid()
 }
