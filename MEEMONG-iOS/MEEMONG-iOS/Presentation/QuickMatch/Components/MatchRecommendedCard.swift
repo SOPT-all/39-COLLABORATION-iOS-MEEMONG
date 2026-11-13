@@ -43,10 +43,7 @@ struct MatchRecommendedCard: View {
                     .lineLimit(1)
                     .frame(maxWidth: .infinity, alignment: .leading)
 
-                Image(.iconsLikeSelected)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
+                HeartButton()
             }
             .frame(height: 24)
 

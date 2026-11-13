@@ -77,8 +77,7 @@ struct MatchNormalCard: View {
 
             Spacer(minLength: 0)
 
-            Image(.defaultWhite)
-                .frame(width: 20, height: 20)
+            HeartButton()
         }
         .font(.cap1_regular)
         .foregroundStyle(.gray600)
