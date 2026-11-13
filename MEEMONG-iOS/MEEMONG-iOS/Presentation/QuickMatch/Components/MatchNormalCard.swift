@@ -26,11 +26,15 @@ struct MatchNormalCard: View {
                         .foregroundStyle(post.treatment.color)
                         .lineLimit(1)
                     if !post.price.isEmpty {
-                        Text("·")
+                        Circle()
+                            .fill(.gray500)
+                            .frame(width: 4, height: 4)
                         Text(post.price)
                             .foregroundStyle(.gray900)
                     }
-                    Text("·")
+                    Circle()
+                        .fill(.gray500)
+                        .frame(width: 4, height: 4)
                     Text(post.availableTime)
                         .lineLimit(1)
                 }
@@ -66,12 +70,16 @@ struct MatchNormalCard: View {
                 .frame(maxWidth: 84, alignment: .leading)
                 .fixedSize(horizontal: true, vertical: false)
             
-            Text("·")
+            Circle()
+                .fill(.gray500)
+                .frame(width: 4, height: 4)
             
             Text(post.postedAt)
                 .fixedSize()
             
-            Text("·")
+            Circle()
+                .fill(.gray500)
+                .frame(width: 4, height: 4)
             Text(post.location)
                 .lineLimit(1)
 
