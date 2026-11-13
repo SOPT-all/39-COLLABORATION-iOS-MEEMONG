@@ -26,6 +26,7 @@ struct QuickMatchView: View {
                 QuickMatchModelView()
             }
         }
+        .ignoresSafeArea(.container, edges: .bottom)
         .toolbar(.hidden, for: .navigationBar)
     }
 }

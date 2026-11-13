@@ -26,6 +26,7 @@ struct QuickMatchPostList: View {
 
                     HStack(spacing: 4) {
                         Text("미몽추천 공고 더보기")
+                        
                         Image(.iconsMore)
                             .rotationEffect(.degrees(90))
                             .frame(width: 12, height: 12)
@@ -57,14 +58,18 @@ struct QuickMatchPostList: View {
                         MatchNormalCard(post: post)
                     }
                 }
-                .padding(20)
+                .padding(.horizontal, 20)
+                .padding(.top, 20)
+                .padding(.bottom, 128)
             }
         }
+        .contentMargins(.bottom, 0, for: .scrollContent)
         .background(.gray100)
         .overlay(alignment: .bottomTrailing) {
             VStack(spacing: 0) {
                 Image(.iconsPen)
                     .frame(width: 20, height: 20)
+                
                 Text("글쓰기")
                     .font(.cap2_semibold)
                     .foregroundStyle(.meemongWhite)
