@@ -13,6 +13,7 @@ struct CarouselItem: Hashable {
 }
 
 struct ImageCarousel: View {
+    @Environment(\.dismiss) private var dismiss
     @State private var currentIndex = 0
     var items: [CarouselItem] = [
         CarouselItem(id: 0, image: "hero_01"),
@@ -42,6 +43,7 @@ struct ImageCarousel: View {
         .tabViewStyle(.page(indexDisplayMode: .never))
         .overlay(alignment: .topLeading) {
             Button {
+                dismiss()
             } label: {
                 Image(.chevronLeft)
                     .frame(width: 24, height: 24)

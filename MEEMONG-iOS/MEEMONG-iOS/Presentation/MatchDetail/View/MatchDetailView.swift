@@ -18,6 +18,7 @@ struct MatchDetailView: View {
             }
         }
         .ignoresSafeArea(edges: .top)
+        .toolbar(.hidden, for: .navigationBar)
         .safeAreaInset(edge: .bottom) {
             ReservationButton()
         }
