@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct QuickMatchPostList: View {
+    @State private var showMatchDetail = false
+
     let recommendedPosts: [MatchPostModel]
     let normalPosts: [MatchPostModel]
 
@@ -22,6 +24,10 @@ struct QuickMatchPostList: View {
 
                     ForEach(recommendedPosts) { post in
                         MatchRecommendedCard(quickMatch: post)
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                showMatchDetail = true
+                            }
                     }
 
                     HStack(spacing: 4) {
@@ -56,6 +62,10 @@ struct QuickMatchPostList: View {
 
                     ForEach(normalPosts) { post in
                         MatchNormalCard(post: post)
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                showMatchDetail = true
+                            }
                     }
                 }
                 .padding(.horizontal, 20)
@@ -65,6 +75,9 @@ struct QuickMatchPostList: View {
         }
         .contentMargins(.bottom, 0, for: .scrollContent)
         .background(.gray100)
+        .navigationDestination(isPresented: $showMatchDetail) {
+            MatchDetailView()
+        }
         .overlay(alignment: .bottomTrailing) {
             FloatingButton(menu: .quickMatch, bottomPadding: 116)
         }
