@@ -76,7 +76,7 @@ struct QuickMatchPostList: View {
         .contentMargins(.bottom, 0, for: .scrollContent)
         .background(.gray100)
         .navigationDestination(isPresented: $showMatchDetail) {
-            MatchDetailView()
+            MatchDetailView(postId: 4)
         }
         .overlay(alignment: .bottomTrailing) {
             FloatingButton(menu: .quickMatch, bottomPadding: 116)
