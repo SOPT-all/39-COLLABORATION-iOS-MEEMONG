@@ -48,7 +48,7 @@ struct DesignerProfileRow: View {
                     .font(.cap1_medium)
                     .foregroundStyle(.gray600)
             }
-            .frame(width: 61)
+            .padding(.horizontal, 6)
             .frame(height: 26)
             .background(.gray100, in: RoundedRectangle(cornerRadius: 6))
         }
