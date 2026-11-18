@@ -104,6 +104,8 @@ custom_rules:
 
   debug_print:
     name: "임시 출력 확인"
+    excluded:
+      - '/Data/Network/Base/NetworkLogger\.swift$'
     regex: '\b(print|debugPrint|dump)[ \t]*\('
     match_kinds:
       - identifier
