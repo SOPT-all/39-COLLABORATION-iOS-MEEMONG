@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var showQuickMatch = false
+    @State private var selectedPostID: Int64?
     @State private var recommendedPosts = RecommendedPostsViewModel()
 
     var body: some View {
@@ -57,7 +58,10 @@ struct HomeView: View {
                                 quickMatches: recommendedPosts.posts.map {
                                     MatchPostModel(recommendedPost: $0)
                                 },
-                                onMore: { showQuickMatch = true }
+                                onMore: { showQuickMatch = true },
+                                onSelect: { post in
+                                    selectedPostID = Int64(post.id)
+                                }
                             )
 
                             HairItemSection(
@@ -83,6 +87,9 @@ struct HomeView: View {
             .task { try? await recommendedPosts.load() }
             .navigationDestination(isPresented: $showQuickMatch) {
                 QuickMatchView(recommendedPosts: recommendedPosts)
+            }
+            .navigationDestination(item: $selectedPostID) { postID in
+                MatchDetailView(postId: postID)
             }
         }
     }

@@ -9,14 +9,20 @@ import SwiftUI
 
 struct MatchDetailTabbar: View {
     @State private var selectedTab: DetailTab = .detail
+    let content: String
+    let shopName: String
+    let designerDetail: DesignerDetailResponseDTO?
+    
     var body: some View {
         VStack{
             CustomDetailTabbar(selectedTab: $selectedTab)
             switch selectedTab {
             case .detail:
-                ServiceDetailInfo()
+                ServiceDetailInfo(content: content)
             case .designerinfo:
-                DesignerInfo()
+                if let designerDetail {
+                    DesignerInfo(shopName: shopName, designerDetail: designerDetail)
+                }
             }
         }
     }

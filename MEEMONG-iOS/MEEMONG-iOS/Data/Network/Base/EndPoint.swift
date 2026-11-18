@@ -45,5 +45,4 @@ enum EndPoint {
     var header: [String: String] {
         HeaderType.basic.value
     }
-
 }

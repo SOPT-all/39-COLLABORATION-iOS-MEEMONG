@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct ServiceInfoBox: View {
+    let postDetail: PostDetailResponseDTO
+    
     var body: some View {
         VStack(spacing: 12){
             VStack(alignment: .leading, spacing: 4){
                 HStack{
-                    Text("뭘 해야될 지 모르겠다면?")
+                    Text(postDetail.title)
                         .font(.headline)
                     Spacer()
                     Image(.defaultBlack)
@@ -20,38 +22,44 @@ struct ServiceInfoBox: View {
                 .frame(maxWidth: .infinity)
                 .frame(height: 43)
                 HStack(spacing: 8){
-                    Text("리뷰특가")
+                    Text(PriceType(rawValue: postDetail.priceType)?.typetitle ?? "")
                         .font(.body2_regular)
                         .foregroundStyle(.meemongBlue)
-                        .frame(width: 60, height: 24)
+                        .padding(.horizontal, 6)
+                        .frame(height: 24)
                         .background(.bgBlue, in: RoundedRectangle(cornerRadius: 6))
-                    HStack(spacing: 4){
-                        Text("35,000")
-                        Text("원")
-                    }
-                    .font(.body1_regular)
-                    .foregroundStyle(.gray500)
-                    .overlay(alignment: .center) {
-                        Rectangle()
-                            .frame(height: 2)
-                            .foregroundStyle(.gray500)
+                    if let originalPrice = postDetail.originalPrice{
+                        HStack(spacing: 4){
+                            Text(originalPrice.formatted())
+                            Text("원")
+                        }
+                        .font(.body1_regular)
+                        .foregroundStyle(.gray500)
+                        .overlay(alignment: .center) {
+                            Rectangle()
+                                .frame(height: 2)
+                                .foregroundStyle(.gray500)
+                        }
                     }
                     Spacer()
                 }
                 HStack(spacing: 4){
                     HStack(spacing: 0){
-                        Text("50")
+                        Text("\(Int(postDetail.discountRate))")
                         Text("%")
                     }
                     .font(.title)
                     .foregroundStyle(.meemongRed)
-                    Text("17,500")
-                        .font(.title)
-                        .foregroundStyle(.meemongBlack)
-                    Text("원")
-                        .font(.body2_medium)
-                        .foregroundStyle(.gray700)
-                    Spacer()
+                    
+                    if let displayPrice = postDetail.displayPrice {
+                        Text(displayPrice.formatted())
+                            .font(.title)
+                            .foregroundStyle(.meemongBlack)
+                        Text("원")
+                            .font(.body2_medium)
+                            .foregroundStyle(.gray700)
+                        Spacer()
+                    }
                 }
             }
             HStack(spacing: 12){
@@ -65,10 +73,16 @@ struct ServiceInfoBox: View {
                 .foregroundStyle(.gray500)
                 
                 VStack(alignment: .leading, spacing: 8){
-                    Text("컷트")
-                    Text("컷트, 펌")
-                    Text("얼굴 노출, 영상")
-                    Text("아벨라움")
+                    Text(postDetail.treatmentTypes
+                        .compactMap { TreatmentType(rawValue: $0)?.typetitle}
+                        .joined(separator: ", "))
+                    Text(postDetail.signatures
+                        .compactMap { TreatmentType(rawValue: $0)?.typetitle}
+                        .joined(separator: ", "))
+                    Text((postDetail.shootingRanges ?? [])
+                        .compactMap { ShootingRanges(rawValue: $0)?.typetitle}
+                        .joined(separator: ", "))
+                    Text(postDetail.shopName)
                 }
                 .font(.body2_regular)
                 .foregroundStyle(.meemongBlack)
