@@ -10,6 +10,7 @@ import SwiftUI
 struct QuickMatchSection: View {
     let quickMatches: [MatchPostModel]
     let onMore: () -> Void
+    let onSelect: (MatchPostModel) -> Void
 
     var body: some View {
         HorizontalCardSection(cardHeight: 162) {
@@ -17,6 +18,10 @@ struct QuickMatchSection: View {
         } content: {
             ForEach(quickMatches) { quickMatch in
                 QuickMatchCard(quickMatch: quickMatch)
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        onSelect(quickMatch)
+                    }
             }
         }
     }
