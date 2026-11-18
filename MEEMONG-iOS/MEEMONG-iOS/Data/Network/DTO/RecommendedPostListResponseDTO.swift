@@ -21,3 +21,24 @@ struct RecommendedPostListResponseDTO: Decodable {
         let createdAt: String
     }
 }
+
+enum PostPriceType: String, Decodable {
+    case review = "REVIEW"
+    case free = "FREE"
+    case negotiable = "NEGOTIABLE"
+}
+
+enum PostAvailableTime: String, Decodable {
+    case weekdayMorning = "WEEKDAY_MORNING"
+    case weekdayAfternoon = "WEEKDAY_AFTERNOON"
+    case anytime = "ANYTIME"
+}
+
+enum PostTreatmentType: String, Decodable {
+    case cut = "CUT"
+    case perm = "PERM"
+    case clinic = "CLINIC"
+    case colored = "COLORED"
+    case straight = "STRAIGHT"
+    case extensionHair = "EXTENSION"
+}
