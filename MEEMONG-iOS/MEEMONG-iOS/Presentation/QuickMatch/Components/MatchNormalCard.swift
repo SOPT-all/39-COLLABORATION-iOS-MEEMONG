@@ -5,6 +5,7 @@
 //  Created by 김세령 on 11/13/26.
 //
 
+import Kingfisher
 import SwiftUI
 
 struct MatchNormalCard: View {
@@ -97,13 +98,14 @@ struct MatchNormalCard: View {
     private var authorImage: some View {
         Group {
             if post.isRemotePost {
-                AsyncImage(url: post.profileImageURL) { phase in
-                    if let image = phase.image {
-                        image.resizable().scaledToFill()
-                    } else {
-                        Image(.matchAuthor).resizable().scaledToFill()
+                KFImage(post.profileImageURL)
+                    .placeholder {
+                        Image(.matchAuthor)
+                            .resizable()
+                            .scaledToFill()
                     }
-                }
+                    .resizable()
+                    .scaledToFill()
             } else {
                 Image(post.image).resizable().scaledToFill()
             }

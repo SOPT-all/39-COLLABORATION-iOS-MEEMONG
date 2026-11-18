@@ -5,6 +5,7 @@
 //  Created by 김세령 on 11/18/26.
 //
 
+import Kingfisher
 import SwiftUI
 
 struct PostThumbnail: View {
@@ -13,13 +14,14 @@ struct PostThumbnail: View {
     var body: some View {
         Group {
             if post.isRemotePost {
-                AsyncImage(url: post.thumbnailURL) { phase in
-                    if let image = phase.image {
-                        image.resizable().scaledToFill()
-                    } else {
-                        Image(.matchPlaceholder).resizable().scaledToFill()
+                KFImage(post.thumbnailURL)
+                    .placeholder {
+                        Image(.matchPlaceholder)
+                            .resizable()
+                            .scaledToFill()
                     }
-                }
+                    .resizable()
+                    .scaledToFill()
             } else {
                 Image(post.image).resizable().scaledToFill()
             }
