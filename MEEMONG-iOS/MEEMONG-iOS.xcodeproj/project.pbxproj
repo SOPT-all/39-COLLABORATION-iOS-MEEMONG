@@ -8,6 +8,7 @@
 
 /* Begin PBXFileReference section */
 		3B04C4F3309EF20700A4C0D5 /* MEEMONG-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MEEMONG-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6C9B1DD0000000000000001 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -44,6 +45,7 @@
 			isa = PBXGroup;
 			children = (
 				3B04C4F5309EF20700A4C0D5 /* MEEMONG-iOS */,
+				B6C9B1DD0000000000000003 /* Config */,
 				3B04C4F4309EF20700A4C0D5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +56,14 @@
 				3B04C4F3309EF20700A4C0D5 /* MEEMONG-iOS.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B6C9B1DD0000000000000003 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				B6C9B1DD0000000000000001 /* Config.xcconfig */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +283,7 @@
 		};
 		3B04C4FF309EF20A00A4C0D5 /* Debug configuration for PBXNativeTarget "MEEMONG-iOS" */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6C9B1DD0000000000000001 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -309,6 +320,7 @@
 		};
 		3B04C500309EF20A00A4C0D5 /* Release configuration for PBXNativeTarget "MEEMONG-iOS" */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6C9B1DD0000000000000001 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
