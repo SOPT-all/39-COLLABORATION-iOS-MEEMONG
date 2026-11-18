@@ -43,38 +43,4 @@ extension MatchPostModel {
             }
         }
     }
-
-    static func makePostDate(from createdAt: String) throws -> Date {
-        let parser = ISO8601DateFormatter()
-        parser.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-
-        if let date = parser.date(from: createdAt) {
-            return date
-        }
-
-        return try Date(createdAt, strategy: .iso8601)
-    }
-
-    static func makePostedAtText(from createdAt: String, now: Date = .now) -> String {
-        guard let date = try? makePostDate(from: createdAt) else { return "" }
-
-        var calendar = Calendar(identifier: .gregorian)
-        calendar.timeZone = TimeZone(identifier: "Asia/Seoul") ?? .current
-
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ko_KR")
-        formatter.timeZone = calendar.timeZone
-
-        let yesterday = calendar.date(byAdding: .day, value: -1, to: now)
-
-        if calendar.isDate(date, inSameDayAs: now) {
-            formatter.dateFormat = "a hh:mm"
-        } else if let yesterday, calendar.isDate(date, inSameDayAs: yesterday) {
-            return "어제"
-        } else {
-            formatter.dateFormat = "MM월 dd일"
-        }
-
-        return formatter.string(from: date)
-    }
 }

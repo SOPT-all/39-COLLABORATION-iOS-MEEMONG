@@ -22,7 +22,7 @@ final class GeneralPostsViewModel {
             endPoint: .generalPosts
         )
         let datedPosts = try response.posts.map { post in
-            (post: post, date: try MatchPostModel.makePostDate(from: post.createdAt))
+            (post: post, date: try Date(iso8601String: post.createdAt))
         }
 
         posts = datedPosts.sorted { $0.date > $1.date }.prefix(4).map(\.post)

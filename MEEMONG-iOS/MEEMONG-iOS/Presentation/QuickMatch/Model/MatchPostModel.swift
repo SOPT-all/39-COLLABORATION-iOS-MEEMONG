@@ -56,6 +56,7 @@ extension MatchPostModel {
         case .negotiable: treatment = .materials
         }
         let tags = Self.makeTreatmentTags(from: post.treatmentTypes)
+        let date = try? Date(iso8601String: post.createdAt)
 
         self.init(
             id: String(post.postId),
@@ -71,7 +72,7 @@ extension MatchPostModel {
             availableTime: Self.makeAvailableTimeText(from: post.availableTimes),
             tags: Array(tags.prefix(3)),
             additionalTagCount: max(0, tags.count - 3),
-            postedAt: Self.makePostedAtText(from: post.createdAt),
+            postedAt: date?.relativeDisplayText() ?? "",
             thumbnailURL: URL(string: post.thumbnailUrl),
             isLiked: post.isLiked,
             isRemotePost: true
@@ -89,6 +90,7 @@ extension MatchPostModel {
         case .negotiable: treatment = .materials
         }
         let tags = Self.makeTreatmentTags(from: post.treatmentTypes)
+        let date = try? Date(iso8601String: post.createdAt)
 
         self.init(
             id: String(post.postId),
@@ -105,7 +107,7 @@ extension MatchPostModel {
             availableTime: Self.makeAvailableTimeText(from: post.availableTimes),
             tags: tags,
             additionalTagCount: 0,
-            postedAt: Self.makePostedAtText(from: post.createdAt),
+            postedAt: date?.relativeDisplayText() ?? "",
             profileImageURL: URL(string: post.designerProfileImageUrl),
             isLiked: post.isLiked,
             isRemotePost: true
