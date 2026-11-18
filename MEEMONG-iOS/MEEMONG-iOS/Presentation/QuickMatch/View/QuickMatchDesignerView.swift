@@ -8,12 +8,17 @@
 import SwiftUI
 
 struct QuickMatchDesignerView: View {
-    var data: DesignerMatchModel = .sample
+    let viewModel: RecommendedPostsViewModel
+    let generalViewModel: GeneralPostsViewModel
 
     var body: some View {
         QuickMatchPostList(
-            recommendedPosts: data.recommendedPosts,
-            normalPosts: data.normalPosts
+            recommendedPosts: viewModel.posts.map { MatchPostModel(recommendedPost: $0) },
+            normalPosts: generalViewModel.posts.map { MatchPostModel(generalPost: $0) }
         )
+        .task {
+            try? await viewModel.load()
+            try? await generalViewModel.load()
+        }
     }
 }

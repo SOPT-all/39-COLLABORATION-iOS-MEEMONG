@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct QuickMatchView: View {
-    @Environment(\.dismiss) private var dismiss
+    @Environment(\.dismiss)
+    private var dismiss
+    @State private var recommendedPosts: RecommendedPostsViewModel
+    @State private var generalPosts = GeneralPostsViewModel()
     @State private var selectedType: MemberType = .designer
+
+    init(recommendedPosts: RecommendedPostsViewModel? = nil) {
+        _recommendedPosts = State(
+            initialValue: recommendedPosts ?? RecommendedPostsViewModel()
+        )
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -21,7 +30,10 @@ struct QuickMatchView: View {
 
             switch selectedType {
             case .designer:
-                QuickMatchDesignerView()
+                QuickMatchDesignerView(
+                    viewModel: recommendedPosts,
+                    generalViewModel: generalPosts
+                )
             case .model:
                 QuickMatchModelView()
             }

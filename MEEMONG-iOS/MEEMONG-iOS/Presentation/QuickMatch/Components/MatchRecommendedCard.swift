@@ -13,11 +13,7 @@ struct MatchRecommendedCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(alignment: .top, spacing: 12) {
-                Image(quickMatch.image)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 92, height: 92)
-                    .clipShape(RoundedRectangle(cornerRadius: 6))
+                PostThumbnail(post: quickMatch)
 
                 matchInfo
             }
@@ -25,7 +21,7 @@ struct MatchRecommendedCard: View {
             tagInfo
         }
         .padding(16)
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: .infinity, minHeight: 162)
         .background(.meemongWhite)
         .clipShape(RoundedRectangle(cornerRadius: 6))
         .overlay {
@@ -43,7 +39,11 @@ struct MatchRecommendedCard: View {
                     .lineLimit(1)
                     .frame(maxWidth: .infinity, alignment: .leading)
 
-                HeartButton()
+                if quickMatch.isRemotePost {
+                    PostLikeIndicator(isLiked: quickMatch.isLiked)
+                } else {
+                    HeartButton()
+                }
             }
             .frame(height: 24)
 

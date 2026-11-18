@@ -8,16 +8,12 @@
 import SwiftUI
 
 struct QuickMatchCard: View {
-    let quickMatch: QuickMatchModel
+    let quickMatch: MatchPostModel
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(alignment: .top, spacing: 12) {
-                Image(quickMatch.image)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 92, height: 92)
-                    .clipShape(RoundedRectangle(cornerRadius: 6))
+                PostThumbnail(post: quickMatch)
 
                 matchInfo
             }
@@ -25,7 +21,7 @@ struct QuickMatchCard: View {
             tagInfo
         }
         .padding(16)
-        .frame(width: 306)
+        .frame(width: 306, height: 162)
         .background(.meemongWhite)
         .clipShape(RoundedRectangle(cornerRadius: 6))
         .overlay {
@@ -43,7 +39,7 @@ struct QuickMatchCard: View {
                     .lineLimit(1)
                     .frame(maxWidth: .infinity, alignment: .leading)
 
-                HeartButton()
+                PostLikeIndicator(isLiked: quickMatch.isLiked)
             }
             .frame(height: 24)
 
@@ -53,19 +49,13 @@ struct QuickMatchCard: View {
                         .resizable()
                         .frame(width: 14, height: 14)
 
-                    switch quickMatch.treatment {
-                    case .free:
-                        Text("무료시술")
-                            .foregroundStyle(.meemongBlue)
-                    case .materials(let price):
-                        Text("재료비 발생")
-                            .foregroundStyle(.gray700)
-                        Text(price)
-                            .font(.body2_regular)
-                    case .modelFee(let price):
-                        Text("모델료지급")
-                            .foregroundStyle(.meemongGreen)
-                        Text(price)
+                    Text(quickMatch.treatment.title)
+                        .foregroundStyle(quickMatch.treatment.color)
+                    if !quickMatch.price.isEmpty {
+                        Circle()
+                            .fill(.gray500)
+                            .frame(width: 4, height: 4)
+                        Text(quickMatch.price)
                             .font(.body2_regular)
                     }
                 }
