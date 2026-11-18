@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct StoreInfo: View {
-    let images: [ImageResource] = [.location01, .location02, .location03]
+    let shopName: String
+    let designerDetail: DesignerDetailResponseDTO
     
     var body: some View {
         VStack(spacing: 12){
@@ -16,7 +17,7 @@ struct StoreInfo: View {
                 Text("매장 정보")
                     .font(.body1_semiBold)
                     .frame(height: 24)
-                Text("아벨라움")
+                Text(shopName)
                     .font(.body2_medium)
                     .foregroundStyle(.gray700)
                     .frame(height: 20)
@@ -24,7 +25,7 @@ struct StoreInfo: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             
             HStack(spacing: 0){
-                Text("경기 고양시 덕양구 동송로 70 아벨라움 241호")
+                Text(designerDetail.shopAddress)
                     .font(.body2_regular)
                     .lineLimit(1)
                 Spacer()
@@ -41,13 +42,18 @@ struct StoreInfo: View {
                 .clipShape(RoundedRectangle(cornerRadius: 14))
             
             HStack{
-                ForEach(images, id: \.self){ image in
+                ForEach(designerDetail.shopImageUrls.indices, id: \.self){ index in
                     Color.clear
                         .aspectRatio(1, contentMode: .fit)
                         .overlay {
-                            Image(image)
-                                .resizable()
-                                .scaledToFill()
+                            AsyncImage(
+                                url: URL(string: designerDetail.shopImageUrls[index])) { image in
+                                image
+                                    .resizable()
+                                    .scaledToFill()
+                            } placeholder: {
+                                Color.gray100
+                            }
                         }
                         .clipShape(RoundedRectangle(cornerRadius: 6))
                 }

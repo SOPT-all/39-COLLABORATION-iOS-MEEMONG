@@ -8,11 +8,7 @@
 import SwiftUI
 
 struct PortfolioGrid: View {
-    private let images: [ImageResource] = [
-        .portfolio01, .portfolio02, .portfolio03,
-        .portfolio04, .portfolio05, .portfolio06,
-        .portfolio07, .portfolio08, .portfolio09
-    ]
+    let portfolioImageUrls: [String]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0){
@@ -27,13 +23,17 @@ struct PortfolioGrid: View {
                 ),
                 spacing: 4
             ) {
-                ForEach(images.indices, id: \.self) { index in
+                ForEach(portfolioImageUrls.indices, id: \.self) { index in
                     Color.clear
                         .aspectRatio(1, contentMode: .fit)
                         .overlay {
-                            Image(images[index])
-                                .resizable()
-                                .scaledToFill()
+                            AsyncImage(url: URL(string: portfolioImageUrls[index])) { image in
+                                image
+                                    .resizable()
+                                    .scaledToFill()
+                            } placeholder: {
+                                Color.gray100
+                            }
                         }
                         .clipShape(RoundedRectangle(cornerRadius: 2))
                 }
@@ -58,9 +58,4 @@ struct PortfolioGrid: View {
         }
         .padding(.horizontal, 20)
     }
-}
-
-
-#Preview {
-    PortfolioGrid()
 }

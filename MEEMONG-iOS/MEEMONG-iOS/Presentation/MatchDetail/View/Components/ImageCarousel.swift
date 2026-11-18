@@ -7,36 +7,29 @@
 
 import SwiftUI
 
-struct CarouselItem: Hashable {
-    let id: Int
-    let image: String
-}
-
 struct ImageCarousel: View {
     @Environment(\.dismiss) private var dismiss
     @State private var currentIndex = 0
-    var items: [CarouselItem] = [
-        CarouselItem(id: 0, image: "hero_01"),
-        CarouselItem(id: 1, image: "hero_02"),
-        CarouselItem(id: 2, image: "hero_03"),
-        CarouselItem(id: 3, image: "hero_04"),
-        CarouselItem(id: 4, image: "hero_05"),
-        CarouselItem(id: 5, image: "hero_06")
-    ]
+    let postImageUrls: [String]
+    
     var body: some View {
         TabView(selection: $currentIndex) {
-            ForEach(Array(items.enumerated()), id: \.element.id) { index, item in
-                Image(item.image)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(maxWidth: .infinity)
-                    .tag(index)
-                    .overlay(alignment: .top) {
-                        Image(.gradient)
-                            .resizable()
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 90)
-                    }
+            ForEach(Array(postImageUrls.enumerated()), id: \.offset) { index, imageUrl in
+                AsyncImage(url: URL(string: imageUrl)) { image in
+                    image
+                        .resizable()
+                        .scaledToFill()
+                } placeholder: {
+                    Color.gray100
+                }
+                .frame(maxWidth: .infinity)
+                .tag(index)
+                .overlay(alignment: .top) {
+                    Image(.gradient)
+                        .resizable()
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 90)
+                }
             }
         }
         .frame(height: 375)
@@ -53,7 +46,7 @@ struct ImageCarousel: View {
             .padding(.leading, 6)
         }
         .overlay(alignment: .bottomTrailing) {
-            Text("\(currentIndex + 1)/\(items.count)")
+            Text("\(currentIndex + 1)/\(postImageUrls.count)")
                 .font(.body2_medium)
                 .foregroundStyle(.meemongWhite)
                 .frame(height: 20)
