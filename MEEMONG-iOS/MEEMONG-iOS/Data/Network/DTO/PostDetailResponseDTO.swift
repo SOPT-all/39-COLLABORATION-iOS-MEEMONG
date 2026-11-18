@@ -6,7 +6,7 @@
 //
 
 struct PostDetailResponseDTO: Decodable {
-    let postID: Int64
+    let postId: Int64
     let title: String
     let postImageUrls: [String]
     let isLiked: Bool
