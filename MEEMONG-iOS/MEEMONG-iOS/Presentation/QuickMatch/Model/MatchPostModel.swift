@@ -40,4 +40,75 @@ struct MatchPostModel: Identifiable {
     let tags: [String]
     let additionalTagCount: Int
     let postedAt: String
+    var thumbnailURL: URL? = nil
+    var profileImageURL: URL? = nil
+    var isLiked: Bool = false
+    var isRemotePost: Bool = false
+}
+
+extension MatchPostModel {
+    init(recommendedPost post: RecommendedPostListResponseDTO.Post) {
+        let treatment: Treatment
+
+        switch post.priceType {
+        case .free: treatment = .free
+        case .review: treatment = .review
+        case .negotiable: treatment = .materials
+        }
+        let tags = Self.makeTreatmentTags(from: post.treatmentTypes)
+
+        self.init(
+            id: String(post.postId),
+            title: post.title,
+            image: .matchPlaceholder,
+            author: "",
+            treatment: treatment,
+            price: Self.makePriceText(
+                priceType: post.priceType,
+                displayPrice: post.displayPrice
+            ),
+            location: post.region,
+            availableTime: Self.makeAvailableTimeText(from: post.availableTimes),
+            tags: Array(tags.prefix(3)),
+            additionalTagCount: max(0, tags.count - 3),
+            postedAt: Self.makePostedAtText(from: post.createdAt),
+            thumbnailURL: URL(string: post.thumbnailUrl),
+            isLiked: post.isLiked,
+            isRemotePost: true
+        )
+    }
+}
+
+extension MatchPostModel {
+    init(generalPost post: GeneralPostListResponseDTO.Post) {
+        let treatment: Treatment
+
+        switch post.priceType {
+        case .free: treatment = .free
+        case .review: treatment = .review
+        case .negotiable: treatment = .materials
+        }
+        let tags = Self.makeTreatmentTags(from: post.treatmentTypes)
+
+        self.init(
+            id: String(post.postId),
+            title: post.title,
+            image: .matchAuthor,
+            author: post.designerName,
+            treatment: treatment,
+            price: Self.makePriceText(
+                priceType: post.priceType,
+                displayPrice: post.displayPrice,
+                includesCurrencyUnit: false
+            ),
+            location: post.region,
+            availableTime: Self.makeAvailableTimeText(from: post.availableTimes),
+            tags: tags,
+            additionalTagCount: 0,
+            postedAt: Self.makePostedAtText(from: post.createdAt),
+            profileImageURL: URL(string: post.designerProfileImageUrl),
+            isLiked: post.isLiked,
+            isRemotePost: true
+        )
+    }
 }
