@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct QuickMatchPostList: View {
-    @State private var showMatchDetail = false
+    @State private var selectedPostID: Int64?
 
     let recommendedPosts: [MatchPostModel]
     let normalPosts: [MatchPostModel]
@@ -26,7 +26,7 @@ struct QuickMatchPostList: View {
                         MatchRecommendedCard(quickMatch: post)
                             .contentShape(Rectangle())
                             .onTapGesture {
-                                showMatchDetail = true
+                                selectedPostID = Int64(post.id)
                             }
                     }
 
@@ -64,7 +64,7 @@ struct QuickMatchPostList: View {
                         MatchNormalCard(post: post)
                             .contentShape(Rectangle())
                             .onTapGesture {
-                                showMatchDetail = true
+                                selectedPostID = Int64(post.id)
                             }
                     }
                 }
@@ -75,8 +75,8 @@ struct QuickMatchPostList: View {
         }
         .contentMargins(.bottom, 0, for: .scrollContent)
         .background(.gray100)
-        .navigationDestination(isPresented: $showMatchDetail) {
-            MatchDetailView()
+        .navigationDestination(item: $selectedPostID) { postID in
+            MatchDetailView(postId: postID)
         }
         .overlay(alignment: .bottomTrailing) {
             FloatingButton(menu: .quickMatch, bottomPadding: 116)

@@ -23,8 +23,15 @@ final class NetworkLogger {
         """
 
         for (key, value) in request.allHTTPHeaderFields ?? [:] {
-            let sensitiveHeaders = ["authorization", "proxy-authorization", "cookie", "x-api-key"]
-            let displayValue = sensitiveHeaders.contains(key.lowercased()) ? "[REDACTED]" : value
+            let sensitiveHeaders = [
+                "authorization",
+                "proxy-authorization",
+                "cookie",
+                "x-api-key"
+            ]
+            let displayValue = sensitiveHeaders.contains(key.lowercased())
+                ? "[REDACTED]"
+                : value
             output += "\(key): \(displayValue)\n"
         }
 
