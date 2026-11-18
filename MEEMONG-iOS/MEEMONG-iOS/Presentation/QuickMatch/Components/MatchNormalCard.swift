@@ -5,6 +5,7 @@
 //  Created by 김세령 on 11/13/26.
 //
 
+import Kingfisher
 import SwiftUI
 
 struct MatchNormalCard: View {
@@ -18,7 +19,9 @@ struct MatchNormalCard: View {
                 Text(post.title)
                     .font(.body1_semiBold)
                     .foregroundStyle(.gray700)
+                    .lineLimit(1)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(height: 24, alignment: .leading)
 
                 HStack(spacing: 8) {
                     Text(post.treatment.title)
@@ -28,16 +31,17 @@ struct MatchNormalCard: View {
                     if !post.price.isEmpty {
                         Circle()
                             .fill(.gray500)
-                            .frame(width: 4, height: 4)
+                            .frame(width: 3, height: 3)
                         Text(post.price)
                             .foregroundStyle(.gray900)
                     }
                     Circle()
                         .fill(.gray500)
-                        .frame(width: 4, height: 4)
+                        .frame(width: 3, height: 3)
                     Text(post.availableTime)
                         .lineLimit(1)
                 }
+                .frame(height: 20)
                 .font(.body2_medium)
                 .foregroundStyle(.gray600)
             }
@@ -49,7 +53,7 @@ struct MatchNormalCard: View {
             }
         }
         .padding(12)
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity, minHeight: 142, alignment: .leading)
         .background(.meemongWhite, in: RoundedRectangle(cornerRadius: 6))
         .overlay {
             RoundedRectangle(cornerRadius: 6)
@@ -59,11 +63,7 @@ struct MatchNormalCard: View {
 
     private var authorInfo: some View {
         HStack(spacing: 8) {
-            Image(post.image)
-                .resizable()
-                .scaledToFill()
-                .frame(width: 20, height: 20)
-                .clipShape(Circle())
+            authorImage
             
             Text(post.author)
                 .lineLimit(1)
@@ -72,22 +72,45 @@ struct MatchNormalCard: View {
             
             Circle()
                 .fill(.gray500)
-                .frame(width: 4, height: 4)
+                .frame(width: 3, height: 3)
             
             Text(post.postedAt)
                 .fixedSize()
             
             Circle()
                 .fill(.gray500)
-                .frame(width: 4, height: 4)
+                .frame(width: 3, height: 3)
             Text(post.location)
                 .lineLimit(1)
 
             Spacer(minLength: 0)
 
-            HeartButton()
+            if post.isRemotePost {
+                PostLikeIndicator(isLiked: post.isLiked)
+            } else {
+                HeartButton()
+            }
         }
         .font(.cap1_regular)
         .foregroundStyle(.gray600)
+    }
+
+    private var authorImage: some View {
+        Group {
+            if post.isRemotePost {
+                KFImage(post.profileImageURL)
+                    .placeholder {
+                        Image(.matchAuthor)
+                            .resizable()
+                            .scaledToFill()
+                    }
+                    .resizable()
+                    .scaledToFill()
+            } else {
+                Image(post.image).resizable().scaledToFill()
+            }
+        }
+        .frame(width: 20, height: 20)
+        .clipShape(Circle())
     }
 }

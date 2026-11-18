@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var showQuickMatch = false
+    @State private var recommendedPosts = RecommendedPostsViewModel()
 
     var body: some View {
         NavigationStack {
@@ -53,7 +54,10 @@ struct HomeView: View {
                             )
 
                             QuickMatchSection(
-                                quickMatches: QuickMatchModel.samples
+                                quickMatches: recommendedPosts.posts.map {
+                                    MatchPostModel(recommendedPost: $0)
+                                },
+                                onMore: { showQuickMatch = true }
                             )
 
                             HairItemSection(
@@ -76,8 +80,9 @@ struct HomeView: View {
             }
             .ignoresSafeArea(.container, edges: .bottom)
             .toolbar(.hidden, for: .navigationBar)
+            .task { try? await recommendedPosts.load() }
             .navigationDestination(isPresented: $showQuickMatch) {
-                QuickMatchView()
+                QuickMatchView(recommendedPosts: recommendedPosts)
             }
         }
     }
