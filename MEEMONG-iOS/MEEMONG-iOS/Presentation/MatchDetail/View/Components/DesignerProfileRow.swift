@@ -13,7 +13,9 @@ struct DesignerProfileRow: View {
     var body: some View {
         HStack(alignment: .top){
             HStack(spacing: 8){
-                AsyncImage(url: URL(string: postDetail.designerProfileImageUrl)) { image in
+                AsyncImage(
+                    url: URL(string: postDetail.designerProfileImageUrl)
+                ) { image in
                     image
                         .resizable()
                         .scaledToFill()

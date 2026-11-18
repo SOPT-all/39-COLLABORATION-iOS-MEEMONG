@@ -37,13 +37,16 @@ final class BaseService {
 
 private extension BaseService {
     func makeRequest(endPoint: EndPoint, body: (any Encodable)?) throws -> URLRequest {
-        guard let address = baseURLProvider(),
-              let baseURL = URL(string: address),
-              baseURL.scheme == "https", baseURL.host != nil,
-              var components = URLComponents(
+        guard
+            let address = baseURLProvider(),
+            let baseURL = URL(string: address),
+            baseURL.scheme == "https",
+            baseURL.host != nil,
+            var components = URLComponents(
                 url: baseURL.appendingPathComponent(endPoint.url),
                 resolvingAgainstBaseURL: false
-              ) else {
+            )
+        else {
             throw NetworkError.urlError
         }
         if !endPoint.queryItems.isEmpty {
@@ -72,7 +75,9 @@ private extension BaseService {
         }
     }
 
-    func requestToResponse<Response: Decodable>(request: URLRequest) async throws -> Response {
+    func requestToResponse<Response: Decodable>(
+        request: URLRequest
+    ) async throws -> Response {
         let data: Data
         let response: URLResponse
         do {
@@ -91,7 +96,10 @@ private extension BaseService {
         NetworkLogger.responseLog(response: httpResponse, data: data)
 
         guard (200..<300).contains(httpResponse.statusCode) else {
-            let errorResponse = try? JSONDecoder().decode(APIErrorResponseDTO.self, from: data)
+            let errorResponse = try? JSONDecoder().decode(
+                APIErrorResponseDTO.self,
+                from: data
+            )
             throw NetworkError.httpError(
                 statusCode: httpResponse.statusCode,
                 code: errorResponse?.code

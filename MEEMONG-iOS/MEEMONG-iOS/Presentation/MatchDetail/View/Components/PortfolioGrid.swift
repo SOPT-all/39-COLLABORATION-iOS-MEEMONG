@@ -27,7 +27,9 @@ struct PortfolioGrid: View {
                     Color.clear
                         .aspectRatio(1, contentMode: .fit)
                         .overlay {
-                            AsyncImage(url: URL(string: portfolioImageUrls[index])) { image in
+                            AsyncImage(
+                                url: URL(string: portfolioImageUrls[index])
+                            ) { image in
                                 image
                                     .resizable()
                                     .scaledToFill()

@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ImageCarousel: View {
-    @Environment(\.dismiss) private var dismiss
+    @Environment(\.dismiss)
+    private var dismiss
     @State private var currentIndex = 0
     let postImageUrls: [String]
     

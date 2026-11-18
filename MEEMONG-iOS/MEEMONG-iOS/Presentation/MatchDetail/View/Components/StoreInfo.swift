@@ -47,7 +47,8 @@ struct StoreInfo: View {
                         .aspectRatio(1, contentMode: .fit)
                         .overlay {
                             AsyncImage(
-                                url: URL(string: designerDetail.shopImageUrls[index])) { image in
+                                url: URL(string: designerDetail.shopImageUrls[index])
+                            ) { image in
                                 image
                                     .resizable()
                                     .scaledToFill()
