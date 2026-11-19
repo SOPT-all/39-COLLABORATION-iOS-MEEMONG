@@ -13,8 +13,7 @@ struct QuickMatchPostList: View {
     let recommendedPosts: [MatchPostModel]
     let normalPosts: [MatchPostModel]
     var updatingLikeIDs: Set<Int64> = []
-    var onRecommendedLike: (Int64) async throws -> Void = { _ in }
-    var onGeneralLike: (Int64) async throws -> Void = { _ in }
+    var onLike: (Int64) async throws -> Void = { _ in }
     var onLikeChanged: (Int64, Bool) -> Void = { _, _ in }
 
     var body: some View {
@@ -34,7 +33,7 @@ struct QuickMatchPostList: View {
                             },
                             onLike: {
                                 guard let postID = Int64(post.id) else { return }
-                                Task { try? await onRecommendedLike(postID) }
+                                Task { try? await onLike(postID) }
                             },
                             onSelect: {
                                 selectedPostID = Int64(post.id)
@@ -80,7 +79,7 @@ struct QuickMatchPostList: View {
                             },
                             onLike: {
                                 guard let postID = Int64(post.id) else { return }
-                                Task { try? await onGeneralLike(postID) }
+                                Task { try? await onLike(postID) }
                             },
                             onSelect: {
                                 selectedPostID = Int64(post.id)

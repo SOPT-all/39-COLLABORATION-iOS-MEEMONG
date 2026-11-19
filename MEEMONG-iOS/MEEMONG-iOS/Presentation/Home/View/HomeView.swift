@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @State private var showQuickMatch = false
     @State private var selectedPostID: Int64?
-    @State private var recommendedPosts = RecommendedPostsViewModel()
+    @State private var viewModel = HomeViewModel()
 
     var body: some View {
         NavigationStack {
@@ -29,7 +29,7 @@ struct HomeView: View {
 
                         HomeQuickMenu { item in
                             if item == .quickMatching {
-                                showQuickMatch = true
+                                openQuickMatch()
                             }
                         }
 
@@ -55,16 +55,16 @@ struct HomeView: View {
                             )
 
                             QuickMatchSection(
-                                quickMatches: recommendedPosts.posts.map {
+                                quickMatches: viewModel.recommendedPosts.map {
                                     MatchPostModel(recommendedPost: $0)
                                 },
-                                onMore: { showQuickMatch = true },
+                                onMore: openQuickMatch,
                                 onSelect: { post in
                                     selectedPostID = Int64(post.id)
                                 },
-                                updatingLikeIDs: recommendedPosts.updatingLikeIDs,
+                                updatingLikeIDs: viewModel.updatingLikeIDs,
                                 onLike: { postID in
-                                    try await recommendedPosts.toggleLike(postID: postID)
+                                    try await viewModel.toggleLike(postID: postID)
                                 }
                             )
 
@@ -87,15 +87,22 @@ struct HomeView: View {
             }
             .ignoresSafeArea(.container, edges: .bottom)
             .toolbar(.hidden, for: .navigationBar)
-            .task { try? await recommendedPosts.load() }
+            .task { try? await viewModel.load() }
             .navigationDestination(isPresented: $showQuickMatch) {
-                QuickMatchView(recommendedPosts: recommendedPosts)
+                QuickMatchView { postID, isLiked in
+                    viewModel.updateLike(postID: postID, isLiked: isLiked)
+                }
             }
             .navigationDestination(item: $selectedPostID) { postID in
                 MatchDetailView(postId: postID) { postID, isLiked in
-                    recommendedPosts.updateLike(postID: postID, isLiked: isLiked)
+                    viewModel.updateLike(postID: postID, isLiked: isLiked)
                 }
             }
         }
+    }
+
+    private func openQuickMatch() {
+        guard viewModel.updatingLikeIDs.isEmpty else { return }
+        showQuickMatch = true
     }
 }
