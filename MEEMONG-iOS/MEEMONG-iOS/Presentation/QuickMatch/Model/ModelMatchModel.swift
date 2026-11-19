@@ -86,7 +86,7 @@ struct ModelMatchModel {
                 image: .matchPlaceholder,
                 author: "몽몽",
                 treatment: .materials,
-                price: "",
+                price: "60,000",
                 location: "서울시 중량구",
                 availableTime: "평일 오후, 주말 오전",
                 tags: ["펌"],
