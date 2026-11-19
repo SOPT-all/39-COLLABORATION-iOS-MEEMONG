@@ -5,8 +5,9 @@
 //  Created by 김세령 on 11/18/26.
 //
 
-import Kingfisher
 import SwiftUI
+
+import Kingfisher
 
 struct PostThumbnail: View {
     let post: MatchPostModel

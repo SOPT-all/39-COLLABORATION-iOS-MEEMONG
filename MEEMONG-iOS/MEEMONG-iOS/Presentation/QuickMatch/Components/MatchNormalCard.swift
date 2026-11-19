@@ -5,8 +5,9 @@
 //  Created by 김세령 on 11/13/26.
 //
 
-import Kingfisher
 import SwiftUI
+
+import Kingfisher
 
 struct MatchNormalCard: View {
     let post: MatchPostModel

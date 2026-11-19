@@ -5,7 +5,7 @@
 //  Created by 김세령 on 11/13/26.
 //
 
-import SwiftUI
+import Foundation
 
 struct ModelMatchModel {
     let recommendedPosts: [MatchPostModel]
