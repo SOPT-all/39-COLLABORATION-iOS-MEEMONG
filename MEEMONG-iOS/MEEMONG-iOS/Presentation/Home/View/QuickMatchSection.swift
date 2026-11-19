@@ -11,17 +11,27 @@ struct QuickMatchSection: View {
     let quickMatches: [MatchPostModel]
     let onMore: () -> Void
     let onSelect: (MatchPostModel) -> Void
+    let updatingLikeIDs: Set<Int64>
+    let onLike: (Int64) async throws -> Void
 
     var body: some View {
         HorizontalCardSection(cardHeight: 162) {
             header
         } content: {
             ForEach(quickMatches) { quickMatch in
-                QuickMatchCard(quickMatch: quickMatch)
-                    .contentShape(Rectangle())
-                    .onTapGesture {
+                QuickMatchCard(
+                    quickMatch: quickMatch,
+                    isUpdatingLike: updatingLikeIDs.contains {
+                        String($0) == quickMatch.id
+                    },
+                    onLike: {
+                        guard let postID = Int64(quickMatch.id) else { return }
+                        Task { try? await onLike(postID) }
+                    },
+                    onSelect: {
                         onSelect(quickMatch)
                     }
+                )
             }
         }
     }

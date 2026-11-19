@@ -61,6 +61,10 @@ struct HomeView: View {
                                 onMore: { showQuickMatch = true },
                                 onSelect: { post in
                                     selectedPostID = Int64(post.id)
+                                },
+                                updatingLikeIDs: recommendedPosts.updatingLikeIDs,
+                                onLike: { postID in
+                                    try await recommendedPosts.toggleLike(postID: postID)
                                 }
                             )
 
@@ -89,7 +93,9 @@ struct HomeView: View {
                 QuickMatchView(recommendedPosts: recommendedPosts)
             }
             .navigationDestination(item: $selectedPostID) { postID in
-                MatchDetailView(postId: postID)
+                MatchDetailView(postId: postID) { postID, isLiked in
+                    recommendedPosts.updateLike(postID: postID, isLiked: isLiked)
+                }
             }
         }
     }

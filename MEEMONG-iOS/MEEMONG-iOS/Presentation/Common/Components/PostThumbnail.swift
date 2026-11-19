@@ -30,15 +30,3 @@ struct PostThumbnail: View {
         .clipShape(RoundedRectangle(cornerRadius: 6))
     }
 }
-
-struct PostLikeIndicator: View {
-    let isLiked: Bool
-
-    var body: some View {
-        Image(isLiked ? .statusSelected : .defaultWhite)
-            .resizable()
-            .scaledToFit()
-            .frame(width: 20, height: 20)
-            .accessibilityLabel(isLiked ? "찜한 공고" : "찜하지 않은 공고")
-    }
-}

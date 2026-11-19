@@ -10,6 +10,9 @@ import SwiftUI
 
 struct MatchNormalCard: View {
     let post: MatchPostModel
+    var isUpdatingLike = false
+    let onLike: () -> Void
+    let onSelect: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -52,9 +55,28 @@ struct MatchNormalCard: View {
                 }
             }
         }
+        .allowsHitTesting(false)
+        .overlay(alignment: .topTrailing) {
+            if post.isRemotePost {
+                PostLikeButton(
+                    isLiked: post.isLiked,
+                    isUpdating: isUpdatingLike,
+                    action: onLike
+                )
+            } else {
+                HeartButton()
+            }
+        }
         .padding(12)
         .frame(maxWidth: .infinity, minHeight: 142, alignment: .leading)
-        .background(.meemongWhite, in: RoundedRectangle(cornerRadius: 6))
+        .background {
+            RoundedRectangle(cornerRadius: 6)
+                .fill(.meemongWhite)
+                .onTapGesture {
+                    guard !isUpdatingLike else { return }
+                    onSelect()
+                }
+        }
         .overlay {
             RoundedRectangle(cornerRadius: 6)
                 .strokeBorder(.gray300, lineWidth: 1)
@@ -85,11 +107,8 @@ struct MatchNormalCard: View {
 
             Spacer(minLength: 0)
 
-            if post.isRemotePost {
-                PostLikeIndicator(isLiked: post.isLiked)
-            } else {
-                HeartButton()
-            }
+            Color.clear
+                .frame(width: 20, height: 20)
         }
         .font(.cap1_regular)
         .foregroundStyle(.gray600)

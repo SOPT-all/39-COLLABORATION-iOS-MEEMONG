@@ -9,6 +9,9 @@ import SwiftUI
 
 struct MatchRecommendedCard: View {
     let quickMatch: MatchPostModel
+    var isUpdatingLike = false
+    let onLike: () -> Void
+    let onSelect: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -20,9 +23,29 @@ struct MatchRecommendedCard: View {
 
             tagInfo
         }
+        .allowsHitTesting(false)
+        .overlay(alignment: .topTrailing) {
+            if quickMatch.isRemotePost {
+                PostLikeButton(
+                    isLiked: quickMatch.isLiked,
+                    isUpdating: isUpdatingLike,
+                    action: onLike
+                )
+                .padding(.top, 2)
+            } else {
+                HeartButton()
+                    .padding(.top, 2)
+            }
+        }
         .padding(16)
         .frame(maxWidth: .infinity, minHeight: 162)
-        .background(.meemongWhite)
+        .background {
+            Color.meemongWhite
+                .onTapGesture {
+                    guard !isUpdatingLike else { return }
+                    onSelect()
+                }
+        }
         .clipShape(RoundedRectangle(cornerRadius: 6))
         .overlay {
             RoundedRectangle(cornerRadius: 6)
@@ -39,11 +62,8 @@ struct MatchRecommendedCard: View {
                     .lineLimit(1)
                     .frame(maxWidth: .infinity, alignment: .leading)
 
-                if quickMatch.isRemotePost {
-                    PostLikeIndicator(isLiked: quickMatch.isLiked)
-                } else {
-                    HeartButton()
-                }
+                Color.clear
+                    .frame(width: 20, height: 20)
             }
             .frame(height: 24)
 

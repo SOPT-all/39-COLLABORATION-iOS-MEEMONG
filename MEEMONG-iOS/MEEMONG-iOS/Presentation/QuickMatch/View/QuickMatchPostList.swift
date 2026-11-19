@@ -12,6 +12,10 @@ struct QuickMatchPostList: View {
 
     let recommendedPosts: [MatchPostModel]
     let normalPosts: [MatchPostModel]
+    var updatingLikeIDs: Set<Int64> = []
+    var onRecommendedLike: (Int64) async throws -> Void = { _ in }
+    var onGeneralLike: (Int64) async throws -> Void = { _ in }
+    var onLikeChanged: (Int64, Bool) -> Void = { _, _ in }
 
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -23,11 +27,19 @@ struct QuickMatchPostList: View {
                         .frame(height: 24)
 
                     ForEach(recommendedPosts) { post in
-                        MatchRecommendedCard(quickMatch: post)
-                            .contentShape(Rectangle())
-                            .onTapGesture {
+                        MatchRecommendedCard(
+                            quickMatch: post,
+                            isUpdatingLike: updatingLikeIDs.contains {
+                                String($0) == post.id
+                            },
+                            onLike: {
+                                guard let postID = Int64(post.id) else { return }
+                                Task { try? await onRecommendedLike(postID) }
+                            },
+                            onSelect: {
                                 selectedPostID = Int64(post.id)
                             }
+                        )
                     }
 
                     HStack(spacing: 4) {
@@ -61,11 +73,19 @@ struct QuickMatchPostList: View {
                         .frame(height: 24)
 
                     ForEach(normalPosts) { post in
-                        MatchNormalCard(post: post)
-                            .contentShape(Rectangle())
-                            .onTapGesture {
+                        MatchNormalCard(
+                            post: post,
+                            isUpdatingLike: updatingLikeIDs.contains {
+                                String($0) == post.id
+                            },
+                            onLike: {
+                                guard let postID = Int64(post.id) else { return }
+                                Task { try? await onGeneralLike(postID) }
+                            },
+                            onSelect: {
                                 selectedPostID = Int64(post.id)
                             }
+                        )
                     }
                 }
                 .padding(.horizontal, 20)
@@ -76,7 +96,7 @@ struct QuickMatchPostList: View {
         .contentMargins(.bottom, 0, for: .scrollContent)
         .background(.gray100)
         .navigationDestination(item: $selectedPostID) { postID in
-            MatchDetailView(postId: postID)
+            MatchDetailView(postId: postID, onLikeChanged: onLikeChanged)
         }
         .overlay(alignment: .bottomTrailing) {
             FloatingButton(menu: .quickMatch, bottomPadding: 116)

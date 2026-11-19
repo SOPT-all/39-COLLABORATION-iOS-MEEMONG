@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ServiceInfoBox: View {
     let postDetail: PostDetailResponseDTO
+    var isUpdatingLike = false
+    let onLike: () -> Void
     
     var body: some View {
         VStack(spacing: 12){
@@ -17,7 +19,12 @@ struct ServiceInfoBox: View {
                     Text(postDetail.title)
                         .font(.headline)
                     Spacer()
-                    Image(.defaultBlack)
+                    PostLikeButton(
+                        isLiked: postDetail.isLiked,
+                        isUpdating: isUpdatingLike,
+                        unselectedImage: .defaultBlack,
+                        action: onLike
+                    )
                 }
                 .frame(maxWidth: .infinity)
                 .frame(height: 43)

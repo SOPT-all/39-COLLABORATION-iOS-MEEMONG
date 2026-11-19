@@ -17,7 +17,7 @@ struct RecommendedPostListResponseDTO: Decodable {
         let region: String
         let availableTimes: [PostAvailableTime]
         let treatmentTypes: [PostTreatmentType]
-        let isLiked: Bool
+        var isLiked: Bool
         let createdAt: String
     }
 }
