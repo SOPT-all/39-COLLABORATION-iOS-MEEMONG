@@ -11,7 +11,7 @@ struct PostDetailResponseDTO: Decodable {
     let postImageUrls: [String]
     let isLiked: Bool
     let priceType: String
-    let discountRate: Double
+    let discountRate: Double?
     let originalPrice: Int?
     let displayPrice: Int?
     let treatmentTypes: [String]

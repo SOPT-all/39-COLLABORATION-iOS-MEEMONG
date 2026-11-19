@@ -44,12 +44,14 @@ struct ServiceInfoBox: View {
                     Spacer()
                 }
                 HStack(spacing: 4){
-                    HStack(spacing: 0){
-                        Text("\(Int(postDetail.discountRate))")
-                        Text("%")
+                    if let discountRate = postDetail.discountRate {
+                        HStack(spacing: 0){
+                            Text("\(Int(discountRate))")
+                            Text("%")
+                        }
+                        .font(.title)
+                        .foregroundStyle(.meemongRed)
                     }
-                    .font(.title)
-                    .foregroundStyle(.meemongRed)
                     
                     if let displayPrice = postDetail.displayPrice {
                         Text(displayPrice.formatted())
