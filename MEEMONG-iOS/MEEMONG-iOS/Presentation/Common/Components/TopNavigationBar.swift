@@ -13,7 +13,7 @@ struct TopNavigationBar: View {
     var body: some View {
         Text("빠른 매칭")
             .foregroundStyle(.gray900)
-            .font(.headline)
+            .meemongFont(.headline)
             .frame(maxWidth: .infinity)
             .frame(height: 44)
             .overlay(alignment: .leading) {

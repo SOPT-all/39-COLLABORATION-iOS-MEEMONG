@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct QuickMatchView: View {
-    @Environment(\.dismiss) private var dismiss
+    @Environment(\.dismiss)
+    private var dismiss
+    @State private var viewModel = QuickMatchViewModel()
     @State private var selectedType: MemberType = .designer
+
+    var onLikeChanged: (Int64, Bool) -> Void = { _, _ in }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -21,7 +25,10 @@ struct QuickMatchView: View {
 
             switch selectedType {
             case .designer:
-                QuickMatchDesignerView()
+                QuickMatchDesignerView(
+                    viewModel: viewModel,
+                    onLikeChanged: onLikeChanged
+                )
             case .model:
                 QuickMatchModelView()
             }

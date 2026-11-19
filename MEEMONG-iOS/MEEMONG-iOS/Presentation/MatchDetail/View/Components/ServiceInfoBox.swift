@@ -8,69 +8,100 @@
 import SwiftUI
 
 struct ServiceInfoBox: View {
+    let postDetail: PostDetailResponseDTO
+    var isUpdatingLike = false
+    let onLike: () -> Void
+    
     var body: some View {
         VStack(spacing: 12){
             VStack(alignment: .leading, spacing: 4){
                 HStack{
-                    Text("뭘 해야될 지 모르겠다면?")
-                        .font(.headline)
+                    Text(postDetail.title)
+                        .meemongFont(.headline)
                     Spacer()
-                    Image(.defaultBlack)
+                    PostLikeButton(
+                        isLiked: postDetail.isLiked,
+                        isUpdating: isUpdatingLike,
+                        unselectedImage: .defaultBlack,
+                        action: onLike
+                    )
                 }
                 .frame(maxWidth: .infinity)
                 .frame(height: 43)
                 HStack(spacing: 8){
-                    Text("리뷰특가")
-                        .font(.body2_regular)
+                    Text(PriceType(rawValue: postDetail.priceType)?.typetitle ?? "")
+                        .meemongFont(.body2_regular)
                         .foregroundStyle(.meemongBlue)
-                        .frame(width: 60, height: 24)
+                        .padding(.horizontal, 6)
+                        .frame(height: 24)
                         .background(.bgBlue, in: RoundedRectangle(cornerRadius: 6))
-                    HStack(spacing: 4){
-                        Text("35,000")
-                        Text("원")
-                    }
-                    .font(.body1_regular)
-                    .foregroundStyle(.gray500)
-                    .overlay(alignment: .center) {
-                        Rectangle()
-                            .frame(height: 2)
-                            .foregroundStyle(.gray500)
+                    if let originalPrice = postDetail.originalPrice{
+                        HStack(spacing: 4){
+                            Text(originalPrice.formatted())
+                                .meemongFont(.body1_regular)
+                            Text("원")
+                                .meemongFont(.body1_regular)
+                        }
+                        .foregroundStyle(.gray500)
+                        .overlay(alignment: .center) {
+                            Rectangle()
+                                .frame(height: 2)
+                                .foregroundStyle(.gray500)
+                        }
                     }
                     Spacer()
                 }
                 HStack(spacing: 4){
-                    HStack(spacing: 0){
-                        Text("50")
-                        Text("%")
+                    if let discountRate = postDetail.discountRate {
+                        HStack(spacing: 0){
+                            Text("\(Int(discountRate))")
+                                .meemongFont(.title)
+                            Text("%")
+                                .meemongFont(.title)
+                        }
+                        .foregroundStyle(.meemongRed)
                     }
-                    .font(.title)
-                    .foregroundStyle(.meemongRed)
-                    Text("17,500")
-                        .font(.title)
-                        .foregroundStyle(.meemongBlack)
-                    Text("원")
-                        .font(.body2_medium)
-                        .foregroundStyle(.gray700)
-                    Spacer()
+                    
+                    if let displayPrice = postDetail.displayPrice {
+                        Text(displayPrice.formatted())
+                            .meemongFont(.title)
+                            .foregroundStyle(.meemongBlack)
+                        Text("원")
+                            .meemongFont(.body2_medium)
+                            .foregroundStyle(.gray700)
+                        Spacer()
+                    }
                 }
             }
             HStack(spacing: 12){
                 VStack(alignment: .leading, spacing: 8){
                     Text("시술 종류")
+                        .meemongFont(.body2_semiBold)
                     Text("시그니처")
+                        .meemongFont(.body2_semiBold)
                     Text("촬영범위")
+                        .meemongFont(.body2_semiBold)
                     Text("매장명")
+                        .meemongFont(.body2_semiBold)
                 }
-                .font(.body2_semiBold)
                 .foregroundStyle(.gray500)
                 
                 VStack(alignment: .leading, spacing: 8){
-                    Text("컷트")
-                    Text("컷트, 펌")
-                    Text("얼굴 노출, 영상")
-                    Text("아벨라움")
+                    Text(postDetail.treatmentTypes
+                        .compactMap { TreatmentType(rawValue: $0)?.typetitle}
+                        .joined(separator: ", "))
+                        .meemongFont(.body2_regular)
+                    Text(postDetail.signatures
+                        .compactMap { TreatmentType(rawValue: $0)?.typetitle}
+                        .joined(separator: ", "))
+                        .meemongFont(.body2_regular)
+                    Text((postDetail.shootingRanges ?? [])
+                        .compactMap { ShootingRanges(rawValue: $0)?.typetitle}
+                        .joined(separator: ", "))
+                        .meemongFont(.body2_regular)
+                    Text(postDetail.shopName)
+                        .meemongFont(.body2_regular)
                 }
-                .font(.body2_regular)
                 .foregroundStyle(.meemongBlack)
                 Spacer()
             }

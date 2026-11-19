@@ -8,36 +8,47 @@
 import SwiftUI
 
 struct QuickMatchPostList: View {
-    @State private var showMatchDetail = false
+    @State private var selectedPostID: Int64?
 
     let recommendedPosts: [MatchPostModel]
     let normalPosts: [MatchPostModel]
+    var updatingLikeIDs: Set<Int64> = []
+    var onLike: (Int64) async throws -> Void = { _ in }
+    var onLikeChanged: (Int64, Bool) -> Void = { _, _ in }
 
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 0) {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("미몽추천 공고")
-                        .font(.body1_semiBold)
+                        .meemongFont(.body1_semiBold)
                         .foregroundStyle(.gray950)
                         .frame(height: 24)
 
                     ForEach(recommendedPosts) { post in
-                        MatchRecommendedCard(quickMatch: post)
-                            .contentShape(Rectangle())
-                            .onTapGesture {
-                                showMatchDetail = true
+                        MatchRecommendedCard(
+                            quickMatch: post,
+                            isUpdatingLike: updatingLikeIDs.contains {
+                                String($0) == post.id
+                            },
+                            onLike: {
+                                guard let postID = Int64(post.id) else { return }
+                                Task { try? await onLike(postID) }
+                            },
+                            onSelect: {
+                                selectedPostID = Int64(post.id)
                             }
+                        )
                     }
 
                     HStack(spacing: 4) {
                         Text("미몽추천 공고 더보기")
+                            .meemongFont(.body2_regular)
                         
                         Image(.iconsMore)
                             .rotationEffect(.degrees(90))
                             .frame(width: 12, height: 12)
                     }
-                    .font(.body2_regular)
                     .foregroundStyle(.gray700)
                     .frame(maxWidth: .infinity)
                     .frame(height: 38)
@@ -56,16 +67,24 @@ struct QuickMatchPostList: View {
 
                 VStack(alignment: .leading, spacing: 8) {
                     Text("일반 공고")
-                        .font(.body1_semiBold)
+                        .meemongFont(.body1_semiBold)
                         .foregroundStyle(.gray950)
                         .frame(height: 24)
 
                     ForEach(normalPosts) { post in
-                        MatchNormalCard(post: post)
-                            .contentShape(Rectangle())
-                            .onTapGesture {
-                                showMatchDetail = true
+                        MatchNormalCard(
+                            post: post,
+                            isUpdatingLike: updatingLikeIDs.contains {
+                                String($0) == post.id
+                            },
+                            onLike: {
+                                guard let postID = Int64(post.id) else { return }
+                                Task { try? await onLike(postID) }
+                            },
+                            onSelect: {
+                                selectedPostID = Int64(post.id)
                             }
+                        )
                     }
                 }
                 .padding(.horizontal, 20)
@@ -75,11 +94,11 @@ struct QuickMatchPostList: View {
         }
         .contentMargins(.bottom, 0, for: .scrollContent)
         .background(.gray100)
-        .navigationDestination(isPresented: $showMatchDetail) {
-            MatchDetailView()
+        .navigationDestination(item: $selectedPostID) { postID in
+            MatchDetailView(postId: postID, onLikeChanged: onLikeChanged)
         }
         .overlay(alignment: .bottomTrailing) {
-            FloatingButton(menu: .quickMatch, bottomPadding: 116)
+            FloatingButton(menu: .quickMatch)
         }
     }
 }

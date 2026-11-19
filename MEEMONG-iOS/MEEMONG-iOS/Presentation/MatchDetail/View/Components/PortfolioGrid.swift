@@ -8,16 +8,12 @@
 import SwiftUI
 
 struct PortfolioGrid: View {
-    private let images: [ImageResource] = [
-        .portfolio01, .portfolio02, .portfolio03,
-        .portfolio04, .portfolio05, .portfolio06,
-        .portfolio07, .portfolio08, .portfolio09
-    ]
+    let portfolioImageUrls: [String]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0){
             Text("포트폴리오")
-                .font(.body1_semiBold)
+                .meemongFont(.body1_semiBold)
                 .padding(.bottom, 8)
             
             LazyVGrid(
@@ -27,13 +23,19 @@ struct PortfolioGrid: View {
                 ),
                 spacing: 4
             ) {
-                ForEach(images.indices, id: \.self) { index in
+                ForEach(portfolioImageUrls.indices, id: \.self) { index in
                     Color.clear
                         .aspectRatio(1, contentMode: .fit)
                         .overlay {
-                            Image(images[index])
-                                .resizable()
-                                .scaledToFill()
+                            AsyncImage(
+                                url: URL(string: portfolioImageUrls[index])
+                            ) { image in
+                                image
+                                    .resizable()
+                                    .scaledToFill()
+                            } placeholder: {
+                                Color.gray100
+                            }
                         }
                         .clipShape(RoundedRectangle(cornerRadius: 2))
                 }
@@ -44,7 +46,7 @@ struct PortfolioGrid: View {
             } label: {
                 HStack(spacing: 0){
                     Text("포트폴리오 더보기")
-                        .font(.body1_regular)
+                        .meemongFont(.body1_regular)
                         .foregroundStyle(.gray700)
                     
                     Image(.iconsChevronLeft)
@@ -58,9 +60,4 @@ struct PortfolioGrid: View {
         }
         .padding(.horizontal, 20)
     }
-}
-
-
-#Preview {
-    PortfolioGrid()
 }

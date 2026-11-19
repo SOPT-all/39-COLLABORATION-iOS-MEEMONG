@@ -51,7 +51,7 @@ struct CustomTabBarView: View {
                             .frame(width: 24, height: 24)
 
                         Text(tab.title)
-                            .font(.cap2_medium)
+                            .meemongFont(.cap2_medium)
                             .foregroundStyle(.gray950)
                     }
                 }
