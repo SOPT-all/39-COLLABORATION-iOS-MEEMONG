@@ -45,20 +45,20 @@ final class MatchDetailViewModel {
     }
 
     func toggleLike() async -> Bool? {
-        guard !isUpdatingLike, let postDetail else { return nil }
+        guard !isUpdatingLike, let matchDetail else { return nil }
 
         isUpdatingLike = true
         errorMessage = nil
         defer { isUpdatingLike = false }
 
         do {
-            let endPoint: EndPoint = postDetail.isLiked
-                ? .unlike(postDetail.postId)
-                : .like(postDetail.postId)
+            let endPoint: EndPoint = matchDetail.isLiked
+                ? .unlike(matchDetail.postId)
+                : .like(matchDetail.postId)
             let response: PostLikeResponseDTO = try await BaseService.shared.request(
                 endPoint: endPoint
             )
-            self.postDetail?.isLiked = response.isLiked
+            self.matchDetail?.isLiked = response.isLiked
             return response.isLiked
         } catch is CancellationError {
             return nil

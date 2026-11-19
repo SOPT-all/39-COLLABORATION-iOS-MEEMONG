@@ -9,17 +9,19 @@ import SwiftUI
 
 struct ServiceInfoBox: View {
     let matchDetail: MatchDetailModel
+    var isUpdatingLike = false
+    let onLike: () -> Void
     
     var body: some View {
         VStack(spacing: 12){
             VStack(alignment: .leading, spacing: 4){
                 HStack{
                     Text(matchDetail.title)
-                        .font(.headline)
                         .meemongFont(.headline)
+
                     Spacer()
                     PostLikeButton(
-                        isLiked: postDetail.isLiked,
+                        isLiked: matchDetail.isLiked,
                         isUpdating: isUpdatingLike,
                         unselectedImage: .defaultBlack,
                         action: onLike
@@ -29,7 +31,6 @@ struct ServiceInfoBox: View {
                 .frame(height: 43)
                 HStack(spacing: 8){
                     Text(matchDetail.priceTypeText)
-                        .font(.body2_regular)
                         .meemongFont(.body2_regular)
                         .foregroundStyle(.meemongBlue)
                         .padding(.horizontal, 6)
@@ -54,13 +55,12 @@ struct ServiceInfoBox: View {
                 HStack(spacing: 4){
                     HStack(spacing: 0){
                         Text(matchDetail.discountRateText)
-                                .meemongFont(.title)
-                                .meemongFont(.title)
+                            .meemongFont(.title)
+                            .foregroundStyle(.meemongRed)
                     }
                     
                     if !matchDetail.displayPriceText.isEmpty {
                         Text(matchDetail.displayPriceText)
-                            .font(.title)
                             .meemongFont(.title)
                             .foregroundStyle(.meemongBlack)
                         Text("원")
@@ -85,9 +85,13 @@ struct ServiceInfoBox: View {
                 
                 VStack(alignment: .leading, spacing: 8){
                     Text(matchDetail.treatmentText)
+                        .meemongFont(.body2_regular)
                     Text(matchDetail.signatureText)
+                        .meemongFont(.body2_regular)
                     Text(matchDetail.shootingRangeText)
+                        .meemongFont(.body2_regular)
                     Text(matchDetail.shopName)
+                        .meemongFont(.body2_regular)
                 }
                 .foregroundStyle(.meemongBlack)
                 Spacer()

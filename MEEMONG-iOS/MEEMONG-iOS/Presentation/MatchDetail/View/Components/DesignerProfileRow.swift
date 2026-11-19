@@ -5,8 +5,9 @@
 //  Created by 김보민 on 11/11/26.
 //
 
-import Kingfisher
 import SwiftUI
+
+import Kingfisher
 
 struct DesignerProfileRow: View {
     let matchDetail: MatchDetailModel
@@ -23,11 +24,9 @@ struct DesignerProfileRow: View {
 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(matchDetail.designerName)
-                        .font(.headline)
+                        .meemongFont(.headline)
                     HStack(spacing: 4) {
                         Text(matchDetail.region)
-                            .font(.body2_regular)
-                        .meemongFont(.headline)
                             .meemongFont(.body2_regular)
                             .foregroundStyle(.gray600)
                         Circle()
@@ -42,7 +41,6 @@ struct DesignerProfileRow: View {
             Spacer()
             HStack(spacing: 0) {
                 Text("\(matchDetail.completedTreatmentCount)")
-                    .font(.cap1_medium)
                     .meemongFont(.cap1_medium)
                     .foregroundStyle(.meemongBlue)
                 Text("건 진행")
@@ -63,4 +61,3 @@ struct DesignerProfileRow: View {
         }
     }
 }
-

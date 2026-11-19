@@ -15,10 +15,19 @@ struct MatchDetailView: View {
     var body: some View {
         ScrollView{
             VStack(spacing: 0){
-                if let matchDetail = viewModel.matchDetail{
+                if let matchDetail = viewModel.matchDetail {
                     ImageCarousel(imageUrls: matchDetail.imageURLs)
                     DesignerProfileRow(matchDetail: matchDetail)
-                    ServiceInfoBox(matchDetail: matchDetail)
+                    ServiceInfoBox(
+                        matchDetail: matchDetail,
+                        isUpdatingLike: viewModel.isUpdatingLike
+                    ) {
+                        Task {
+                            if let isLiked = await viewModel.toggleLike() {
+                                onLikeChanged(postId, isLiked)
+                            }
+                        }
+                    }
                     MatchDetailTabbar(matchDetail: matchDetail)
                 }
             }

@@ -5,8 +5,9 @@
 //  Created by 김보민 on 11/11/26.
 //
 
-import Kingfisher
 import SwiftUI
+
+import Kingfisher
 
 struct ImageCarousel: View {
     @Environment(\.dismiss)
@@ -21,7 +22,6 @@ struct ImageCarousel: View {
                     .placeholder { Color.gray100 }
                     .resizable()
                     .scaledToFill()
-                
                     .frame(maxWidth: .infinity)
                     .tag(index)
                     .overlay(alignment: .top) {
@@ -47,7 +47,6 @@ struct ImageCarousel: View {
         }
         .overlay(alignment: .bottomTrailing) {
             Text("\(currentIndex + 1)/\(imageUrls.count)")
-                .font(.body2_medium)
                 .meemongFont(.body2_medium)
                 .foregroundStyle(.meemongWhite)
                 .frame(height: 20)

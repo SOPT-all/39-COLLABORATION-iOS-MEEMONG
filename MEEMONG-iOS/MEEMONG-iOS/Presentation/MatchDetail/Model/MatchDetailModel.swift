@@ -8,10 +8,10 @@
 import Foundation
 
 struct MatchDetailModel {
-    let id: Int64
+    let postId: Int64
     let title: String
     let imageURLs: [URL]
-    let isLiked: Bool
+    var isLiked: Bool
     let priceTypeText: String
     let originalPriceText: String
     let discountRateText: String
@@ -32,13 +32,13 @@ struct MatchDetailModel {
 
     init(post: PostDetailResponseDTO, designer: DesignerDetailResponseDTO) {
         
-        id = post.postId
+        postId = post.postId
         title = post.title
         imageURLs = post.postImageUrls.compactMap { URL(string: $0) }
         isLiked = post.isLiked
         priceTypeText = Self.makePriceTypeText(from: post.priceType)
         originalPriceText = post.originalPrice?.formatted() ?? ""
-        discountRateText = "\(Int(post.discountRate))%"
+        discountRateText = post.discountRate.map { "\(Int($0))%" } ?? ""
         displayPriceText = post.displayPrice?.formatted() ?? ""
         treatmentText = Self.makeTreatmentText(from: post.treatmentTypes)
         signatureText = Self.makeTreatmentText(from: post.signatures)

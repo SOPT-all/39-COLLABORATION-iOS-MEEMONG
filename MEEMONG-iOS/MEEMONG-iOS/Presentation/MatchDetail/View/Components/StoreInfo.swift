@@ -5,8 +5,9 @@
 //  Created by 김보민 on 11/13/26.
 //
 
-import Kingfisher
 import SwiftUI
+
+import Kingfisher
 
 struct StoreInfo: View {
     let matchDetail: MatchDetailModel
@@ -18,7 +19,6 @@ struct StoreInfo: View {
                     .meemongFont(.body1_semiBold)
                     .frame(height: 24)
                 Text(matchDetail.shopName)
-                    .font(.body2_medium)
                     .meemongFont(.body2_medium)
                     .foregroundStyle(.gray700)
                     .frame(height: 20)
@@ -27,7 +27,6 @@ struct StoreInfo: View {
             
             HStack(spacing: 0){
                 Text(matchDetail.shopAddress)
-                    .font(.body2_regular)
                     .meemongFont(.body2_regular)
                     .lineLimit(1)
                 Spacer()
@@ -51,7 +50,7 @@ struct StoreInfo: View {
                             KFImage(matchDetail.shopImageURLs[index])
                                 .placeholder{ Color.gray100 }
                                 .resizable()
-                                .scaledToFill() 
+                                .scaledToFill()
                         }
                         .clipShape(RoundedRectangle(cornerRadius: 6))
                 }
