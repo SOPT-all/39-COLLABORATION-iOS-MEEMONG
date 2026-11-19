@@ -80,11 +80,10 @@ struct HomeView: View {
                         .padding(.bottom, 119)
                     }
                 }
-                .overlay(alignment: .bottomTrailing) {
-                    FloatingButton(bottomPadding: 22)
-                }
-
                 CustomTabBarView(selectedTab: .constant(.home))
+            }
+            .overlay(alignment: .bottomTrailing) {
+                FloatingButton()
             }
             .ignoresSafeArea(.container, edges: .bottom)
             .toolbar(.hidden, for: .navigationBar)

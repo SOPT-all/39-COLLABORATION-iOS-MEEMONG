@@ -99,7 +99,7 @@ struct QuickMatchPostList: View {
             MatchDetailView(postId: postID, onLikeChanged: onLikeChanged)
         }
         .overlay(alignment: .bottomTrailing) {
-            FloatingButton(menu: .quickMatch, bottomPadding: 116)
+            FloatingButton(menu: .quickMatch)
         }
     }
 }
