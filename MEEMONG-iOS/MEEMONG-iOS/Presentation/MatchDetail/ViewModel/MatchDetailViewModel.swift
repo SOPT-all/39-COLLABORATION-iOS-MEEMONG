@@ -10,8 +10,7 @@ import Observation
 
 @Observable
 final class MatchDetailViewModel {
-    var postDetail: PostDetailResponseDTO?
-    var designerDetail: DesignerDetailResponseDTO?
+    var matchDetail: MatchDetailModel?
     
     var isLoading = false
     var errorMessage: String?
@@ -28,13 +27,14 @@ final class MatchDetailViewModel {
             try await BaseService.shared.request(
                 endPoint: .postDetail(postId)
             )
-            postDetail = postResponse
             
             let designerResponse: DesignerDetailResponseDTO =
             try await BaseService.shared.request(
                 endPoint: .designerDetail(postId)
             )
-            designerDetail = designerResponse
+            matchDetail = MatchDetailModel(
+                post: postResponse, designer: designerResponse
+            )
         } catch is CancellationError {
             return
         } catch {
