@@ -12,7 +12,7 @@ struct ServiceDetailInfo: View {
     
     var body: some View {
         Text(content)
-            .font(.body2_medium)
+            .meemongFont(.body2_medium)
             .foregroundStyle(.gray700)
             .padding(.horizontal, 16)
             .padding(.vertical, 24)

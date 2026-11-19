@@ -12,7 +12,7 @@ struct TagChip: View {
 
     var body: some View {
         Text(title)
-            .font(.cap1_medium)
+            .meemongFont(.cap1_medium)
             .foregroundStyle(.gray600)
             .padding(.horizontal, 7)
             .frame(height: 24)

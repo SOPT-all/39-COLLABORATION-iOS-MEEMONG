@@ -18,7 +18,7 @@ struct SNSInfo: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12){
         Text("SNS")
-            .font(.body1_semiBold)
+            .meemongFont(.body1_semiBold)
         
             VStack(spacing: 8){
                 ForEach(0..<titles.count, id: \.self) { index in
@@ -26,7 +26,7 @@ struct SNSInfo: View {
                         Image(icons[index])
                             .frame(width: 36, height: 36)
                         Text(titles[index])
-                            .font(.body2_medium)
+                            .meemongFont(.body2_medium)
                             .foregroundStyle(.gray900)
                         Spacer()
                         
@@ -37,7 +37,7 @@ struct SNSInfo: View {
                             }
                         } label: {
                             Text("바로가기")
-                                .font(.body2_medium)
+                                .meemongFont(.body2_medium)
                                 .foregroundStyle(.gray800)
                         }
                         .frame(width: 64, height: 24)

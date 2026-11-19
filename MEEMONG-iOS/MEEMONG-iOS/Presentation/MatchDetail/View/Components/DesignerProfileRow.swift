@@ -27,12 +27,14 @@ struct DesignerProfileRow: View {
                     HStack(spacing: 4) {
                         Text(matchDetail.region)
                             .font(.body2_regular)
+                        .meemongFont(.headline)
+                            .meemongFont(.body2_regular)
                             .foregroundStyle(.gray600)
                         Circle()
                             .fill(Color.gray600)
                             .frame(width: 3, height: 3)
                         Text("11.6km")
-                            .font(.body2_regular)
+                            .meemongFont(.body2_regular)
                             .foregroundStyle(.gray600)
                     }
                 }
@@ -41,9 +43,10 @@ struct DesignerProfileRow: View {
             HStack(spacing: 0) {
                 Text("\(matchDetail.completedTreatmentCount)")
                     .font(.cap1_medium)
+                    .meemongFont(.cap1_medium)
                     .foregroundStyle(.meemongBlue)
                 Text("건 진행")
-                    .font(.cap1_medium)
+                    .meemongFont(.cap1_medium)
                     .foregroundStyle(.gray600)
             }
             .padding(.horizontal, 6)

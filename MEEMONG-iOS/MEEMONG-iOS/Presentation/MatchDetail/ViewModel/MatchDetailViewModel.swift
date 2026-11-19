@@ -8,12 +8,14 @@
 import Foundation
 import Observation
 
+@MainActor
 @Observable
 final class MatchDetailViewModel {
     var matchDetail: MatchDetailModel?
     
     var isLoading = false
     var errorMessage: String?
+    private(set) var isUpdatingLike = false
     
     func loadMatchDetail(postId: Int64) async {
         guard !isLoading else { return }
@@ -39,6 +41,30 @@ final class MatchDetailViewModel {
             return
         } catch {
             errorMessage = error.localizedDescription
+        }
+    }
+
+    func toggleLike() async -> Bool? {
+        guard !isUpdatingLike, let postDetail else { return nil }
+
+        isUpdatingLike = true
+        errorMessage = nil
+        defer { isUpdatingLike = false }
+
+        do {
+            let endPoint: EndPoint = postDetail.isLiked
+                ? .unlike(postDetail.postId)
+                : .like(postDetail.postId)
+            let response: PostLikeResponseDTO = try await BaseService.shared.request(
+                endPoint: endPoint
+            )
+            self.postDetail?.isLiked = response.isLiked
+            return response.isLiked
+        } catch is CancellationError {
+            return nil
+        } catch {
+            errorMessage = error.localizedDescription
+            return nil
         }
     }
 }

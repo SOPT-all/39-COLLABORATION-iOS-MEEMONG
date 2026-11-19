@@ -15,10 +15,11 @@ struct StoreInfo: View {
         VStack(spacing: 12){
             VStack(alignment: .leading, spacing: 4){
                 Text("매장 정보")
-                    .font(.body1_semiBold)
+                    .meemongFont(.body1_semiBold)
                     .frame(height: 24)
                 Text(matchDetail.shopName)
                     .font(.body2_medium)
+                    .meemongFont(.body2_medium)
                     .foregroundStyle(.gray700)
                     .frame(height: 20)
             }
@@ -27,6 +28,7 @@ struct StoreInfo: View {
             HStack(spacing: 0){
                 Text(matchDetail.shopAddress)
                     .font(.body2_regular)
+                    .meemongFont(.body2_regular)
                     .lineLimit(1)
                 Spacer()
                 Image(.iconsCopy)

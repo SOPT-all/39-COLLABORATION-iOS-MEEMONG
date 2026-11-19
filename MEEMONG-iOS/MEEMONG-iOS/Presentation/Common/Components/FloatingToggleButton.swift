@@ -31,7 +31,7 @@ struct FloatingToggleButton: View {
                         Image(.iconsPen)
                             .frame(width: 20, height: 20)
                         Text("글쓰기")
-                            .font(.cap2_semibold)
+                            .meemongFont(.cap2_semibold)
                             .foregroundStyle(.meemongWhite)
                     }
                 }

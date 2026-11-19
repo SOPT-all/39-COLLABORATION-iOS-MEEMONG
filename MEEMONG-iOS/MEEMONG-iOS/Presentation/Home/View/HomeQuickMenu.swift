@@ -73,7 +73,7 @@ struct HomeQuickMenu: View {
                     }
 
                 Text(item.title)
-                    .font(.body2_regular)
+                    .meemongFont(.body2_regular)
                     .foregroundStyle(.gray900)
                     .frame(height: 20)
                     .fixedSize(horizontal: true, vertical: false)

@@ -21,7 +21,7 @@ struct CustomDetailTabbar: View {
                     selectedTab = .detail
                 } label: {
                     Text("내용 상세")
-                        .font(.body1_semiBold)
+                        .meemongFont(.body1_semiBold)
                         .fixedSize()
                         .foregroundStyle(
                             selectedTab == .detail ? Color.gray900 : Color.gray700
@@ -42,7 +42,7 @@ struct CustomDetailTabbar: View {
                     selectedTab = .designerinfo
                 } label: {
                     Text("디자이너 정보")
-                        .font(.body1_semiBold)
+                        .meemongFont(.body1_semiBold)
                         .fixedSize()
                         .foregroundStyle(
                             selectedTab == .designerinfo ? Color.gray900 : Color.gray700

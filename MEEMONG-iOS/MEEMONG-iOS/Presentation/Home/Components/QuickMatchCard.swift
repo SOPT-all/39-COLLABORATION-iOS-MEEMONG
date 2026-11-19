@@ -9,6 +9,9 @@ import SwiftUI
 
 struct QuickMatchCard: View {
     let quickMatch: MatchPostModel
+    var isUpdatingLike = false
+    let onLike: () -> Void
+    let onSelect: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -20,9 +23,24 @@ struct QuickMatchCard: View {
 
             tagInfo
         }
+        .allowsHitTesting(false)
+        .overlay(alignment: .topTrailing) {
+            PostLikeButton(
+                isLiked: quickMatch.isLiked,
+                isUpdating: isUpdatingLike,
+                action: onLike
+            )
+            .padding(.top, 2)
+        }
         .padding(16)
         .frame(width: 306, height: 162)
-        .background(.meemongWhite)
+        .background {
+            Color.meemongWhite
+                .onTapGesture {
+                    guard !isUpdatingLike else { return }
+                    onSelect()
+                }
+        }
         .clipShape(RoundedRectangle(cornerRadius: 6))
         .overlay {
             RoundedRectangle(cornerRadius: 6)
@@ -34,12 +52,13 @@ struct QuickMatchCard: View {
         VStack(alignment: .leading, spacing: 6) {
             HStack(spacing: 6) {
                 Text(quickMatch.title)
-                    .font(.body1_semiBold)
+                    .meemongFont(.body1_semiBold)
                     .foregroundStyle(.gray700)
                     .lineLimit(1)
                     .frame(maxWidth: .infinity, alignment: .leading)
 
-                PostLikeIndicator(isLiked: quickMatch.isLiked)
+                Color.clear
+                    .frame(width: 20, height: 20)
             }
             .frame(height: 24)
 
@@ -50,16 +69,16 @@ struct QuickMatchCard: View {
                         .frame(width: 14, height: 14)
 
                     Text(quickMatch.treatment.title)
+                        .meemongFont(.body2_semiBold)
                         .foregroundStyle(quickMatch.treatment.color)
                     if !quickMatch.price.isEmpty {
                         Circle()
                             .fill(.gray500)
                             .frame(width: 4, height: 4)
                         Text(quickMatch.price)
-                            .font(.body2_regular)
+                            .meemongFont(.body2_regular)
                     }
                 }
-                .font(.body2_semiBold)
                 .foregroundStyle(.gray900)
                 .fixedSize(horizontal: true, vertical: false)
                 .frame(height: 20)
@@ -69,6 +88,7 @@ struct QuickMatchCard: View {
                         .resizable()
                         .frame(width: 14, height: 14)
                     Text(quickMatch.location)
+                        .meemongFont(.cap1_regular)
                 }
                 .frame(height: 18)
 
@@ -77,10 +97,10 @@ struct QuickMatchCard: View {
                         .resizable()
                         .frame(width: 14, height: 14)
                     Text(quickMatch.availableTime)
+                        .meemongFont(.cap1_regular)
                 }
                 .frame(height: 18)
             }
-            .font(.cap1_regular)
             .foregroundStyle(.gray900)
             .lineLimit(1)
         }
@@ -100,7 +120,7 @@ struct QuickMatchCard: View {
             Spacer(minLength: 0)
 
             Text(quickMatch.postedAt)
-                .font(.body2_regular)
+                .meemongFont(.body2_regular)
                 .foregroundStyle(.gray600)
                 .lineLimit(1)
         }

@@ -10,6 +10,7 @@ import SwiftUI
 struct MatchDetailView: View {
     @State private var viewModel = MatchDetailViewModel()
     let postId: Int64
+    var onLikeChanged: (Int64, Bool) -> Void = { _, _ in }
     
     var body: some View {
         ScrollView{

@@ -12,7 +12,7 @@ struct ReservationButton: View {
         Button{
         } label: {
             Text("예약 진행")
-                .font(.body1_semiBold)
+                .meemongFont(.body1_semiBold)
                 .foregroundStyle(.meemongWhite)
                 .frame(maxWidth: .infinity)
                 .frame(height: 48)

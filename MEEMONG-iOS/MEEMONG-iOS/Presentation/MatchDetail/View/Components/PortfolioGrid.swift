@@ -14,7 +14,7 @@ struct PortfolioGrid: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0){
             Text("포트폴리오")
-                .font(.body1_semiBold)
+                .meemongFont(.body1_semiBold)
                 .padding(.bottom, 8)
             
             LazyVGrid(
@@ -42,7 +42,7 @@ struct PortfolioGrid: View {
             } label: {
                 HStack(spacing: 0){
                     Text("포트폴리오 더보기")
-                        .font(.body1_regular)
+                        .meemongFont(.body1_regular)
                         .foregroundStyle(.gray700)
                     
                     Image(.iconsChevronLeft)

@@ -16,14 +16,21 @@ struct ServiceInfoBox: View {
                 HStack{
                     Text(matchDetail.title)
                         .font(.headline)
+                        .meemongFont(.headline)
                     Spacer()
-                    Image(.defaultBlack)
+                    PostLikeButton(
+                        isLiked: postDetail.isLiked,
+                        isUpdating: isUpdatingLike,
+                        unselectedImage: .defaultBlack,
+                        action: onLike
+                    )
                 }
                 .frame(maxWidth: .infinity)
                 .frame(height: 43)
                 HStack(spacing: 8){
                     Text(matchDetail.priceTypeText)
                         .font(.body2_regular)
+                        .meemongFont(.body2_regular)
                         .foregroundStyle(.meemongBlue)
                         .padding(.horizontal, 6)
                         .frame(height: 24)
@@ -31,9 +38,10 @@ struct ServiceInfoBox: View {
                     if !matchDetail.originalPriceText.isEmpty {
                         HStack(spacing: 4){
                             Text(matchDetail.originalPriceText)
+                                .meemongFont(.body1_regular)
                             Text("원")
+                                .meemongFont(.body1_regular)
                         }
-                        .font(.body1_regular)
                         .foregroundStyle(.gray500)
                         .overlay(alignment: .center) {
                             Rectangle()
@@ -46,16 +54,17 @@ struct ServiceInfoBox: View {
                 HStack(spacing: 4){
                     HStack(spacing: 0){
                         Text(matchDetail.discountRateText)
+                                .meemongFont(.title)
+                                .meemongFont(.title)
                     }
-                    .font(.title)
-                    .foregroundStyle(.meemongRed)
                     
                     if !matchDetail.displayPriceText.isEmpty {
                         Text(matchDetail.displayPriceText)
                             .font(.title)
+                            .meemongFont(.title)
                             .foregroundStyle(.meemongBlack)
                         Text("원")
-                            .font(.body2_medium)
+                            .meemongFont(.body2_medium)
                             .foregroundStyle(.gray700)
                         Spacer()
                     }
@@ -64,11 +73,14 @@ struct ServiceInfoBox: View {
             HStack(spacing: 12){
                 VStack(alignment: .leading, spacing: 8){
                     Text("시술 종류")
+                        .meemongFont(.body2_semiBold)
                     Text("시그니처")
+                        .meemongFont(.body2_semiBold)
                     Text("촬영범위")
+                        .meemongFont(.body2_semiBold)
                     Text("매장명")
+                        .meemongFont(.body2_semiBold)
                 }
-                .font(.body2_semiBold)
                 .foregroundStyle(.gray500)
                 
                 VStack(alignment: .leading, spacing: 8){
@@ -77,7 +89,6 @@ struct ServiceInfoBox: View {
                     Text(matchDetail.shootingRangeText)
                     Text(matchDetail.shopName)
                 }
-                .font(.body2_regular)
                 .foregroundStyle(.meemongBlack)
                 Spacer()
             }

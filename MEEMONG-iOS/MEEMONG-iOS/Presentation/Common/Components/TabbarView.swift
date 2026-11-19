@@ -19,6 +19,7 @@ struct TabbarView: View {
             switch selectedTab {
             case .home:
                 Text("홈 뷰 화면입니다.")
+                    .meemongFont(.body1_regular)
             default:
                 EmptyView()
             }

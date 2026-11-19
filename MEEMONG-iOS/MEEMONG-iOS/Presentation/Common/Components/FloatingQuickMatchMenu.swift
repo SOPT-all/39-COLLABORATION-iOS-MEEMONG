@@ -23,7 +23,7 @@ struct FloatingQuickMatchMenu: View {
                             .frame(width: 14, height: 14)
 
                         Text(titles[index])
-                            .font(.body2_medium)
+                            .meemongFont(.body2_medium)
                             .foregroundStyle(.white)
                     }
                 }

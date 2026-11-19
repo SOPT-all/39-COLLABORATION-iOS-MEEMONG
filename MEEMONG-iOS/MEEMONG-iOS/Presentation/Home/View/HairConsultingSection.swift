@@ -23,14 +23,14 @@ struct HairConsultingSection: View {
     private var header: some View {
         HStack {
             Text("헤어컨설팅")
-                .font(.body1_semiBold)
+                .meemongFont(.body1_semiBold)
                 .foregroundStyle(.gray950)
 
             Spacer()
 
             HStack(spacing: 6) {
                 Text("더보기")
-                    .font(.cap1_medium)
+                    .meemongFont(.cap1_medium)
                     .foregroundStyle(.gray600)
                 Image(.iconsMore)
                     .frame(width: 12, height: 12)
