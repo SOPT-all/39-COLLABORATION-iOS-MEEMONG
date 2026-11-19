@@ -11,8 +11,7 @@ import Observation
 @MainActor
 @Observable
 final class MatchDetailViewModel {
-    var postDetail: PostDetailResponseDTO?
-    var designerDetail: DesignerDetailResponseDTO?
+    var matchDetail: MatchDetailModel?
     
     var isLoading = false
     var errorMessage: String?
@@ -30,13 +29,14 @@ final class MatchDetailViewModel {
             try await BaseService.shared.request(
                 endPoint: .postDetail(postId)
             )
-            postDetail = postResponse
             
             let designerResponse: DesignerDetailResponseDTO =
             try await BaseService.shared.request(
                 endPoint: .designerDetail(postId)
             )
-            designerDetail = designerResponse
+            matchDetail = MatchDetailModel(
+                post: postResponse, designer: designerResponse
+            )
         } catch is CancellationError {
             return
         } catch {
@@ -45,20 +45,20 @@ final class MatchDetailViewModel {
     }
 
     func toggleLike() async -> Bool? {
-        guard !isUpdatingLike, let postDetail else { return nil }
+        guard !isUpdatingLike, let matchDetail else { return nil }
 
         isUpdatingLike = true
         errorMessage = nil
         defer { isUpdatingLike = false }
 
         do {
-            let endPoint: EndPoint = postDetail.isLiked
-                ? .unlike(postDetail.postId)
-                : .like(postDetail.postId)
+            let endPoint: EndPoint = matchDetail.isLiked
+                ? .unlike(matchDetail.postId)
+                : .like(matchDetail.postId)
             let response: PostLikeResponseDTO = try await BaseService.shared.request(
                 endPoint: endPoint
             )
-            self.postDetail?.isLiked = response.isLiked
+            self.matchDetail?.isLiked = response.isLiked
             return response.isLiked
         } catch is CancellationError {
             return nil

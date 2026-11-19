@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ServiceInfoBox: View {
-    let postDetail: PostDetailResponseDTO
+    let matchDetail: MatchDetailModel
     var isUpdatingLike = false
     let onLike: () -> Void
     
@@ -16,11 +16,12 @@ struct ServiceInfoBox: View {
         VStack(spacing: 12){
             VStack(alignment: .leading, spacing: 4){
                 HStack{
-                    Text(postDetail.title)
+                    Text(matchDetail.title)
                         .meemongFont(.headline)
+
                     Spacer()
                     PostLikeButton(
-                        isLiked: postDetail.isLiked,
+                        isLiked: matchDetail.isLiked,
                         isUpdating: isUpdatingLike,
                         unselectedImage: .defaultBlack,
                         action: onLike
@@ -29,15 +30,15 @@ struct ServiceInfoBox: View {
                 .frame(maxWidth: .infinity)
                 .frame(height: 43)
                 HStack(spacing: 8){
-                    Text(PriceType(rawValue: postDetail.priceType)?.typetitle ?? "")
+                    Text(matchDetail.priceTypeText)
                         .meemongFont(.body2_regular)
                         .foregroundStyle(.meemongBlue)
                         .padding(.horizontal, 6)
                         .frame(height: 24)
                         .background(.bgBlue, in: RoundedRectangle(cornerRadius: 6))
-                    if let originalPrice = postDetail.originalPrice{
+                    if !matchDetail.originalPriceText.isEmpty {
                         HStack(spacing: 4){
-                            Text(originalPrice.formatted())
+                            Text(matchDetail.originalPriceText)
                                 .meemongFont(.body1_regular)
                             Text("원")
                                 .meemongFont(.body1_regular)
@@ -52,18 +53,14 @@ struct ServiceInfoBox: View {
                     Spacer()
                 }
                 HStack(spacing: 4){
-                    if let discountRate = postDetail.discountRate {
-                        HStack(spacing: 0){
-                            Text("\(Int(discountRate))")
-                                .meemongFont(.title)
-                            Text("%")
-                                .meemongFont(.title)
-                        }
-                        .foregroundStyle(.meemongRed)
+                    HStack(spacing: 0){
+                        Text(matchDetail.discountRateText)
+                            .meemongFont(.title)
+                            .foregroundStyle(.meemongRed)
                     }
                     
-                    if let displayPrice = postDetail.displayPrice {
-                        Text(displayPrice.formatted())
+                    if !matchDetail.displayPriceText.isEmpty {
+                        Text(matchDetail.displayPriceText)
                             .meemongFont(.title)
                             .foregroundStyle(.meemongBlack)
                         Text("원")
@@ -87,19 +84,13 @@ struct ServiceInfoBox: View {
                 .foregroundStyle(.gray500)
                 
                 VStack(alignment: .leading, spacing: 8){
-                    Text(postDetail.treatmentTypes
-                        .compactMap { TreatmentType(rawValue: $0)?.typetitle}
-                        .joined(separator: ", "))
+                    Text(matchDetail.treatmentText)
                         .meemongFont(.body2_regular)
-                    Text(postDetail.signatures
-                        .compactMap { TreatmentType(rawValue: $0)?.typetitle}
-                        .joined(separator: ", "))
+                    Text(matchDetail.signatureText)
                         .meemongFont(.body2_regular)
-                    Text((postDetail.shootingRanges ?? [])
-                        .compactMap { ShootingRanges(rawValue: $0)?.typetitle}
-                        .joined(separator: ", "))
+                    Text(matchDetail.shootingRangeText)
                         .meemongFont(.body2_regular)
-                    Text(postDetail.shopName)
+                    Text(matchDetail.shopName)
                         .meemongFont(.body2_regular)
                 }
                 .foregroundStyle(.meemongBlack)

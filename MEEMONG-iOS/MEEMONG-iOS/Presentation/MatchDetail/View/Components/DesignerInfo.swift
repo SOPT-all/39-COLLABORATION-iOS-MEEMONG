@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct DesignerInfo: View {
-    let shopName: String
-    let designerDetail: DesignerDetailResponseDTO
+    let matchDetail: MatchDetailModel
     
     var body: some View {
         ScrollView{
             VStack(spacing: 16){
-                PortfolioGrid(portfolioImageUrls: designerDetail.portfolioImageUrls)
+                PortfolioGrid(portfolioImageUrls: matchDetail.portfolioImageURLs)
                     .padding(.top, 16)
-                StoreInfo(shopName: shopName, designerDetail: designerDetail)
+                StoreInfo(matchDetail: matchDetail)
                 SNSInfo()
             }
         }

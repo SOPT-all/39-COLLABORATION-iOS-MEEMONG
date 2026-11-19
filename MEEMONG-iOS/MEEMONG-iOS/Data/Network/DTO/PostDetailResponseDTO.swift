@@ -10,13 +10,13 @@ struct PostDetailResponseDTO: Decodable {
     let title: String
     let postImageUrls: [String]
     var isLiked: Bool
-    let priceType: String
+    let priceType: PostPriceType
     let discountRate: Double?
     let originalPrice: Int?
     let displayPrice: Int?
-    let treatmentTypes: [String]
-    let signatures: [String]
-    let shootingRanges: [String]?
+    let treatmentTypes: [PostTreatmentType]
+    let signatures: [PostTreatmentType]
+    let shootingRanges: [ShootingRange]?
     let shopName: String
     let designerId: Int64
     let designerName: String
@@ -24,4 +24,10 @@ struct PostDetailResponseDTO: Decodable {
     let region: String
     let completedTreatmentCount: Int
     let content: String
+}
+
+enum ShootingRange: String, Decodable {
+    case faceExposure = "FACE_EXPOSURE"
+    case video = "VIDEO"
+    case photo = "PHOTO"
 }

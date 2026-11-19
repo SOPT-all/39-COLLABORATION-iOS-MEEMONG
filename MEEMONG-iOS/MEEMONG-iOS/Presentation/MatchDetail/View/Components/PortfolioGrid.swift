@@ -7,8 +7,10 @@
 
 import SwiftUI
 
+import Kingfisher
+
 struct PortfolioGrid: View {
-    let portfolioImageUrls: [String]
+    let portfolioImageUrls: [URL]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0){
@@ -27,15 +29,10 @@ struct PortfolioGrid: View {
                     Color.clear
                         .aspectRatio(1, contentMode: .fit)
                         .overlay {
-                            AsyncImage(
-                                url: URL(string: portfolioImageUrls[index])
-                            ) { image in
-                                image
-                                    .resizable()
-                                    .scaledToFill()
-                            } placeholder: {
-                                Color.gray100
-                            }
+                            KFImage(portfolioImageUrls[index])
+                                .placeholder {Color.gray100}
+                                .resizable()
+                                .scaledToFill()
                         }
                         .clipShape(RoundedRectangle(cornerRadius: 2))
                 }

@@ -7,9 +7,10 @@
 
 import SwiftUI
 
+import Kingfisher
+
 struct StoreInfo: View {
-    let shopName: String
-    let designerDetail: DesignerDetailResponseDTO
+    let matchDetail: MatchDetailModel
     
     var body: some View {
         VStack(spacing: 12){
@@ -17,7 +18,7 @@ struct StoreInfo: View {
                 Text("매장 정보")
                     .meemongFont(.body1_semiBold)
                     .frame(height: 24)
-                Text(shopName)
+                Text(matchDetail.shopName)
                     .meemongFont(.body2_medium)
                     .foregroundStyle(.gray700)
                     .frame(height: 20)
@@ -25,7 +26,7 @@ struct StoreInfo: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             
             HStack(spacing: 0){
-                Text(designerDetail.shopAddress)
+                Text(matchDetail.shopAddress)
                     .meemongFont(.body2_regular)
                     .lineLimit(1)
                 Spacer()
@@ -42,19 +43,14 @@ struct StoreInfo: View {
                 .clipShape(RoundedRectangle(cornerRadius: 14))
             
             HStack{
-                ForEach(designerDetail.shopImageUrls.indices, id: \.self){ index in
+                ForEach(matchDetail.shopImageURLs.indices, id: \.self){ index in
                     Color.clear
                         .aspectRatio(1, contentMode: .fit)
                         .overlay {
-                            AsyncImage(
-                                url: URL(string: designerDetail.shopImageUrls[index])
-                            ) { image in
-                                image
-                                    .resizable()
-                                    .scaledToFill()
-                            } placeholder: {
-                                Color.gray100
-                            }
+                            KFImage(matchDetail.shopImageURLs[index])
+                                .placeholder{ Color.gray100 }
+                                .resizable()
+                                .scaledToFill()
                         }
                         .clipShape(RoundedRectangle(cornerRadius: 6))
                 }

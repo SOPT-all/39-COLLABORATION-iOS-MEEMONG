@@ -7,30 +7,29 @@
 
 import SwiftUI
 
+import Kingfisher
+
 struct ImageCarousel: View {
     @Environment(\.dismiss)
     private var dismiss
     @State private var currentIndex = 0
-    let postImageUrls: [String]
+    let imageUrls: [URL]
     
     var body: some View {
         TabView(selection: $currentIndex) {
-            ForEach(Array(postImageUrls.enumerated()), id: \.offset) { index, imageUrl in
-                AsyncImage(url: URL(string: imageUrl)) { image in
-                    image
-                        .resizable()
-                        .scaledToFill()
-                } placeholder: {
-                    Color.gray100
-                }
-                .frame(maxWidth: .infinity)
-                .tag(index)
-                .overlay(alignment: .top) {
-                    Image(.gradient)
-                        .resizable()
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 90)
-                }
+            ForEach(Array(imageUrls.enumerated()), id: \.offset) { index, imageUrl in
+                KFImage(imageUrl)
+                    .placeholder { Color.gray100 }
+                    .resizable()
+                    .scaledToFill()
+                    .frame(maxWidth: .infinity)
+                    .tag(index)
+                    .overlay(alignment: .top) {
+                        Image(.gradient)
+                            .resizable()
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 90)
+                    }
             }
         }
         .frame(height: 375)
@@ -47,7 +46,7 @@ struct ImageCarousel: View {
             .padding(.leading, 6)
         }
         .overlay(alignment: .bottomTrailing) {
-            Text("\(currentIndex + 1)/\(postImageUrls.count)")
+            Text("\(currentIndex + 1)/\(imageUrls.count)")
                 .meemongFont(.body2_medium)
                 .foregroundStyle(.meemongWhite)
                 .frame(height: 20)
