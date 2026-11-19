@@ -22,7 +22,7 @@ struct QuickMatchPostList: View {
             VStack(spacing: 0) {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("미몽추천 공고")
-                        .font(.body1_semiBold)
+                        .meemongFont(.body1_semiBold)
                         .foregroundStyle(.gray950)
                         .frame(height: 24)
 
@@ -44,12 +44,12 @@ struct QuickMatchPostList: View {
 
                     HStack(spacing: 4) {
                         Text("미몽추천 공고 더보기")
+                            .meemongFont(.body2_regular)
                         
                         Image(.iconsMore)
                             .rotationEffect(.degrees(90))
                             .frame(width: 12, height: 12)
                     }
-                    .font(.body2_regular)
                     .foregroundStyle(.gray700)
                     .frame(maxWidth: .infinity)
                     .frame(height: 38)
@@ -68,7 +68,7 @@ struct QuickMatchPostList: View {
 
                 VStack(alignment: .leading, spacing: 8) {
                     Text("일반 공고")
-                        .font(.body1_semiBold)
+                        .meemongFont(.body1_semiBold)
                         .foregroundStyle(.gray950)
                         .frame(height: 24)
 

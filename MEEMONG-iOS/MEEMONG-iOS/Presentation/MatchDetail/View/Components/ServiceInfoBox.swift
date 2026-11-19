@@ -17,7 +17,7 @@ struct ServiceInfoBox: View {
             VStack(alignment: .leading, spacing: 4){
                 HStack{
                     Text(postDetail.title)
-                        .font(.headline)
+                        .meemongFont(.headline)
                     Spacer()
                     PostLikeButton(
                         isLiked: postDetail.isLiked,
@@ -30,7 +30,7 @@ struct ServiceInfoBox: View {
                 .frame(height: 43)
                 HStack(spacing: 8){
                     Text(PriceType(rawValue: postDetail.priceType)?.typetitle ?? "")
-                        .font(.body2_regular)
+                        .meemongFont(.body2_regular)
                         .foregroundStyle(.meemongBlue)
                         .padding(.horizontal, 6)
                         .frame(height: 24)
@@ -38,9 +38,10 @@ struct ServiceInfoBox: View {
                     if let originalPrice = postDetail.originalPrice{
                         HStack(spacing: 4){
                             Text(originalPrice.formatted())
+                                .meemongFont(.body1_regular)
                             Text("원")
+                                .meemongFont(.body1_regular)
                         }
-                        .font(.body1_regular)
                         .foregroundStyle(.gray500)
                         .overlay(alignment: .center) {
                             Rectangle()
@@ -54,18 +55,19 @@ struct ServiceInfoBox: View {
                     if let discountRate = postDetail.discountRate {
                         HStack(spacing: 0){
                             Text("\(Int(discountRate))")
+                                .meemongFont(.title)
                             Text("%")
+                                .meemongFont(.title)
                         }
-                        .font(.title)
                         .foregroundStyle(.meemongRed)
                     }
                     
                     if let displayPrice = postDetail.displayPrice {
                         Text(displayPrice.formatted())
-                            .font(.title)
+                            .meemongFont(.title)
                             .foregroundStyle(.meemongBlack)
                         Text("원")
-                            .font(.body2_medium)
+                            .meemongFont(.body2_medium)
                             .foregroundStyle(.gray700)
                         Spacer()
                     }
@@ -74,26 +76,32 @@ struct ServiceInfoBox: View {
             HStack(spacing: 12){
                 VStack(alignment: .leading, spacing: 8){
                     Text("시술 종류")
+                        .meemongFont(.body2_semiBold)
                     Text("시그니처")
+                        .meemongFont(.body2_semiBold)
                     Text("촬영범위")
+                        .meemongFont(.body2_semiBold)
                     Text("매장명")
+                        .meemongFont(.body2_semiBold)
                 }
-                .font(.body2_semiBold)
                 .foregroundStyle(.gray500)
                 
                 VStack(alignment: .leading, spacing: 8){
                     Text(postDetail.treatmentTypes
                         .compactMap { TreatmentType(rawValue: $0)?.typetitle}
                         .joined(separator: ", "))
+                        .meemongFont(.body2_regular)
                     Text(postDetail.signatures
                         .compactMap { TreatmentType(rawValue: $0)?.typetitle}
                         .joined(separator: ", "))
+                        .meemongFont(.body2_regular)
                     Text((postDetail.shootingRanges ?? [])
                         .compactMap { ShootingRanges(rawValue: $0)?.typetitle}
                         .joined(separator: ", "))
+                        .meemongFont(.body2_regular)
                     Text(postDetail.shopName)
+                        .meemongFont(.body2_regular)
                 }
-                .font(.body2_regular)
                 .foregroundStyle(.meemongBlack)
                 Spacer()
             }

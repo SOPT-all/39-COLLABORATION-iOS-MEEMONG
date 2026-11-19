@@ -27,16 +27,16 @@ struct DesignerProfileRow: View {
                 
                 VStack(alignment: .leading, spacing: 4){
                     Text(postDetail.designerName)
-                        .font(.headline)
+                        .meemongFont(.headline)
                     HStack(spacing: 4){
                         Text(postDetail.region)
-                            .font(.body2_regular)
+                            .meemongFont(.body2_regular)
                             .foregroundStyle(.gray600)
                         Circle()
                             .fill(Color.gray600)
                             .frame(width: 3, height: 3)
                         Text("11.6km")
-                            .font(.body2_regular)
+                            .meemongFont(.body2_regular)
                             .foregroundStyle(.gray600)
                     }
                 }
@@ -44,10 +44,10 @@ struct DesignerProfileRow: View {
             Spacer()
             HStack(spacing: 0){
                 Text("\(postDetail.completedTreatmentCount)")
-                    .font(.cap1_medium)
+                    .meemongFont(.cap1_medium)
                     .foregroundStyle(.meemongBlue)
                 Text("건 진행")
-                    .font(.cap1_medium)
+                    .meemongFont(.cap1_medium)
                     .foregroundStyle(.gray600)
             }
             .padding(.horizontal, 6)

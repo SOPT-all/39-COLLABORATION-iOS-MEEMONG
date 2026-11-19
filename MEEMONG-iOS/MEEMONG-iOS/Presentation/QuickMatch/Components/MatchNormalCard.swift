@@ -20,7 +20,7 @@ struct MatchNormalCard: View {
                 authorInfo
 
                 Text(post.title)
-                    .font(.body1_semiBold)
+                    .meemongFont(.body1_semiBold)
                     .foregroundStyle(.gray700)
                     .lineLimit(1)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -28,7 +28,7 @@ struct MatchNormalCard: View {
 
                 HStack(spacing: 8) {
                     Text(post.treatment.title)
-                        .font(.body2_semiBold)
+                        .meemongFont(.body2_semiBold)
                         .foregroundStyle(post.treatment.color)
                         .lineLimit(1)
                     if !post.price.isEmpty {
@@ -36,16 +36,17 @@ struct MatchNormalCard: View {
                             .fill(.gray500)
                             .frame(width: 3, height: 3)
                         Text(post.price)
+                            .meemongFont(.body2_medium)
                             .foregroundStyle(.gray900)
                     }
                     Circle()
                         .fill(.gray500)
                         .frame(width: 3, height: 3)
                     Text(post.availableTime)
+                        .meemongFont(.body2_medium)
                         .lineLimit(1)
                 }
                 .frame(height: 20)
-                .font(.body2_medium)
                 .foregroundStyle(.gray600)
             }
 
@@ -88,6 +89,7 @@ struct MatchNormalCard: View {
             authorImage
             
             Text(post.author)
+                .meemongFont(.cap1_regular)
                 .lineLimit(1)
                 .frame(maxWidth: 84, alignment: .leading)
                 .fixedSize(horizontal: true, vertical: false)
@@ -97,12 +99,14 @@ struct MatchNormalCard: View {
                 .frame(width: 3, height: 3)
             
             Text(post.postedAt)
+                .meemongFont(.cap1_regular)
                 .fixedSize()
             
             Circle()
                 .fill(.gray500)
                 .frame(width: 3, height: 3)
             Text(post.location)
+                .meemongFont(.cap1_regular)
                 .lineLimit(1)
 
             Spacer(minLength: 0)
@@ -110,7 +114,6 @@ struct MatchNormalCard: View {
             Color.clear
                 .frame(width: 20, height: 20)
         }
-        .font(.cap1_regular)
         .foregroundStyle(.gray600)
     }
 

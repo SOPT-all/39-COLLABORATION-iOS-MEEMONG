@@ -14,15 +14,14 @@ struct HairConsultingCard: View {
         VStack(alignment: .leading, spacing: 10) {
             VStack(alignment: .leading, spacing: 4) {
                 Text(consulting.title)
-                    .font(.body1_semiBold)
+                    .meemongFont(.body1_semiBold)
                     .foregroundStyle(.meemongBlack)
                     .lineLimit(1)
                     .frame(height: 24, alignment: .leading)
 
                 Text(consulting.content)
-                    .font(.body2_regular)
+                    .meemongFont(.body2_regular)
                     .foregroundStyle(.gray600)
-                    .lineSpacing(3)
                     .lineLimit(2)
                     .frame(height: 40, alignment: .topLeading)
             }
@@ -42,13 +41,13 @@ struct HairConsultingCard: View {
     private var commentInfo: some View {
         HStack(spacing: 10) {
             Text(consulting.postedAt)
-                .font(.cap1_regular)
+                .meemongFont(.cap1_regular)
 
             HStack(spacing: 4) {
                 Image(.iconsComment)
                     .frame(width: 16, height: 16)
                 Text("\(consulting.commentCount)")
-                    .font(.body2_semiBold)
+                    .meemongFont(.body2_semiBold)
             }
 
             Spacer(minLength: 0)

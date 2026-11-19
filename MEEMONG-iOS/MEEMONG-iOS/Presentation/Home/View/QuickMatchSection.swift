@@ -39,7 +39,7 @@ struct QuickMatchSection: View {
     private var header: some View {
         HStack {
             Text("미몽추천 빠른매칭글")
-                .font(.body1_semiBold)
+                .meemongFont(.body1_semiBold)
                 .foregroundStyle(.gray950)
 
             Spacer()
@@ -47,7 +47,7 @@ struct QuickMatchSection: View {
             Button(action: onMore) {
                 HStack(spacing: 6) {
                     Text("더보기")
-                        .font(.cap1_medium)
+                        .meemongFont(.cap1_medium)
                         .foregroundStyle(.gray600)
 
                     Image(.iconsMore)
