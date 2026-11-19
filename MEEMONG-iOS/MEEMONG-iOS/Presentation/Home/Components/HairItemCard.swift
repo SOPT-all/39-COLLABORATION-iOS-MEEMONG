@@ -19,7 +19,7 @@ struct HairItemCard: View {
                 .frame(height: 81)
                 .overlay(alignment: .topTrailing) {
                     Text(hairItem.tag)
-                        .font(.cap1_regular)
+                        .meemongFont(.cap1_regular)
                         .foregroundStyle(.meemongWhite)
                         .padding(.horizontal, 8)
                         .padding(.vertical, 4)
@@ -44,30 +44,30 @@ struct HairItemCard: View {
     private var productInfo: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(hairItem.title)
-                .font(.body2_medium)
+                .meemongFont(.body2_medium)
                 .foregroundStyle(.gray700)
-                .lineSpacing(3)
                 .lineLimit(2)
                 .fixedSize(horizontal: false, vertical: true)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .frame(height: 40, alignment: .topLeading)
 
             Text(hairItem.originalPrice)
-                .font(.cap2_medium)
+                .meemongFont(.cap2_medium)
                 .foregroundStyle(.gray500)
                 .strikethrough()
                 .frame(height: 16)
 
             HStack(spacing: 2) {
                 Text("\(hairItem.discountRate)%")
+                    .meemongFont(.body1_semiBold)
                     .foregroundStyle(.meemongRed)
                 Text(hairItem.salePrice)
+                    .meemongFont(.body1_semiBold)
                     .foregroundStyle(.meemongBlack)
                 Text("원")
-                    .font(.body1_regular)
+                    .meemongFont(.body1_regular)
                     .foregroundStyle(.gray600)
             }
-            .font(.body1_semiBold)
             .frame(height: 24)
         }
     }

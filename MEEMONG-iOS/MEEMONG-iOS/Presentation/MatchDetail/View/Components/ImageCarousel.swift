@@ -48,7 +48,7 @@ struct ImageCarousel: View {
         }
         .overlay(alignment: .bottomTrailing) {
             Text("\(currentIndex + 1)/\(postImageUrls.count)")
-                .font(.body2_medium)
+                .meemongFont(.body2_medium)
                 .foregroundStyle(.meemongWhite)
                 .frame(height: 20)
                 .padding(.horizontal, 14)

@@ -50,12 +50,12 @@ struct DesignerCard: View {
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(designer.name)
-                    .font(.body1_semiBold)
+                    .meemongFont(.body1_semiBold)
                     .foregroundStyle(.meemongBlack)
                     .frame(height: 24)
 
                 Text(designer.salon)
-                    .font(.cap1_regular)
+                    .meemongFont(.cap1_regular)
                     .foregroundStyle(.gray700)
                     .frame(height: 18)
             }
@@ -71,17 +71,19 @@ struct DesignerCard: View {
                 switch designer.treatment {
                 case .free:
                     Text("무료시술")
+                        .meemongFont(.cap1_medium)
                         .foregroundStyle(.meemongBlue)
                 case .materials(let price):
                     HStack(spacing: 2) {
                         Text("재료비 발생")
+                            .meemongFont(.cap1_medium)
                             .foregroundStyle(.gray950)
                         Text(price)
+                            .meemongFont(.cap1_medium)
                             .foregroundStyle(.gray700)
                     }
                 }
             }
-            .font(.cap1_medium)
             .fixedSize()
 
             Rectangle()
@@ -89,7 +91,7 @@ struct DesignerCard: View {
                 .frame(width: 1, height: 14)
 
             Text(designer.location)
-                .font(.cap1_regular)
+                .meemongFont(.cap1_regular)
                 .foregroundStyle(.gray700)
                 .lineLimit(1)
 

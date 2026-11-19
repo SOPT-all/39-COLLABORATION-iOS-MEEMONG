@@ -22,7 +22,7 @@ struct TabToggleButton: View {
                     selectedType = type
                 } label: {
                     Text(type.rawValue)
-                        .font(.body2_semiBold)
+                        .meemongFont(.body2_semiBold)
                         .foregroundStyle(selectedType == type ? .meemongWhite : .gray500)
                         .lineLimit(1)
                         .fixedSize(horizontal: true, vertical: false)

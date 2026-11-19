@@ -14,7 +14,7 @@ struct FloatingButton: View {
     }
 
     var menu: Menu = .home
-    var bottomPadding: CGFloat = 116
+    private let bottomPadding: CGFloat = 116
     @State private var isSelected = false
 
     var body: some View {

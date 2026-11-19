@@ -10,6 +10,7 @@ import SwiftUI
 struct MatchDetailView: View {
     @State private var viewModel = MatchDetailViewModel()
     let postId: Int64
+    var onLikeChanged: (Int64, Bool) -> Void = { _, _ in }
     
     var body: some View {
         ScrollView{
@@ -17,7 +18,16 @@ struct MatchDetailView: View {
                 ImageCarousel(postImageUrls: viewModel.postDetail?.postImageUrls ?? [])
                 if let postDetail = viewModel.postDetail {
                     DesignerProfileRow(postDetail: postDetail)
-                    ServiceInfoBox(postDetail: postDetail)
+                    ServiceInfoBox(
+                        postDetail: postDetail,
+                        isUpdatingLike: viewModel.isUpdatingLike
+                    ) {
+                        Task {
+                            if let isLiked = await viewModel.toggleLike() {
+                                onLikeChanged(postId, isLiked)
+                            }
+                        }
+                    }
                 }
                 MatchDetailTabbar(
                     content: viewModel.postDetail?.content ?? "",

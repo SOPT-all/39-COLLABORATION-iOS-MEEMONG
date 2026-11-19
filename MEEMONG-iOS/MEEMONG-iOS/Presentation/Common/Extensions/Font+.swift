@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 enum PretendardWeight: String, CaseIterable {
     case thin       = "Pretendard-Thin"
@@ -25,16 +26,50 @@ extension Font {
     }
 }
 
-extension Font {
-    static let title = pretendard(.semiBold, size: 20)
-    static let headline = pretendard(.semiBold, size: 18)
-    static let body1_semiBold = pretendard(.semiBold, size: 16)
-    static let body1_regular = pretendard(.regular, size: 16)
-    static let body2_semiBold = pretendard(.semiBold, size: 14)
-    static let body2_medium = pretendard(.medium, size: 14)
-    static let body2_regular = pretendard(.regular, size: 14)
-    static let cap1_medium = pretendard(.medium, size: 12)
-    static let cap1_regular = pretendard(.regular, size: 12)
-    static let cap2_semibold = pretendard(.semiBold, size: 10)
-    static let cap2_medium = pretendard(.medium, size: 10)
+struct MeemongFont {
+    let weight: PretendardWeight
+    let size: CGFloat
+    let lineHeight: CGFloat?
+
+    static func pretendard(_ weight: PretendardWeight, size: CGFloat) -> Self {
+        Self(weight: weight, size: size, lineHeight: nil)
+    }
+}
+
+extension MeemongFont {
+    static let title = Self(weight: .semiBold, size: 20, lineHeight: 30)
+    static let headline = Self(weight: .semiBold, size: 18, lineHeight: 27)
+    static let body1_semiBold = Self(weight: .semiBold, size: 16, lineHeight: 24)
+    static let body1_regular = Self(weight: .regular, size: 16, lineHeight: 24)
+    static let body2_semiBold = Self(weight: .semiBold, size: 14, lineHeight: 19.6)
+    static let body2_medium = Self(weight: .medium, size: 14, lineHeight: 19.6)
+    static let body2_regular = Self(weight: .regular, size: 14, lineHeight: 19.6)
+    static let cap1_medium = Self(weight: .medium, size: 12, lineHeight: 18)
+    static let cap1_regular = Self(weight: .regular, size: 12, lineHeight: 18)
+    static let cap2_semibold = Self(weight: .semiBold, size: 10, lineHeight: 16)
+    static let cap2_medium = Self(weight: .medium, size: 10, lineHeight: 16)
+}
+
+extension View {
+    func meemongFont(_ style: MeemongFont) -> some View {
+        modifier(MeemongFontModifier(style: style))
+    }
+}
+
+private struct MeemongFontModifier: ViewModifier {
+    let style: MeemongFont
+    @ScaledMetric private var scale: CGFloat = 1
+
+    func body(content: Content) -> some View {
+        let size = style.size * scale
+        let font = UIFont(name: style.weight.rawValue, size: size)
+            ?? UIFont.systemFont(ofSize: size)
+        let spacing = style.lineHeight.map { max(0, $0 * scale - font.lineHeight) } ?? 0
+
+        content
+            .font(.custom(style.weight.rawValue, fixedSize: size))
+            .tracking(-size * 0.01)
+            .lineSpacing(spacing)
+            .padding(.vertical, spacing / 2)
+    }
 }
