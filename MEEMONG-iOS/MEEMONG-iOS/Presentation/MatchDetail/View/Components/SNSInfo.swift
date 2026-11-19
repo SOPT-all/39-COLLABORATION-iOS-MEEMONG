@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct SNSInfo: View {
+    @Environment(\.openURL) private var openURL
+    private let instaUrl = "https://www.instagram.com/mimong_designer"
+
     private let icons: [ImageResource] = [
         .iconsInsta, .iconsNaver, .iconsYoutube
     ]
@@ -28,6 +31,10 @@ struct SNSInfo: View {
                         Spacer()
                         
                         Button{
+                            if index == 0 {
+                                if let url = URL(string: instaUrl)
+                                { openURL(url) }
+                            }
                         } label: {
                             Text("바로가기")
                                 .font(.body2_medium)
