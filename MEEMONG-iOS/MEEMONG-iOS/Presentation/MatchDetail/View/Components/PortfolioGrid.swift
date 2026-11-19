@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PortfolioGrid: View {
-    let portfolioImageUrls: [String]
+    let portfolioImageUrls: [URL]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0){
@@ -28,7 +28,7 @@ struct PortfolioGrid: View {
                         .aspectRatio(1, contentMode: .fit)
                         .overlay {
                             AsyncImage(
-                                url: URL(string: portfolioImageUrls[index])
+                                url: portfolioImageUrls[index]
                             ) { image in
                                 image
                                     .resizable()

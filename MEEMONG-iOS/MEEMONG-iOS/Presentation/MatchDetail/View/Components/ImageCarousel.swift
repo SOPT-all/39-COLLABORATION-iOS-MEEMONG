@@ -11,12 +11,12 @@ struct ImageCarousel: View {
     @Environment(\.dismiss)
     private var dismiss
     @State private var currentIndex = 0
-    let postImageUrls: [String]
+    let imageUrls: [URL]
     
     var body: some View {
         TabView(selection: $currentIndex) {
-            ForEach(Array(postImageUrls.enumerated()), id: \.offset) { index, imageUrl in
-                AsyncImage(url: URL(string: imageUrl)) { image in
+            ForEach(Array(imageUrls.enumerated()), id: \.offset) { index, imageUrl in
+                AsyncImage(url: imageUrl) { image in
                     image
                         .resizable()
                         .scaledToFill()
@@ -47,7 +47,7 @@ struct ImageCarousel: View {
             .padding(.leading, 6)
         }
         .overlay(alignment: .bottomTrailing) {
-            Text("\(currentIndex + 1)/\(postImageUrls.count)")
+            Text("\(currentIndex + 1)/\(imageUrls.count)")
                 .font(.body2_medium)
                 .foregroundStyle(.meemongWhite)
                 .frame(height: 20)

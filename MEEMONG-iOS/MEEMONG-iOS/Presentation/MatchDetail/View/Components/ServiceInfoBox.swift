@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ServiceInfoBox: View {
-    let postDetail: PostDetailResponseDTO
+    let matchDetail: MatchDetailModel
     
     var body: some View {
         VStack(spacing: 12){
             VStack(alignment: .leading, spacing: 4){
                 HStack{
-                    Text(postDetail.title)
+                    Text(matchDetail.title)
                         .font(.headline)
                     Spacer()
                     Image(.defaultBlack)
@@ -22,15 +22,15 @@ struct ServiceInfoBox: View {
                 .frame(maxWidth: .infinity)
                 .frame(height: 43)
                 HStack(spacing: 8){
-                    Text(PriceType(rawValue: postDetail.priceType)?.typetitle ?? "")
+                    Text(matchDetail.priceTypeText)
                         .font(.body2_regular)
                         .foregroundStyle(.meemongBlue)
                         .padding(.horizontal, 6)
                         .frame(height: 24)
                         .background(.bgBlue, in: RoundedRectangle(cornerRadius: 6))
-                    if let originalPrice = postDetail.originalPrice{
+                    if !matchDetail.originalPriceText.isEmpty {
                         HStack(spacing: 4){
-                            Text(originalPrice.formatted())
+                            Text(matchDetail.originalPriceText)
                             Text("원")
                         }
                         .font(.body1_regular)
@@ -45,14 +45,14 @@ struct ServiceInfoBox: View {
                 }
                 HStack(spacing: 4){
                     HStack(spacing: 0){
-                        Text("\(Int(postDetail.discountRate))")
+                        Text(matchDetail.discountRateText)
                         Text("%")
                     }
                     .font(.title)
                     .foregroundStyle(.meemongRed)
                     
-                    if let displayPrice = postDetail.displayPrice {
-                        Text(displayPrice.formatted())
+                    if !matchDetail.displayPriceText.isEmpty {
+                        Text(matchDetail.displayPriceText)
                             .font(.title)
                             .foregroundStyle(.meemongBlack)
                         Text("원")
@@ -73,16 +73,10 @@ struct ServiceInfoBox: View {
                 .foregroundStyle(.gray500)
                 
                 VStack(alignment: .leading, spacing: 8){
-                    Text(postDetail.treatmentTypes
-                        .compactMap { TreatmentType(rawValue: $0)?.typetitle}
-                        .joined(separator: ", "))
-                    Text(postDetail.signatures
-                        .compactMap { TreatmentType(rawValue: $0)?.typetitle}
-                        .joined(separator: ", "))
-                    Text((postDetail.shootingRanges ?? [])
-                        .compactMap { ShootingRanges(rawValue: $0)?.typetitle}
-                        .joined(separator: ", "))
-                    Text(postDetail.shopName)
+                    Text(matchDetail.treatmentText)
+                    Text(matchDetail.signatureText)
+                    Text(matchDetail.shootingRangeText)
+                    Text(matchDetail.shopName)
                 }
                 .font(.body2_regular)
                 .foregroundStyle(.meemongBlack)

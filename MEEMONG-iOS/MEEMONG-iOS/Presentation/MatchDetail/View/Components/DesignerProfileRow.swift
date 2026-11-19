@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct DesignerProfileRow: View {
-    let postDetail: PostDetailResponseDTO
+    let matchDetail: MatchDetailModel
     
     var body: some View {
         HStack(alignment: .top){
             HStack(spacing: 8){
                 AsyncImage(
-                    url: URL(string: postDetail.designerProfileImageUrl)
-                ) { image in
+                    url: matchDetail.designerProfileImageURL) { image in
                     image
                         .resizable()
                         .scaledToFill()
@@ -26,10 +25,10 @@ struct DesignerProfileRow: View {
                 .clipShape(Circle())
                 
                 VStack(alignment: .leading, spacing: 4){
-                    Text(postDetail.designerName)
+                    Text(matchDetail.designerName)
                         .font(.headline)
                     HStack(spacing: 4){
-                        Text(postDetail.region)
+                        Text(matchDetail.region)
                             .font(.body2_regular)
                             .foregroundStyle(.gray600)
                         Circle()
@@ -43,7 +42,7 @@ struct DesignerProfileRow: View {
             }
             Spacer()
             HStack(spacing: 0){
-                Text("\(postDetail.completedTreatmentCount)")
+                Text("\(matchDetail.completedTreatmentCount)")
                     .font(.cap1_medium)
                     .foregroundStyle(.meemongBlue)
                 Text("건 진행")

@@ -14,16 +14,12 @@ struct MatchDetailView: View {
     var body: some View {
         ScrollView{
             VStack(spacing: 0){
-                ImageCarousel(postImageUrls: viewModel.postDetail?.postImageUrls ?? [])
-                if let postDetail = viewModel.postDetail {
-                    DesignerProfileRow(postDetail: postDetail)
-                    ServiceInfoBox(postDetail: postDetail)
+                if let matchDetail = viewModel.matchDetail{
+                    ImageCarousel(imageUrls: matchDetail.imageURLs)
+                    DesignerProfileRow(matchDetail: matchDetail)
+                    ServiceInfoBox(matchDetail: matchDetail)
+                    MatchDetailTabbar(matchDetail: matchDetail)
                 }
-                MatchDetailTabbar(
-                    content: viewModel.postDetail?.content ?? "",
-                    shopName: viewModel.postDetail?.shopName ?? "",
-                    designerDetail: viewModel.designerDetail
-                )
             }
         }
         .ignoresSafeArea(edges: .top)
@@ -35,8 +31,4 @@ struct MatchDetailView: View {
             await viewModel.loadMatchDetail(postId: postId)
         }
     }
-}
-
-#Preview {
-    MatchDetailView(postId: 4)
 }
