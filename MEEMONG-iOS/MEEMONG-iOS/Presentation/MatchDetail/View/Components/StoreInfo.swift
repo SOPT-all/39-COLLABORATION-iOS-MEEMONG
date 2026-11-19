@@ -5,6 +5,7 @@
 //  Created by 김보민 on 11/13/26.
 //
 
+import Kingfisher
 import SwiftUI
 
 struct StoreInfo: View {
@@ -45,15 +46,10 @@ struct StoreInfo: View {
                     Color.clear
                         .aspectRatio(1, contentMode: .fit)
                         .overlay {
-                            AsyncImage(
-                                url: matchDetail.shopImageURLs[index]
-                            ) { image in
-                                image
-                                    .resizable()
-                                    .scaledToFill()
-                            } placeholder: {
-                                Color.gray100
-                            }
+                            KFImage(matchDetail.shopImageURLs[index])
+                                .placeholder{ Color.gray100 }
+                                .resizable()
+                                .scaledToFill() 
                         }
                         .clipShape(RoundedRectangle(cornerRadius: 6))
                 }

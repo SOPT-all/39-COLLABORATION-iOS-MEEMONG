@@ -5,6 +5,7 @@
 //  Created by 김보민 on 11/12/26.
 //
 
+import Kingfisher
 import SwiftUI
 
 struct PortfolioGrid: View {
@@ -27,15 +28,10 @@ struct PortfolioGrid: View {
                     Color.clear
                         .aspectRatio(1, contentMode: .fit)
                         .overlay {
-                            AsyncImage(
-                                url: portfolioImageUrls[index]
-                            ) { image in
-                                image
-                                    .resizable()
-                                    .scaledToFill()
-                            } placeholder: {
-                                Color.gray100
-                            }
+                            KFImage(portfolioImageUrls[index])
+                                .placeholder {Color.gray100}
+                                .resizable()
+                                .scaledToFill()
                         }
                         .clipShape(RoundedRectangle(cornerRadius: 2))
                 }

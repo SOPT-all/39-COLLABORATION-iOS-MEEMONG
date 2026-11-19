@@ -5,6 +5,7 @@
 //  Created by 김보민 on 11/11/26.
 //
 
+import Kingfisher
 import SwiftUI
 
 struct ImageCarousel: View {
@@ -16,21 +17,19 @@ struct ImageCarousel: View {
     var body: some View {
         TabView(selection: $currentIndex) {
             ForEach(Array(imageUrls.enumerated()), id: \.offset) { index, imageUrl in
-                AsyncImage(url: imageUrl) { image in
-                    image
-                        .resizable()
-                        .scaledToFill()
-                } placeholder: {
-                    Color.gray100
-                }
-                .frame(maxWidth: .infinity)
-                .tag(index)
-                .overlay(alignment: .top) {
-                    Image(.gradient)
-                        .resizable()
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 90)
-                }
+                KFImage(imageUrl)
+                    .placeholder { Color.gray100 }
+                    .resizable()
+                    .scaledToFill()
+                
+                    .frame(maxWidth: .infinity)
+                    .tag(index)
+                    .overlay(alignment: .top) {
+                        Image(.gradient)
+                            .resizable()
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 90)
+                    }
             }
         }
         .frame(height: 375)

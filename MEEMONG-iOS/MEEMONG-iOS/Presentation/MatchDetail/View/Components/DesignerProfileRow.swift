@@ -5,29 +5,26 @@
 //  Created by 김보민 on 11/11/26.
 //
 
+import Kingfisher
 import SwiftUI
 
 struct DesignerProfileRow: View {
     let matchDetail: MatchDetailModel
     
     var body: some View {
-        HStack(alignment: .top){
-            HStack(spacing: 8){
-                AsyncImage(
-                    url: matchDetail.designerProfileImageURL) { image in
-                    image
-                        .resizable()
-                        .scaledToFill()
-                } placeholder: {
-                    Color.gray100
-                }
-                .frame(width: 52, height: 52)
-                .clipShape(Circle())
-                
-                VStack(alignment: .leading, spacing: 4){
+        HStack(alignment: .top) {
+            HStack(spacing: 8) {
+                KFImage(matchDetail.designerProfileImageURL)
+                    .placeholder { Color.gray100 }
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 52, height: 52)
+                    .clipShape(Circle())
+
+                VStack(alignment: .leading, spacing: 4) {
                     Text(matchDetail.designerName)
                         .font(.headline)
-                    HStack(spacing: 4){
+                    HStack(spacing: 4) {
                         Text(matchDetail.region)
                             .font(.body2_regular)
                             .foregroundStyle(.gray600)
@@ -41,7 +38,7 @@ struct DesignerProfileRow: View {
                 }
             }
             Spacer()
-            HStack(spacing: 0){
+            HStack(spacing: 0) {
                 Text("\(matchDetail.completedTreatmentCount)")
                     .font(.cap1_medium)
                     .foregroundStyle(.meemongBlue)
@@ -63,3 +60,4 @@ struct DesignerProfileRow: View {
         }
     }
 }
+
