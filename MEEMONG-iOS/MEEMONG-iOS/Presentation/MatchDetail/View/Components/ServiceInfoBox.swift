@@ -46,7 +46,6 @@ struct ServiceInfoBox: View {
                 HStack(spacing: 4){
                     HStack(spacing: 0){
                         Text(matchDetail.discountRateText)
-                        Text("%")
                     }
                     .font(.title)
                     .foregroundStyle(.meemongRed)
