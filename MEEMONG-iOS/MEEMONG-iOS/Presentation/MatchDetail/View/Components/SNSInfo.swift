@@ -39,9 +39,10 @@ struct SNSInfo: View {
                             Text("바로가기")
                                 .meemongFont(.body2_medium)
                                 .foregroundStyle(.gray800)
+                                .frame(width: 64, height: 24)
+                                .background(.gray100, in: RoundedRectangle(cornerRadius: 6))
+                                .contentShape(Rectangle())
                         }
-                        .frame(width: 64, height: 24)
-                        .background(.gray100, in: RoundedRectangle(cornerRadius: 6))
                     }
                 }
             }

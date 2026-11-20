@@ -27,7 +27,6 @@ struct PostLikeButton: View {
                 .frame(width: size.rawValue, height: size.rawValue)
                 .contentShape(Rectangle())
         }
-        .buttonStyle(.plain)
         .disabled(isUpdating)
         .accessibilityLabel(isLiked ? "찜 취소" : "찜 등록")
     }

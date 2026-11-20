@@ -38,7 +38,6 @@ struct TabToggleButton: View {
                         }
                         .contentShape(Capsule())
                 }
-                .buttonStyle(.plain)
             }
         }
         .padding(4)

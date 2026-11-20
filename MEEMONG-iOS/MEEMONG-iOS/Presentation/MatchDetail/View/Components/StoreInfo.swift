@@ -30,7 +30,12 @@ struct StoreInfo: View {
                     .meemongFont(.body2_regular)
                     .lineLimit(1)
                 Spacer()
-                Image(.iconsCopy)
+                Button {} label: {
+                    Image(.iconsCopy)
+                        .frame(width: 44, height: 44)
+                        .contentShape(Rectangle())
+                }
+                .accessibilityLabel("매장 주소 복사")
             }
             .frame(maxWidth: .infinity)
             .frame(height: 50)

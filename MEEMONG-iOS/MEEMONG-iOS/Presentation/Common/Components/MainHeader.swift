@@ -18,17 +18,23 @@ struct MainHeader: View {
             Spacer()
 
             HStack(alignment: .center, spacing: 0) {
-                Image(.iconsSearch)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 24, height: 24)
-                    .frame(width: 44, height: 44)
+                Button {} label: {
+                    Image(.iconsSearch)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 24, height: 24)
+                        .frame(width: 44, height: 44)
+                        .contentShape(Rectangle())
+                }
 
-                Image(.iconsNotification)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 24, height: 24)
-                    .frame(width: 44, height: 44)
+                Button {} label: {
+                    Image(.iconsNotification)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 24, height: 24)
+                        .frame(width: 44, height: 44)
+                        .contentShape(Rectangle())
+                }
             }
         }
         .padding(.horizontal, 12)

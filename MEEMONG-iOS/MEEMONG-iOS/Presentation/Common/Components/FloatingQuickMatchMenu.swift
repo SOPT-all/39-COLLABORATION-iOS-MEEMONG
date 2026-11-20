@@ -26,9 +26,10 @@ struct FloatingQuickMatchMenu: View {
                             .meemongFont(.body2_medium)
                             .foregroundStyle(.white)
                     }
+                    .padding(.leading, 12)
+                    .frame(width: 102, height: 40, alignment: .leading)
+                    .contentShape(Rectangle())
                 }
-                .padding(.leading, 12)
-                .frame(width: 102, height: 40, alignment: .leading)
             }
         }
         .background(Color(.gray900))

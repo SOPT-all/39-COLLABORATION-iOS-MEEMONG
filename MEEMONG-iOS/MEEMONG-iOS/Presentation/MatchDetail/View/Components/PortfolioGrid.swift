@@ -49,11 +49,12 @@ struct PortfolioGrid: View {
                     Image(.iconsChevronLeft)
                         .frame(width: 24, height: 24)
                 }
+                .frame(maxWidth: .infinity)
+                .frame(height: 38)
+                .background(.meemongWhite, in: RoundedRectangle(cornerRadius: 4))
+                .overlay(RoundedRectangle(cornerRadius: 4).stroke(.gray300, lineWidth: 1))
+                .contentShape(Rectangle())
             }
-            .frame(maxWidth: .infinity)
-            .frame(height: 38)
-            .background(.meemongWhite, in: RoundedRectangle(cornerRadius: 4))
-            .overlay(RoundedRectangle(cornerRadius: 4).stroke(.gray300, lineWidth: 1))
         }
         .padding(.horizontal, 20)
     }
