@@ -12,7 +12,7 @@ final class NetworkLogger {
     private init() {}
 
     static func requestLog(request: URLRequest) {
-        print("\n🌈 Request 🌈")
+        print("\n🌈Request")
 
         let url = request.url?.absoluteString ?? "URL None"
         let method = request.httpMethod ?? "Method None"
@@ -43,7 +43,7 @@ final class NetworkLogger {
     }
 
     static func responseLog(response: HTTPURLResponse?, data: Data?) {
-        print("\n⛑️ Response ⛑️")
+        print("\n⛑️Response")
 
         var output = ""
         if let statusCode = response?.statusCode {
@@ -57,7 +57,7 @@ final class NetworkLogger {
     }
 
     static func errorLog(error: Error) {
-        print("\n❌ Network Error ❌")
+        print("\n❌Network Error")
         print("\(error.localizedDescription)\n")
     }
 }

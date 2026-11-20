@@ -19,7 +19,6 @@ final class BaseService {
         }
     }
 
-    // 테스트에서는 모의 URLSession과 서버 주소를 전달할 수 있습니다.
     init(session: URLSession, baseURLProvider: @escaping () -> String?) {
         self.session = session
         self.baseURLProvider = baseURLProvider
