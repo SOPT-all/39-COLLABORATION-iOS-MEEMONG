@@ -18,8 +18,8 @@ enum MainTab: CaseIterable {
         switch self {
         case .home: .iconsHome
         case .review: .iconsPromotion
-        case .consulting: .iconsChat
-        case .chating: .iconsConsultingM
+        case .consulting: .iconsConsultingM
+        case .chating: .iconsChat
         case .profile: .iconsProfile
         }
     }

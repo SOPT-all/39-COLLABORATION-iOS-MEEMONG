@@ -19,7 +19,13 @@ struct FloatingButton: View {
 
     var body: some View {
         ZStack(alignment: .bottomTrailing){
-            Color.clear
+            if isSelected {
+                Color.clear
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        isSelected = false
+                    }
+            }
 
             VStack(alignment: .trailing, spacing: 12){
                 if isSelected {
