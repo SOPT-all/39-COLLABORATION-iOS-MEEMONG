@@ -30,6 +30,7 @@ struct TopNavigationBar: View {
                 .padding(.leading, 12)
             }
             .padding(.bottom, 2)
+            .background(Color.meemongWhite.ignoresSafeArea(edges: .top))
             .overlay(alignment: .bottom) {
                 Rectangle()
                     .fill(Color.gray100)
