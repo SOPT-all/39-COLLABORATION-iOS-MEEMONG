@@ -16,7 +16,6 @@ struct HomeView: View {
         NavigationStack {
             VStack(alignment: .center, spacing: 0) {
                 MainHeader()
-                    .padding(.bottom, 16)
 
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 0) {
@@ -26,6 +25,7 @@ struct HomeView: View {
                             .frame(maxWidth: .infinity)
                             .padding(.horizontal, 20)
                             .padding(.bottom, 20)
+                            .padding(.top, 16)
 
                         HomeQuickMenu { item in
                             if item == .quickMatching {
