@@ -86,6 +86,7 @@ struct HomeView: View {
                 FloatingButton()
             }
             .ignoresSafeArea(.container, edges: .bottom)
+            .background(Color.meemongWhite.ignoresSafeArea())
             .toolbar(.hidden, for: .navigationBar)
             .task { try? await viewModel.load() }
             .navigationDestination(isPresented: $showQuickMatch) {

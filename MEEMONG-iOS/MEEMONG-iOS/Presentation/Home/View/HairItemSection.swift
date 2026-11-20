@@ -27,16 +27,19 @@ struct HairItemSection: View {
                 }
             }
 
-            HStack(spacing: 4) {
-                Text("나에게 맞는 헤어템 더 보러 가기")
-                    .meemongFont(.cap1_medium)
-                    .foregroundStyle(.meemongBlue)
-                Image(.iconsProductArrow)
-                    .frame(width: 16, height: 16)
+            Button {} label: {
+                HStack(spacing: 4) {
+                    Text("나에게 맞는 헤어템 더 보러 가기")
+                        .meemongFont(.cap1_medium)
+                        .foregroundStyle(.meemongBlue)
+                    Image(.iconsProductArrow)
+                        .frame(width: 16, height: 16)
+                }
+                .frame(maxWidth: .infinity)
+                .frame(height: 38)
+                .background(.bgBlue, in: RoundedRectangle(cornerRadius: 5))
+                .contentShape(Rectangle())
             }
-            .frame(maxWidth: .infinity)
-            .frame(height: 38)
-            .background(.bgBlue, in: RoundedRectangle(cornerRadius: 5))
         }
         .padding(.horizontal, 20)
     }

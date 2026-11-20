@@ -29,15 +29,18 @@ struct DesignerSection: View {
 
             Spacer()
 
-            HStack(spacing: 6) {
-                Text("더보기")
-                    .meemongFont(.cap1_medium)
-                    .foregroundStyle(.gray600)
+            Button {} label: {
+                HStack(spacing: 6) {
+                    Text("더보기")
+                        .meemongFont(.cap1_medium)
+                        .foregroundStyle(.gray600)
 
-                Image(.iconsMore)
-                    .frame(width: 12, height: 12)
+                    Image(.iconsMore)
+                        .frame(width: 12, height: 12)
+                }
+                .frame(minHeight: 24)
+                .contentShape(Rectangle())
             }
-            .frame(minHeight: 24)
         }
     }
 }

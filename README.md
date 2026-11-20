@@ -12,7 +12,7 @@
 | :---: | :---: |
 | **iOS Lead** | **iOS** |
 | <b>[김세령](https://github.com/ser0kim)<b/> | <b>[김보민](https://github.com/bominnnkimmm)<b/> |
-| `홈, 빠른매칭 UI 및 기능 구현`<br>`미몽 추천 공고 목록 조회`<br>`일반 공고 목록 조회`<br>`찜 등록 및 취소 API 연결` | `리뷰특가, 상세페이지 UI 및 기능 구현`<br>`내용 상세 조회`<br>`디자이너 정보 조회 API 연결` |
+| `홈, 빠른매칭 UI 및 기능 구현`<br>`미몽 추천 공고 목록 조회,`<br>`일반 공고 목록 조회,`<br>`찜 등록 및 취소 API 연동` | `리뷰특가, 상세페이지 UI 및 기능 구현`<br>`내용 상세 조회,`<br>`디자이너 정보 조회 API 연동` |
 <br>
 
 ## 🎨 리디자인 포인트
@@ -26,8 +26,36 @@
  | 포트폴리오 노출 방식 개선 | 포트폴리오를 기본 9개만 노출하고 '더보기' 버튼을 추가하여 스크롤 부담 감소 및 하단 매장 정보 접근성 향상 |
 <br>
 
+## 📱 시연 영상
+
+| 홈 | 빠른매칭 | 상세페이지_내용 상세 | 상세페이지_디자이너 정보 |
+| :---: | :---: | :---: | :---: |
+| <video src="https://github.com/user-attachments/assets/dc916e82-c0f7-4b3d-bfb1-acc8050a09af" width="250" controls></video> | <video src="https://github.com/user-attachments/assets/0a18c616-0d44-4f2b-867a-785baf98c752" width="250" controls></video> | <video src="https://github.com/user-attachments/assets/a77ceff9-4bc5-4a9e-8fc2-5224a2c1a647" width="250" controls></video> | <video src="https://github.com/user-attachments/assets/2bed7181-470a-447b-ac64-d948d9b84c29" width="250" controls></video> |
+
+
+<br>
+
 ## 🛠 기술 스택 및 라이브러리
 <img width="1920" height="1080" alt="Frame 30" src="https://github.com/user-attachments/assets/fdc26b36-fa6f-4f8f-9a75-a84cfb87b5e6" />
+
+<br>
+
+## 🧩 Architecture
+
+### MVVM
+
+SwiftUI와 Observation을 활용해 홈·빠른매칭·상세 화면의 UI와 상태 관리 로직을 분리합니다.
+
+| 구성 | 프로젝트 적용 |
+| --- | --- |
+| **View** | 홈·공고 목록·상세 화면 구성 및 탭·찜 이벤트 전달 |
+| **ViewModel** | 추천·일반 공고 조회, 상세 정보 조회 및 찜 상태 관리 |
+| **Model** | `MatchPostModel`, `MatchDetailModel`로 가격·시술·시간 등 화면 표시 값 가공 |
+| **DTO** | 공고 목록·공고 상세·디자이너 정보·찜 응답 구조 정의 |
+| **Service** | `BaseService`에서 `URLSession` 기반 API 통신 및 공통 오류 처리 |
+| **EndPoint** | 공고 조회·상세 조회·찜 등록 및 취소 API의 요청 정보 정의 |
+
+**호출 흐름:** View → `@Observable` ViewModel → `BaseService`
 
 <br>
 
@@ -75,53 +103,57 @@ refactor/#53
 
 ## ⌨️ 코드 컨벤션 
 
-### 팀 공통 빌드 설정
+| 구분 | 규칙 |
+| --- | --- |
+| **네이밍** | 타입·프로토콜은 `UpperCamelCase`, 변수·함수·열거형 case는 `lowerCamelCase`를 사용합니다. 함수는 동사로, Bool은 `is`, `has`, `can`, `should` 등으로 시작합니다. |
+| **코드 레이아웃** | 공백 4칸으로 들여쓰고, 한 줄은 90자 이내를 권장하며 최대 99자를 넘기지 않습니다. 긴 인자는 인자별로 줄바꿈합니다. |
+| **선언·접근 제어** | 변경되지 않는 값은 `let`을 사용합니다. 내부 속성과 메서드는 `private`, 외부에서 읽기만 가능한 속성은 `private(set)`, 상속하지 않는 클래스는 `final`을 사용합니다. |
+| **옵셔널·오류 처리** | 강제 언래핑을 지양하고 상황에 맞게 `guard let`, `if let`을 사용합니다. 의미 없는 기본값이나 빈 `catch`로 오류를 숨기지 않습니다. |
+| **SwiftUI View 구성** | `body`에서 전체 구조가 드러나도록 작성합니다. 독립적인 UI는 별도 View로, 현재 화면에서만 쓰는 간단한 UI는 계산 속성으로 분리합니다. 내부 상태에는 `private`을 붙입니다. |
+| **비동기·상태 관리** | UI 상태는 메인 액터에서 변경합니다. 로딩 상태는 성공·실패와 관계없이 해제하고, 화면에 연결된 비동기 작업은 취소도 고려합니다. |
 
-- `MEEMONG-iOS/MEEMONG-iOS.xcodeproj/project.pbxproj`와 `MEEMONG-iOS/.swiftlint.yml`은 함께 커밋합니다.
-- SwiftLint는 각 Mac에 설치해야 합니다 (`brew install swiftlint`). 설정 확인에 사용한 버전은 `0.63.2`이며 팀원 간 버전을 맞춰주세요.
-- pull 후 기존 프로젝트를 열고 빌드하면 됩니다. SwiftLint Run Script를 따로 추가하지 마세요.
-- 폰트 등록은 `MEEMONG-iOS/MEEMONG-iOS/Info.plist`를 사용합니다. 앱 타깃의 Debug·Release 모두 `INFOPLIST_FILE = MEEMONG-iOS/Info.plist`로 연결되어 있습니다.
-- 이 파일은 폴더 동기화의 타깃 포함 대상에서 제외되어 있습니다. Target Membership을 다시 켜거나 Copy Bundle Resources에 추가하면 `Info.plist` 중복 오류가 발생할 수 있습니다.
-- 새 폰트는 폰트 폴더에 추가하고 기존 `Info.plist`의 `UIAppFonts`에 파일명을 등록합니다. 별도 `Info.plist`를 만들지 마세요.
-- 같은 빌드 설정을 동시에 변경하면 Git 병합 충돌이 발생할 수 있으므로, 프로젝트 설정 변경은 팀에 공유하고 최신 변경을 받은 뒤 진행합니다.
 
-
-[Swift 스타일쉐어 가이드](https://github.com/StyleShare/swift-style-guide)를 기반으로 세부 기준을 설정하였습니다. 
-
+- [Swift 스타일쉐어 가이드](https://github.com/StyleShare/swift-style-guide)를 기반으로 세부 기준을 설정하였습니다. <br>
+- 코드 컨벤션에 따른 SwiftLnt를 적용하였습니다.
 
 ## 📂 폴더 구조
 
 ```
 💇🏻‍♀️ MEEMONG
-└── 📂 MEEMONG
-├── 📂 Application
-│   └── MEEMONGApp.swift
-│
-├── 📂 Core
-│   ├── 📂 Extension
-│   └── 📂 Storage
-│
-├── 📂 Data
-│   ├── 📂 Network
-│   │   ├── 📂 Base
-│   │   ├── 📂 DTO
-│   │   └── 📂 EndPoint
-│   ├── 📂 Repository
-│   └── 📂 Persistence
-│
-├── 📂 Domain
-│   ├── 📂 Entity
-│   ├── 📂 UseCase
-│   └── 📂 RepositoryInterface
-│
-├── 📂 Presentation
-│   └── 📂 Common
-│       ├── 📂 Components
-│       ├── 📂 Extensions
-│       └── 📂 Resources
-│           ├── Assets.xcassets
-│           ├── 📂 Fonts
-│           └── 📂 Colors
-│
-└── Info.plist
+└── 📂 MEEMONG-iOS
+    ├── 📂 Application
+    │   └── MEEMONG_iOSApp.swift
+    │
+    ├── 📂 Data
+    │   └── 📂 Network
+    │       ├── 📂 Base
+    │       └── 📂 DTO
+    │
+    ├── 📂 Presentation
+    │   ├── 📂 Common
+    │   │   ├── 📂 Components
+    │   │   ├── 📂 Extensions
+    │   │   └── 📂 Resource
+    │   │       ├── Assets.xcassets
+    │   │       └── 📂 Fonts
+    │   │
+    │   ├── 📂 Home
+    │   │   ├── 📂 Components
+    │   │   ├── 📂 Model
+    │   │   ├── 📂 View
+    │   │   └── 📂 ViewModel
+    │   │
+    │   ├── 📂 QuickMatch
+    │   │   ├── 📂 Components
+    │   │   ├── 📂 Model
+    │   │   ├── 📂 View
+    │   │   └── 📂 ViewModel
+    │   │
+    │   └── 📂 MatchDetail
+    │       ├── 📂 Model
+    │       ├── 📂 View
+    │       │   └── 📂 Components
+    │       └── 📂 ViewModel
+    │
+    └── Info.plist
 ```

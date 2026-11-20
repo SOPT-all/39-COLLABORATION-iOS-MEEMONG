@@ -55,7 +55,6 @@ struct QuickMatchSection: View {
                 }
                 .frame(minHeight: 24)
             }
-            .buttonStyle(.plain)
         }
     }
 }

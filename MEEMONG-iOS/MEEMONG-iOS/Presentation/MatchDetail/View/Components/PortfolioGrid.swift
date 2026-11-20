@@ -16,6 +16,7 @@ struct PortfolioGrid: View {
         VStack(alignment: .leading, spacing: 0){
             Text("포트폴리오")
                 .meemongFont(.body1_semiBold)
+                .foregroundStyle(.meemongBlack)
                 .padding(.bottom, 8)
             
             LazyVGrid(
@@ -49,11 +50,12 @@ struct PortfolioGrid: View {
                     Image(.iconsChevronLeft)
                         .frame(width: 24, height: 24)
                 }
+                .frame(maxWidth: .infinity)
+                .frame(height: 38)
+                .background(.meemongWhite, in: RoundedRectangle(cornerRadius: 4))
+                .overlay(RoundedRectangle(cornerRadius: 4).stroke(.gray300, lineWidth: 1))
+                .contentShape(Rectangle())
             }
-            .frame(maxWidth: .infinity)
-            .frame(height: 38)
-            .background(.meemongWhite, in: RoundedRectangle(cornerRadius: 4))
-            .overlay(RoundedRectangle(cornerRadius: 4).stroke(.gray300, lineWidth: 1))
         }
         .padding(.horizontal, 20)
     }
