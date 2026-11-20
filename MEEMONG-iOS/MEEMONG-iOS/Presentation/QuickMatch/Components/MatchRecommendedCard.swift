@@ -14,6 +14,27 @@ struct MatchRecommendedCard: View {
     let onSelect: () -> Void
 
     var body: some View {
+        cardContent
+            .allowsHitTesting(false)
+        .overlay(alignment: .topTrailing) {
+            Group {
+                if quickMatch.isRemotePost {
+                    PostLikeButton(
+                        isLiked: quickMatch.isLiked,
+                        isUpdating: isUpdatingLike,
+                        action: onLike
+                    )
+                    .padding(.top, 2)
+                } else {
+                    HeartButton()
+                        .padding(.top, 2)
+                }
+            }
+            .padding(16)
+        }
+    }
+
+    private var cardContent: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(alignment: .top, spacing: 12) {
                 PostThumbnail(post: quickMatch)
@@ -23,29 +44,9 @@ struct MatchRecommendedCard: View {
 
             tagInfo
         }
-        .allowsHitTesting(false)
-        .overlay(alignment: .topTrailing) {
-            if quickMatch.isRemotePost {
-                PostLikeButton(
-                    isLiked: quickMatch.isLiked,
-                    isUpdating: isUpdatingLike,
-                    action: onLike
-                )
-                .padding(.top, 2)
-            } else {
-                HeartButton()
-                    .padding(.top, 2)
-            }
-        }
         .padding(16)
         .frame(maxWidth: .infinity, minHeight: 162)
-        .background {
-            Color.meemongWhite
-                .onTapGesture {
-                    guard !isUpdatingLike else { return }
-                    onSelect()
-                }
-        }
+        .background(.meemongWhite)
         .clipShape(RoundedRectangle(cornerRadius: 6))
         .overlay {
             RoundedRectangle(cornerRadius: 6)
