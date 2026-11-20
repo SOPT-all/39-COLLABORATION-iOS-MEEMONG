@@ -31,7 +31,6 @@ struct MatchDetailModel {
     let shopImageURLs: [URL]
 
     init(post: PostDetailResponseDTO, designer: DesignerDetailResponseDTO) {
-        
         postId = post.postId
         title = post.title
         imageURLs = post.postImageUrls.compactMap { URL(string: $0) }

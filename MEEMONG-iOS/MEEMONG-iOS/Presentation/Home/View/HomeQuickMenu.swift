@@ -55,9 +55,7 @@ struct HomeQuickMenu: View {
 
     private func menuButton(_ item: Item) -> some View {
         Button {
-            if item == .quickMatching {
-                onSelect(item)
-            }
+            onSelect(item)
         } label: {
             VStack(spacing: 8) {
                 Image(item.icon)
@@ -83,7 +81,5 @@ struct HomeQuickMenu: View {
             .frame(height: 85, alignment: .top)
             .contentShape(Rectangle())
         }
-        .buttonStyle(.plain)
-        .allowsHitTesting(item == .quickMatching)
     }
 }

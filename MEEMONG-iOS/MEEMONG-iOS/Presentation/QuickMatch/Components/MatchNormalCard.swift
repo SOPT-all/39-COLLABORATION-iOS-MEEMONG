@@ -16,6 +16,29 @@ struct MatchNormalCard: View {
     let onSelect: () -> Void
 
     var body: some View {
+        cardContent
+            .contentShape(Rectangle())
+            .onTapGesture {
+                guard !isUpdatingLike else { return }
+                onSelect()
+            }
+        .overlay(alignment: .topTrailing) {
+            Group {
+                if post.isRemotePost {
+                    PostLikeButton(
+                        isLiked: post.isLiked,
+                        isUpdating: isUpdatingLike,
+                        action: onLike
+                    )
+                } else {
+                    HeartButton()
+                }
+            }
+            .padding(12)
+        }
+    }
+
+    private var cardContent: some View {
         VStack(alignment: .leading, spacing: 12) {
             VStack(alignment: .leading, spacing: 8) {
                 authorInfo
@@ -57,28 +80,9 @@ struct MatchNormalCard: View {
                 }
             }
         }
-        .allowsHitTesting(false)
-        .overlay(alignment: .topTrailing) {
-            if post.isRemotePost {
-                PostLikeButton(
-                    isLiked: post.isLiked,
-                    isUpdating: isUpdatingLike,
-                    action: onLike
-                )
-            } else {
-                HeartButton()
-            }
-        }
         .padding(12)
         .frame(maxWidth: .infinity, minHeight: 142, alignment: .leading)
-        .background {
-            RoundedRectangle(cornerRadius: 6)
-                .fill(.meemongWhite)
-                .onTapGesture {
-                    guard !isUpdatingLike else { return }
-                    onSelect()
-                }
-        }
+        .background(.meemongWhite, in: RoundedRectangle(cornerRadius: 6))
         .overlay {
             RoundedRectangle(cornerRadius: 6)
                 .strokeBorder(.gray300, lineWidth: 1)

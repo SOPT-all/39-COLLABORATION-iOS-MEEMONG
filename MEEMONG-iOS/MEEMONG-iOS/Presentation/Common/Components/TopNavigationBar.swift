@@ -27,10 +27,10 @@ struct TopNavigationBar: View {
                         .frame(width: 44, height: 44)
                         .contentShape(Rectangle())
                 }
-                .buttonStyle(.plain)
                 .padding(.leading, 12)
             }
             .padding(.bottom, 2)
+            .background(Color.meemongWhite.ignoresSafeArea(edges: .top))
             .overlay(alignment: .bottom) {
                 Rectangle()
                     .fill(Color.gray100)

@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct SNSInfo: View {
-    @Environment(\.openURL) private var openURL
+    @Environment(\.openURL)
+    private var openURL
     private let instaUrl = "https://www.instagram.com/mimong_designer"
 
     private let icons: [ImageResource] = [
@@ -19,6 +20,7 @@ struct SNSInfo: View {
         VStack(alignment: .leading, spacing: 12){
         Text("SNS")
             .meemongFont(.body1_semiBold)
+            .foregroundStyle(.meemongBlack)
         
             VStack(spacing: 8){
                 ForEach(0..<titles.count, id: \.self) { index in
@@ -39,9 +41,13 @@ struct SNSInfo: View {
                             Text("바로가기")
                                 .meemongFont(.body2_medium)
                                 .foregroundStyle(.gray800)
+                                .frame(width: 64, height: 24)
+                                .background(
+                                    .gray100,
+                                    in: RoundedRectangle(cornerRadius: 6)
+                                )
+                                .contentShape(Rectangle())
                         }
-                        .frame(width: 64, height: 24)
-                        .background(.gray100, in: RoundedRectangle(cornerRadius: 6))
                     }
                 }
             }
