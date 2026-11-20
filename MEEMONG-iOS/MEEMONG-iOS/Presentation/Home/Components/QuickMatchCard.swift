@@ -15,7 +15,11 @@ struct QuickMatchCard: View {
 
     var body: some View {
         cardContent
-            .allowsHitTesting(false)
+            .contentShape(Rectangle())
+            .onTapGesture {
+                guard !isUpdatingLike else { return }
+                onSelect()
+            }
         .overlay(alignment: .topTrailing) {
             Group {
                 PostLikeButton(
