@@ -24,6 +24,7 @@ struct ServiceInfoBox: View {
                         isLiked: matchDetail.isLiked,
                         isUpdating: isUpdatingLike,
                         unselectedImage: .defaultBlack,
+                        size: .large,
                         action: onLike
                     )
                 }
