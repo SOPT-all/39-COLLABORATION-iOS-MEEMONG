@@ -19,6 +19,7 @@ struct SNSInfo: View {
         VStack(alignment: .leading, spacing: 12){
         Text("SNS")
             .meemongFont(.body1_semiBold)
+            .foregroundStyle(.meemongBlack)
         
             VStack(spacing: 8){
                 ForEach(0..<titles.count, id: \.self) { index in

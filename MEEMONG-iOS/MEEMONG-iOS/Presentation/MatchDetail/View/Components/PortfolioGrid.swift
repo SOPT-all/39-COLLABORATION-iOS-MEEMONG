@@ -16,6 +16,7 @@ struct PortfolioGrid: View {
         VStack(alignment: .leading, spacing: 0){
             Text("포트폴리오")
                 .meemongFont(.body1_semiBold)
+                .foregroundStyle(.meemongBlack)
                 .padding(.bottom, 8)
             
             LazyVGrid(

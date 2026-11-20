@@ -18,6 +18,7 @@ struct ServiceInfoBox: View {
                 HStack{
                     Text(matchDetail.title)
                         .meemongFont(.headline)
+                        .foregroundStyle(.meemongBlack)
 
                     Spacer()
                     PostLikeButton(

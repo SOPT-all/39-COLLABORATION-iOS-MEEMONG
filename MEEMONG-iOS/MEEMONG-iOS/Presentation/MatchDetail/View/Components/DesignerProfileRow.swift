@@ -25,6 +25,7 @@ struct DesignerProfileRow: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(matchDetail.designerName)
                         .meemongFont(.headline)
+                        .foregroundStyle(.meemongBlack)
                     HStack(spacing: 4) {
                         Text(matchDetail.region)
                             .meemongFont(.body2_regular)

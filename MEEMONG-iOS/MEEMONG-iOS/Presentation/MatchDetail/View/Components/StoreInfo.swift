@@ -17,6 +17,7 @@ struct StoreInfo: View {
             VStack(alignment: .leading, spacing: 4){
                 Text("매장 정보")
                     .meemongFont(.body1_semiBold)
+                    .foregroundStyle(.meemongBlack)
                     .frame(height: 24)
                 Text(matchDetail.shopName)
                     .meemongFont(.body2_medium)
@@ -28,6 +29,7 @@ struct StoreInfo: View {
             HStack(spacing: 0){
                 Text(matchDetail.shopAddress)
                     .meemongFont(.body2_regular)
+                    .foregroundStyle(.meemongBlack)
                     .lineLimit(1)
                 Spacer()
                 Button {} label: {
