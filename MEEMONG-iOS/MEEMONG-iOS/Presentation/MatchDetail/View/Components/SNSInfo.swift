@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct SNSInfo: View {
-    @Environment(\.openURL) private var openURL
+    @Environment(\.openURL)
+    private var openURL
     private let instaUrl = "https://www.instagram.com/mimong_designer"
 
     private let icons: [ImageResource] = [
@@ -41,7 +42,10 @@ struct SNSInfo: View {
                                 .meemongFont(.body2_medium)
                                 .foregroundStyle(.gray800)
                                 .frame(width: 64, height: 24)
-                                .background(.gray100, in: RoundedRectangle(cornerRadius: 6))
+                                .background(
+                                    .gray100,
+                                    in: RoundedRectangle(cornerRadius: 6)
+                                )
                                 .contentShape(Rectangle())
                         }
                     }
