@@ -37,6 +37,7 @@ struct MatchDetailView: View {
         .safeAreaInset(edge: .bottom) {
             ReservationButton()
         }
+        .background(Color.meemongWhite.ignoresSafeArea())
         .task(id: postId) {
             await viewModel.loadMatchDetail(postId: postId)
         }
