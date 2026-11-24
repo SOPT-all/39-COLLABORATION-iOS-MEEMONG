@@ -54,21 +54,22 @@ struct ServiceInfoBox: View {
                     }
                     Spacer()
                 }
-                HStack(spacing: 4){
-                    HStack(spacing: 0){
-                        Text(matchDetail.discountRateText)
-                            .meemongFont(.title)
-                            .foregroundStyle(.meemongRed)
-                    }
-                    
-                    if !matchDetail.displayPriceText.isEmpty {
-                        Text(matchDetail.displayPriceText)
-                            .meemongFont(.title)
-                            .foregroundStyle(.meemongBlack)
-                        Text("원")
-                            .meemongFont(.body2_medium)
-                            .foregroundStyle(.gray700)
-                        Spacer()
+                if matchDetail.priceTypeText != "무료시술" {
+                    HStack(spacing: 4){
+                        HStack(spacing: 0){
+                            Text(matchDetail.discountRateText)
+                                .meemongFont(.title)
+                                .foregroundStyle(.meemongRed)
+                        }
+                        if !matchDetail.displayPriceText.isEmpty {
+                            Text(matchDetail.displayPriceText)
+                                .meemongFont(.title)
+                                .foregroundStyle(.meemongBlack)
+                            Text("원")
+                                .meemongFont(.body2_medium)
+                                .foregroundStyle(.gray700)
+                            Spacer()
+                        }
                     }
                 }
             }
