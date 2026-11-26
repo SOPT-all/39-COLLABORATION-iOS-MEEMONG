@@ -60,7 +60,6 @@ struct CustomDetailTabbar: View {
                 }
             }
             .frame(maxWidth: .infinity)
-            .padding(.bottom, 2)
             .background(alignment: .bottom) {
                 Rectangle()
                     .fill(Color.gray200)
